@@ -1,4 +1,4 @@
-# FresherNote
+# Yumblr
 
 [Heroku link][heroku] **NB:** This will be a link to Yumblr
 

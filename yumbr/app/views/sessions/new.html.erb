@@ -1,0 +1,21 @@
+<h2>Sign In</h2>
+
+<form action="<%= session_url %>" method="post">
+  <%= auth_token_input %>
+
+  <label for="user_username">Username</label><br>
+  <input
+    type="text"
+    name="user[username]"
+    id="user_username"><br>
+
+  <label for="user_password">Password</label><br>
+  <input
+    type="password"
+    name="user[password]"
+    id="user_password"><br>
+
+  <input type="submit" value="Sign In"><br>
+</form>
+
+<%= link_to "Sign up!", new_user_url %>

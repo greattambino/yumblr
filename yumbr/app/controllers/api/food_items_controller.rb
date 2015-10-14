@@ -1,14 +1,14 @@
 class Api::FoodItemsController < ApplicationController
   def index
     @food_items = Restaurant.find(params[:restaurant_id]).food_items
-    render json: @food_items
+    render json: :index
   end
 
   def show
     @food_item = FoodItem.find(params[:id])
-    render json: @food_item
+    render json: :show
   end
-  
+
   private
 
   def food_item_params

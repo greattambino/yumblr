@@ -11,10 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013161720) do
+ActiveRecord::Schema.define(version: 20151013233048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cuisines", force: :cascade do |t|
+    t.string   "cuisine",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "food_items", force: :cascade do |t|
+    t.string   "name",          null: false
+    t.integer  "price",         null: false
+    t.string   "image_url",     null: false
+    t.integer  "restaurant_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "food_items", ["name"], name: "index_food_items_on_name", using: :btree
+  add_index "food_items", ["price"], name: "index_food_items_on_price", using: :btree
+  add_index "food_items", ["restaurant_id"], name: "index_food_items_on_restaurant_id", using: :btree
+
+  create_table "restaurant_cuisines", force: :cascade do |t|
+    t.integer  "cuisine_id",    null: false
+    t.integer  "restaurant_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "restaurant_cuisines", ["cuisine_id"], name: "index_restaurant_cuisines_on_cuisine_id", using: :btree
+  add_index "restaurant_cuisines", ["restaurant_id"], name: "index_restaurant_cuisines_on_restaurant_id", using: :btree
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "description"
+    t.string   "address",      null: false
+    t.string   "city",         null: false
+    t.string   "state",        null: false
+    t.string   "zip_code",     null: false
+    t.string   "phone_number"
+    t.string   "url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false

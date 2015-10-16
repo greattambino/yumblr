@@ -19,12 +19,12 @@ $(function(){
 
   var routes = (
       <Route path="/" component={App}>
+        <IndexRoute component={RestaurantIndexItem}/>
       </Route>
   );
   React.render(<Router>{routes}</Router>, root);
 });
 
-        // <IndexRoute component={FoodItemIndex}/>
         // <IndexRoute component={Index}/>
 // <Route path="/restaurants/:restaurantId" component={RestaurantIndexItem} />
 
@@ -32,8 +32,8 @@ $(function(){
         // <IndexRoute component={Index}/>
 // <Route path="/" component={App}>
 //   <IndexRoute component={Search}/>
-//   <Route path="benches/new" component={BenchForm}/>
-//   <Route path="benches/:benchId" component={BenchShow}>
+//   <Route path="restaurants/new" component={RestaurantForm}/>
+//   <Route path="restaurants/:restaurantId" component={RestaurantShow}>
 //     <Route path="review" components={ReviewForm}/>
 //   </Route>
 // </Route>

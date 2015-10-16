@@ -53,15 +53,23 @@
    opacity: 0.85;
  }
 
- #navbar {
+ #nav {
    width:750px;
    margin:0 auto;
    list-style:none;
  }
 
- .navbar-right li {
-   float:left;
+ #navbar-center {
+   width:650px;
+   margin: 0 auto;
  }
+ //
+ // #navbar-contents {
+ //   display:block;
+ //   text-align:center;
+ //   width:150px; /* fixed width */
+ //   text-decoration:none;
+ //  }
 
  #navbar ul li a {
    color: #ffffff;

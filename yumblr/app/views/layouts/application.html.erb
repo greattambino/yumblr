@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yumblr</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <% if signed_in? %>
+    <script>
+      window.CURRENT_USER_ID = "<%= current_user.id %>"
+      window.CURRENT_USER_USERNAME="<%= current_user.username %>";
+    </script>
+  <% end %>
+</head>
+<body>
+
+  <%= render "layouts/errors" %>
+
+  <%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+window.FilteredFoodItemConstants = {
+  FILTERED_FOOD_ITEMS_RECEIVED: "FILTERED_FOOD_ITEMS_RECEIVED"
+};

@@ -36,4 +36,12 @@ var ApiUtil = {
       ApiActions.receiveFilteredFoodItems([]);
     }
   },
+  fetchFilteredFoodItem: function() {
+    $.ajax({
+      url: "api/food_items" + id,
+      success: function(foodItem) {
+        ApiActions.receiveFilteredFoodItem(foodItem);
+      }
+    });
+  }
 };

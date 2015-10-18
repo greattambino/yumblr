@@ -46,8 +46,23 @@ r3 = Restaurant.create!(name: "Skool",
 
 f1 = FoodItem.create!(name: "Meatloaf",
                 price: 19.57,
-                image_url: "/assets/images/blue-plate-meatloaf.jpeg",
+                image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445039229/Blue%20Plate/Unknown-2.jpg",
                 restaurant_id: r1.id)
+
+f2 = FoodItem.create!(name: "Toasted Farro & Slow Egg",
+                price: 12.36,
+                image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445039229/Blue%20Plate/Unknown.jpg",
+                restaurant_id: r1.id)
+
+f3 = FoodItem.create!(name: "Macaroni and Cheese",
+                price: 9.27,
+                image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445039230/Blue%20Plate/Unknown-1.jpg",
+                restaurant_id: r1.id)
+
+f4 = FoodItem.create!(name: "Steak and Frites (Lunch)",
+                price: 18.75,
+                image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445039500/Skool/Unknown.jpgg",
+                restaurant_id: r3.id)
 
 rc1 = RestaurantCuisine.create!(restaurant_id: r1.id,
                                 cuisine_id:    c1.id)

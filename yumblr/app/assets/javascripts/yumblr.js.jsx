@@ -18,24 +18,10 @@ $(function(){
   });
 
   var routes = (
-      <Route path="/" component={App}>
-        <IndexRoute component={RestaurantIndexItem}/>
-      </Route>
+    <Route path="/" component={App}>
+      <IndexRoute component={RestaurantIndexItem}/>
+      <Route path="food_items/:foodItemId" component={FoodItemShow} />
+    </Route>
   );
   React.render(<Router>{routes}</Router>, root);
 });
-
-        // <IndexRoute component={Index}/>
-// <Route path="/restaurants/:restaurantId" component={RestaurantIndexItem} />
-
-
-        // <IndexRoute component={Index}/>
-// <Route path="/" component={App}>
-//   <IndexRoute component={Search}/>
-//   <Route path="restaurants/new" component={RestaurantForm}/>
-//   <Route path="restaurants/:restaurantId" component={RestaurantShow}>
-//     <Route path="review" components={ReviewForm}/>
-//   </Route>
-// </Route>
-        // <IndexRoute component={FoodItem}/>
-        // <Route path="/restaurants/:restaurantId" component={RestaurantShow} />

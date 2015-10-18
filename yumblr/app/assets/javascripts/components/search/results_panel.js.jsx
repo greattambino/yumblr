@@ -1,10 +1,13 @@
 (function(root) {
   'use strict';
-
+              //  cuisines: CuisineStore.all(),
   var ResultsBox = root.ResultsBox = React.createClass({
     mixins: [ReactRouter.History],
     getInitialState: function() {
-      return({ searchString: '', searchResults: FilteredFoodItemStore.all() });
+      return({ searchString: '',
+
+               searchResults: FilteredFoodItemStore.all()
+             });
     },
     componentDidMount: function() {
       FilteredFoodItemStore.addChangeListener(this._onChange);
@@ -17,11 +20,13 @@
     },
     handleEnter: function(e) {
       if(e.charCode === 13) {
-        this.history.pushState(null, "/food_items/" + FilteredFoodItemStore.next().id);
+        e.preventDefault();
+        var foodItem = FilteredFoodItemStore.next();
+        this.history.pushState(null, "/food_items/" + foodItem.id);
       }
     },
-
     handleChange: function(e) {
+      console.log(e.target.value);
       ApiUtil.fetchFilteredFoodItems(e.target.value);
       this.setState({ searchString: e.target.value });
     },
@@ -33,104 +38,62 @@
     render: function() {
 
       return(
-        <form role="search" className="navbar-form navbar-left" id="find-search-box">
-          <div className="form-group">
-            <label htmlFor="find-search">Find &nbsp;</label>
-            <input id="find-search"
-                   ref="searchInput"
-                   onKeyPress={this.handleEnter}
-                   onChange={this.handleChange}
-                   type="text"
-                   className="form-control"
-                   placeholder="Everything"
-                   value={this.state.searchString} />
-          </div>
-          <div className="display-find-results">
-            <ul>
-              {this.state.searchResults.map(function(result) {
-                return <li key={result.id}>
-                         {result.name}
-                       </li>;
-              }.bind(this))}
-            </ul>
-          </div>
-        </form>
+        <div id="navbar-center">
+          <form role="search" className="navbar-form navbar-left" id="find-search-box">
+            <div className="form-group search-form">
+              <button type="button" className="btn btn-default dropdown-toggle search-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
+              </button>
+
+                <ul className="dropdown-menu dropdown-menu-food" role="menu">
+                  <li><a href="#">All</a></li>
+                  <li><a href="#">American</a></li>
+                  <li><a href="#">Italian</a></li>
+                  <li><a href="#">Chinese</a></li>
+                  <li><a href="#">Japanese</a></li>
+                  <li><a href="#">Vegitarian</a></li>
+
+                </ul>
+                <div className="search-label form-control">
+                  Find
+                </div>
+                <input ref="searchInput"
+                       onKeyPress={this.handleEnter}
+                       onChange={this.handleChange}
+                       type="text"
+                       className="search-input form-control"
+                       placeholder="Everything"
+                       value={this.state.searchString} />
+            </div>
+          </form>
+
+          <ul className="nav navbar-nav">
+            <li className="generate-btn active"><a href="#">Y</a></li>
+          </ul>
+
+          <form role="search" className="navbar-form navbar-left" id="location-search-box">
+            <div className="form-group search-form">
+              <button type="button" className="btn btn-default dropdown-toggle search-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
+              </button>
+
+                <ul className="dropdown-menu dropdown-menu-location" role="menu">
+                  <li><a href="#">All</a></li>
+                  <li><a href="#">San Francisco</a></li>
+                  <li><a href="#">Oakland</a></li>
+
+                </ul>
+                <div className="search-label form-control">
+                  Near
+                </div>
+                <input type="text"
+                       placeholder="Nearby"
+                       ref="locationSearchInput"
+                       className="search-input form-control" />
+            </div>
+          </form>
+        </div>
       );
     }
   });
 }(this));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-// return(
-//   <div className="navbar-form navbar-left" role="search">
-//     <div className="form-group">
-//       <input onChange={this.handleChange}
-//              type="text"
-//              className="form-control"
-//              placeholder="Everything"
-//              value={this.state.searchString}/>
-//     </div>
-//     <div>
-//       <ul>
-//         {this.state.searchResults.map(function(result) {
-//           return <li key={result.id} onSubmit={this.handleSubmit.bind(null, result)}>
-//                    {result.name}
-//                  </li>;
-//         }.bind(this))}
-//       </ul>
-//     </div>
-//   </div>
-// );
-//
-//
-//
-//
-//  onSubmit={this.handleSubmit.bind(null, result)}
-// .bind(this)
-//
-//
-//     doSearch:function(queryText){
-//       FilteredFoodItemStore.addChangeListener(this._updateFilteredData(queryText));
-//
-//
-//           updateFoodItems: function(queryText) {
-//             console.log(queryText);
-//
-//             var queryResult=[];
-//             this.state.filteredData.forEach(function(food_item){
-//               if(food_item.name.toLowerCase().indexOf(queryText) != -1) {
-//                 queryResult.push(food_item);
-//               }
-//             });
-//
-//             this.setState({
-//               query:queryText,
-//               filteredData: queryResult
-//             });
-//           },
-//     },
-//
-//     render:function(){
-//       return (
-//         <div className="ResultsBox">
-//           <SearchBox query={this.state.query} doSearch={this.doSearch}/>
-//           <DisplayPanel data={this.state.filteredData}/>
-//         </div>
-//       );
-//     }
-// });

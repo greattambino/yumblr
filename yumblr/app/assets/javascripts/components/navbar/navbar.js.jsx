@@ -57,27 +57,11 @@
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
+
               <a href="/" className="navbar-brand">Yumblr</a>
             </div>
-
             <div id="navbar" className="navbar-collapse collapse">
-              <div id="navbar-center">
-                <ResultsBox />
-                <ul className="nav navbar-nav">
-                  <li className="active"><a href="#">Y</a></li>
-                </ul>
-                <form role="search" className="navbar-form navbar-left" id="location-search-box">
-                  <div className="form-group">
-                    <label htmlFor="location-search">Near &nbsp;</label>
-                    <input id="location-search"
-                           type="text"
-                           placeholder="Nearby"
-                           ref="locationSearchInput"
-                           className="form-control" />
-                  </div>
-                </form>
-              </div>
-
+              <ResultsBox />
               { navbarRight }
             </div>
           </div>

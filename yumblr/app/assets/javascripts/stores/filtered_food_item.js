@@ -22,6 +22,15 @@
       return result;
     },
 
+    find: function (id) {
+      var foodItem;
+      _filteredFoodItems.forEach(function(f) {
+        if(f.id === id) { foodItem = f; }
+      });
+
+      return foodItem;
+    },
+
     addChangeListener: function(callback) {
       this.on(QUERY_CHANGE_EVENT, callback);
     },

@@ -45,6 +45,23 @@
  // .navbar-header.align-center ul {
  //   text-align: center;
  // }
+
+ //
+ // #navbar-contents {
+ //   display:block;
+ //   text-align:center;
+ //   width:150px; /* fixed width */
+ //   text-decoration:none;
+ //  }
+
+
+ //  font-family: 'Open Sans', sans-serif;
+ //  font-weight: 700;
+ //  text-transform: uppercase;
+
+
+
+
  #find-search-box {
    opacity: 0.85;
  }
@@ -59,26 +76,79 @@
    list-style:none;
  }
 
- #navbar-center {
-   width:650px;
-   margin: 0 auto;
+ .generate-btn {
+   padding-top: 2px;
  }
- //
- // #navbar-contents {
- //   display:block;
- //   text-align:center;
- //   width:150px; /* fixed width */
- //   text-decoration:none;
- //  }
+
+ .form-control {
+   border-radius: 0;
+ }
+ .btn-default {
+   border-radius: 0;
+ }
+
+ .search-form {
+   position:relative;
+   border-radius: 0px 0px 4px 4px;
+   color: cornflowerblue;
+ }
+
+ .search-btn {
+   color: cornflowerblue;
+   border-right: none;
+ }
+
+ .search-glyphicon {
+
+ }
+
+ .dropdown-menu-food {
+   width: 500px;
+   padding: 0 0;
+   margin: 50px 0 0;
+   margin-left: 17%;
+ }
+
+ .dropdown-menu-location {
+   width: 500px;
+   padding: 0 0;
+   margin: 50px 0 0;
+   margin-left: -115%;
+ }
+
+ .dropdown-menu li a {
+   font-weight: bold;
+ }
+ .search-label {
+   color: black;
+   font-weight: bold;
+   border-left: none;
+   border-right: none;
+   padding-right: 3px;
+   padding-left: 0;
+ }
+
+ .search-input {
+   border-left: none;
+   padding-left: 3px;
+ }
+
+.form-group{
+  opacity: 0.75;
+}
+ #navbar-center {
+   width: 650px;
+   height: 10px;
+   margin: 0 auto;
+   text-align: center;
+ }
 
  #navbar ul li a {
    color: #ffffff;
    text-decoration: none;
    display: block;
    padding: 15px 25px;
-  //  font-family: 'Open Sans', sans-serif;
-  //  font-weight: 700;
-  //  text-transform: uppercase;
+
    font-size: 14px;
    position: relative;
    -webkit-transition: color .25s;
@@ -127,62 +197,14 @@
  label {
    font-weight: normal;
  }
- // .navbar-header ul li.active a {
- //   color: #333333;
- // }
- // .navbar-header ul li.active a:before {
- //   width: 100%;
- // }
- // .navbar-header.align-right li.last > a:after,
- // .navbar-header.align-right li:last-child > a:after {
- //   display: block;
- // }
- // .navbar-header.align-right li:first-child a:after {
- //   display: none;
- // }
- // @media screen and (max-width: 768px) {
- //   .nav li {
- //     float: none;
- //     display: block;
- //   }
- //   .navbar-header ul li a {
- //     width: 100%;
- //     -moz-box-sizing: border-box;
- //     -webkit-box-sizing: border-box;
- //     box-sizing: border-box;
- //     border-bottom: 1px solid #fb998c;
- //   }
- //   .navbar-header ul li.last > a,
- //   .navbar-header ul li:last-child > a {
- //     border: 0;
- //   }
- //   .navbar-header ul li a:after {
- //     display: none;
- //   }
- //   .navbar-header ul li a:before {
- //     display: none;
- //   }
- // }
 
- // .navbar{
- //   margin-top: 20px;
- // }
 
  .navbar {
    background-color: rgba(0, 0, 0, 0.5);
    color: white !important;
  }
 
- // .navbar-default .navbar-nav>li>a {
- //   color: #FFF;
- // }
 
- // .navbar-default .navbar-brand {
- //   color:#ccc;
- // }
- // .navbar-default .navbar-brand:hover {
- //   color: cornflowerblue;
- // }
 
  .navbar a:visited {
    color:white !important;
@@ -232,5 +254,65 @@
 
 //  body {
 //     background-image: url("/assets/blue-plate-meatloaf.jpg");
+
+
+// .navbar-header ul li.active a {
+//   color: #333333;
+// }
+// .navbar-header ul li.active a:before {
+//   width: 100%;
+// }
+// .navbar-header.align-right li.last > a:after,
+// .navbar-header.align-right li:last-child > a:after {
+//   display: block;
+// }
+// .navbar-header.align-right li:first-child a:after {
+//   display: none;
+// }
+// @media screen and (max-width: 768px) {
+//   .nav li {
+//     float: none;
+//     display: block;
+//   }
+//   .navbar-header ul li a {
+//     width: 100%;
+//     -moz-box-sizing: border-box;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     border-bottom: 1px solid #fb998c;
+//   }
+//   .navbar-header ul li.last > a,
+//   .navbar-header ul li:last-child > a {
+//     border: 0;
+//   }
+//   .navbar-header ul li a:after {
+//     display: none;
+//   }
+//   .navbar-header ul li a:before {
+//     display: none;
+//   }
+// }
+
+// .navbar{
+//   margin-top: 20px;
+// }
+
+
+
+// .navbar-default .navbar-nav>li>a {
+//   color: #FFF;
+// }
+
+// .navbar-default .navbar-brand {
+//   color:#ccc;
+// }
+// .navbar-default .navbar-brand:hover {
+//   color: cornflowerblue;
+// }
+
+
+
+
+
 //     background-color: #cccccc;
 // }

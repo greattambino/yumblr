@@ -28,6 +28,13 @@
         actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEMS_RECEIVED,
         filteredFoodItems: filteredFoodItems
       });
+    },
+
+    receiveFilteredFoodItem: function(filteredFoodItem) {
+      AppDispatcher.dispatch({
+        actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEM_RECEIVED,
+        filteredFoodItem: filteredFoodItem
+      });
     }
   };
 }(this));

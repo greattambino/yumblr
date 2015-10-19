@@ -1,34 +1,56 @@
 (function(root) {
   'use strict';
-              //  cuisines: CuisineStore.all(),
-  var ResultsBox = root.ResultsBox = React.createClass({
+
+  var SearchBar = root.SearchBar = React.createClass({
     mixins: [ReactRouter.History],
+
     getInitialState: function() {
       return({ searchString: '',
-
+               searching: false,
+               selectedCuisine: -1,
+               cuisines: CuisineStore.all(),
                searchResults: FilteredFoodItemStore.all()
              });
     },
+
     componentDidMount: function() {
       FilteredFoodItemStore.addChangeListener(this._onChange);
+      CuisineStore.addChangeListener(this._onChange);
+      ApiUtil.fetchCuisines();
     },
+
     componentWillUnmount: function() {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
+      CuisineStore.addChangeListener(this._onChange);
     },
+
     _onChange: function() {
       this.setState({ searchResults: FilteredFoodItemStore.all() });
+      this.setState({ cuisines: CuisineStore.all() });
     },
+
     handleEnter: function(e) {
       if(e.charCode === 13) {
         e.preventDefault();
         var foodItem = FilteredFoodItemStore.next();
+        // ApiUtil.fetchNextFilteredFoodItem(foodItem.id);
+        // var cuisine_id = e.currentTarget.cuisines.value;
+        console.log(foodItem);
+        // console.log(cuisine_id);
         this.history.pushState(null, "/food_items/" + foodItem.id);
+        this.setState({ searchString: '', searching: false });
       }
     },
+
     handleChange: function(e) {
       console.log(e.target.value);
-      ApiUtil.fetchFilteredFoodItems(e.target.value);
+      // ApiUtil.fetchFilteredFoodItems(e.target.value);
       this.setState({ searchString: e.target.value });
+      this.setState({ searching: true });
+    },
+    
+    updateCuisine: function(e){
+      this.setState({ selectedCuisine: e.target.value });
     },
     // handleSubmit: function(result) {
     //   this.setState({ searchString: '' });
@@ -36,42 +58,44 @@
     //   this.history.pushState(null, "/food_items/" + result.id.toString());
     // },
     render: function() {
-
+      var resultsPanel;
+      if (this.state.searching) {
+        resultsPanel = <SearchResultsPanel results={this.state.searchResults}/>;
+      }
       return(
         <div id="navbar-center">
-          <form role="search" className="navbar-form navbar-left" id="find-search-box">
+          <form role="search"
+                onKeyPress={this.handleEnter}
+                className="navbar-form navbar-left"
+                id="find-search-bar">
             <div className="form-group search-form">
               <button type="button" className="btn btn-default dropdown-toggle search-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
               </button>
 
-                <ul className="dropdown-menu dropdown-menu-food" role="menu">
-                  <li><a href="#">All</a></li>
-                  <li><a href="#">American</a></li>
-                  <li><a href="#">Italian</a></li>
-                  <li><a href="#">Chinese</a></li>
-                  <li><a href="#">Japanese</a></li>
-                  <li><a href="#">Vegitarian</a></li>
-
+                <ul className="dropdown-menu dropdown-menu-food" role="menu" name="cuisines">
+                  <li value="-1">All Cuisines</li>
+                  {this.state.cuisines.map(function(cuisine){
+                    return <li key={cuisine.id} onClick={this.updateCuisine} value={cuisine.id}>{cuisine.cuisine}</li>;
+                  }.bind(this))}
                 </ul>
                 <div className="search-label form-control">
                   Find
                 </div>
                 <input ref="searchInput"
-                       onKeyPress={this.handleEnter}
                        onChange={this.handleChange}
                        type="text"
                        className="search-input form-control"
                        placeholder="Everything"
+                       name="searchQuery"
                        value={this.state.searchString} />
             </div>
           </form>
+          {resultsPanel}
 
-          <ul className="nav navbar-nav">
-            <li className="generate-btn active"><a href="#">Y</a></li>
-          </ul>
+          <GenerateBtn />
 
-          <form role="search" className="navbar-form navbar-left" id="location-search-box">
+          <form role="search" className="navbar-form navbar-left" id="location-search-bar">
             <div className="form-group search-form">
               <button type="button" className="btn btn-default dropdown-toggle search-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
@@ -97,3 +121,11 @@
     }
   });
 }(this));
+
+
+// <li><a href="#">All</a></li>
+// <li><a href="#">American</a></li>
+// <li><a href="#">Italian</a></li>
+// <li><a href="#">Chinese</a></li>
+// <li><a href="#">Japanese</a></li>
+// <li><a href="#">Vegitarian</a></li>

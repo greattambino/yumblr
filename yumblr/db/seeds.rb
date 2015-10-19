@@ -61,7 +61,7 @@ f3 = FoodItem.create!(name: "Macaroni and Cheese",
 
 f4 = FoodItem.create!(name: "Steak and Frites (Lunch)",
                 price: 18.75,
-                image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445039500/Skool/Unknown.jpgg",
+                image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445039500/Skool/Unknown.jpg",
                 restaurant_id: r3.id)
 
 rc1 = RestaurantCuisine.create!(restaurant_id: r1.id,

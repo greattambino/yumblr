@@ -2,6 +2,7 @@
   'use strict';
 
   var _filteredFoodItems = [];
+  // var _currentFoodItem = {};
   var QUERY_CHANGE_EVENT = "query_change";
   var i = 0;
 
@@ -10,13 +11,18 @@
     i = 0;
   };
 
+  // var setCurrentFoodItem = function(i) {
+  //   _currentFoodItem = _filteredFoodItems[i];
+  // };
+
   var FilteredFoodItemStore = root.FilteredFoodItemStore = $.extend({}, EventEmitter.prototype, {
     all: function() {
       return _filteredFoodItems.slice();
     },
 
     next: function () {
-      if (i + 1 >= _filteredFoodItems.length) { i = 0; }
+      if (i + 1 > _filteredFoodItems.length) { i = 0; }
+      // var result = _currentFoodItem;
       var result = _filteredFoodItems[i];
       i++;
       return result;
@@ -45,6 +51,10 @@
           resetFilteredFoodItems(payload.filteredFoodItems);
           FilteredFoodItemStore.emit(QUERY_CHANGE_EVENT);
           break;
+        // case FilteredFoodItemConstants.FILTERED_FOOD_ITEM_RECEIVED:
+        //   resetFilteredFoodItems(payload.filteredFoodItem);
+        //   FilteredFoodItemStore.emit(QUERY_CHANGE_EVENT);
+        //   break;
       }
     })
   });

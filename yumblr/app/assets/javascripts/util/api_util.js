@@ -1,4 +1,13 @@
 var ApiUtil = {
+  fetchCuisines: function() {
+    $.ajax({
+      url: "api/cuisines",
+      success: function(cuisines) {
+        ApiActions.receiveCuisines(cuisines);
+      }
+    });
+  },
+
   fetchAllRestaurants: function() {
     $.ajax({
       url: "api/restaurants",
@@ -36,9 +45,9 @@ var ApiUtil = {
       ApiActions.receiveFilteredFoodItems([]);
     }
   },
-  fetchFilteredFoodItem: function() {
+  fetchFilteredFoodItem: function(id) {
     $.ajax({
-      url: "api/food_items" + id,
+      url: "api/food_items/" + id,
       success: function(foodItem) {
         ApiActions.receiveFilteredFoodItem(foodItem);
       }

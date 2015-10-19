@@ -22,6 +22,6 @@ class Restaurant < ActiveRecord::Base
   validates :zip_code, length: {is: 5}
 
   has_many :food_items
-  has_many :restaurant_cuisines
+  has_many :restaurant_cuisines, dependent: :destroy
   has_many :cuisines, through: :restaurant_cuisines, source: :cuisine
 end

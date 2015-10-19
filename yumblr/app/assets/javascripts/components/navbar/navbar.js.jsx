@@ -1,6 +1,8 @@
 (function(root) {
+  'use strict';
+
   var Link = ReactRouter.Link;
-  root.Navbar = React.createClass({
+  var Navbar = root.Navbar = React.createClass({
     handleSignOut: function() {
       root.SessionUtil.signOutUser();
     },
@@ -61,7 +63,7 @@
               <a href="/" className="navbar-brand">Yumblr</a>
             </div>
             <div id="navbar" className="navbar-collapse collapse">
-              <ResultsBox />
+              <SearchBar />
               { navbarRight }
             </div>
           </div>

@@ -13,7 +13,7 @@ class Cuisine < ActiveRecord::Base
 
   before_save :capitalize_cuisine
 
-  has_many :restaurant_cuisines
+  has_many :restaurant_cuisines, dependent: :destroy
   has_many :restaurants, through: :restaurant_cuisines, source: :restaurant
 
   private

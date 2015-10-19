@@ -62,11 +62,11 @@
 
 
 
- #find-search-box {
+ #find-search-bar {
    opacity: 0.85;
  }
 
- #location-search-box {
+ #location-search-bar {
    opacity: 0.85;
  }
 
@@ -74,10 +74,6 @@
    width:750px;
    margin:0 auto;
    list-style:none;
- }
-
- .generate-btn {
-   padding-top: 2px;
  }
 
  .form-control {
@@ -103,14 +99,14 @@
  }
 
  .dropdown-menu-food {
-   width: 500px;
-   padding: 0 0;
+   width: 470px;
+   padding: 5 0;
    margin: 50px 0 0;
    margin-left: 17%;
  }
 
  .dropdown-menu-location {
-   width: 500px;
+   width: 470px;
    padding: 0 0;
    margin: 50px 0 0;
    margin-left: -115%;
@@ -147,7 +143,6 @@
    color: #ffffff;
    text-decoration: none;
    display: block;
-   padding: 15px 25px;
 
    font-size: 14px;
    position: relative;
@@ -164,7 +159,6 @@
    width: 100%;
  }
  #navbar ul li a:after {
-   content: "";
    display: block;
    position: absolute;
    right: -3px;
@@ -204,7 +198,9 @@
    color: white !important;
  }
 
-
+.navbar-default .navbar-text {
+  color: white;
+}
 
  .navbar a:visited {
    color:white !important;
@@ -223,7 +219,7 @@
  }
 
  .navbar-default .navbar-brand:visited:hover {
-   color:#B730B5 !important;
+   color: cornflowerblue !important;
  }
 
  .navbar-nav>a {
@@ -234,23 +230,7 @@
    background-color: #333 !important;
  }
 
- #bg {
-   position: fixed;
-   top: -50%;
-   left: -50%;
-   width: 200%;
-   height: 200%;
- }
- #bg img {
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   margin: auto;
-   min-width: 50%;
-   min-height: 50%;
- }
+
 
 //  body {
 //     background-image: url("/assets/blue-plate-meatloaf.jpg");

@@ -8,12 +8,12 @@ class Api::FoodItemsController < ApplicationController
       @food_items = FoodItem.all
     end
 
-    render json: @food_items
+    render :index
   end
 
   def show
     @food_item = FoodItem.find(params[:id])
-    render json: :show
+    render :show
   end
 
   private

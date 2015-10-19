@@ -1,3 +1,61 @@
 // Place all the styles related to the Api::FoodItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+.food-item-detail {
+  position: fixed;
+  z-index: 2;
+  min-width: 200px;
+  min-height: 100px;
+  bottom: 20px;
+  left: 5%;
+  border-radius: 5px;
+  background-color: black;
+  opacity: 0.7;
+  padding: 5px;
+  &:hover {
+
+    opacity: 0.8;
+    -moz-box-shadow: 0px 10px 14px -7px #276873;
+  	-webkit-box-shadow: 0px 10px 14px -7px #276873;
+  	box-shadow: 0px 10px 14px -7px #276873;
+  }
+}
+
+// background-color: darkslategrey;
+
+.food-item-restaurant {
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+  &:hover {
+    color: #bbb;
+  }
+}
+
+.food-item-name {
+  color: orange;
+}
+
+.food-item-price {
+  color: orangered;
+  font-weight: bolder;
+}

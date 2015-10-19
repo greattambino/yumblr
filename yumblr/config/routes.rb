@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :new]
 
   namespace :api, defaults: { format: :json } do
-    resources :restaurants, only: [:index, :show]
     resources :food_items, only: [:index, :show]
+    resources :restaurants, only: [:index, :show]
+    resources :cuisines, only: [:index]
     resources :users, only: [:show]
   end
 end

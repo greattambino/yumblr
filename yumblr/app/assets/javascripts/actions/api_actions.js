@@ -35,6 +35,21 @@
         actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEM_RECEIVED,
         filteredFoodItem: filteredFoodItem
       });
+    },
+
+    receiveCuisines: function(cuisines) {
+      AppDispatcher.dispatch({
+        actionType: CuisineConstants.CUISINES_RECEIVED,
+        cuisines: cuisines
+      });
     }
+
+    // receiveFilteredFoodItemId: function(filteredFoodItem) {
+    //   AppDispatcher.dispatch({
+    //     actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEM_ID_RECEIVED,
+    //     filteredFoodItemId: filteredFoodItemId
+    //   });
+    // }
+
   };
 }(this));

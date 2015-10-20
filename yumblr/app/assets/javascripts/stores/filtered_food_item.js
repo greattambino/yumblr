@@ -4,6 +4,7 @@
   var _filteredFoodItems = [];
   // var _currentFoodItem = {};
   var QUERY_CHANGE_EVENT = "query_change";
+  var INITIALIZE_EVENT = "initialize";
   var i = 0;
 
   var resetFilteredFoodItems = function(foodItems) {
@@ -47,6 +48,10 @@
 
     dispatcherID: AppDispatcher.register(function(payload) {
       switch(payload.actionType){
+        case FoodItemConstants.FOOD_ITEMS_RECEIVED:
+          resetFilteredFoodItems(payload.foodItems);
+          FilteredFoodItemStore.emit(INITIALIZE_EVENT);
+          break;
         case FilteredFoodItemConstants.FILTERED_FOOD_ITEMS_RECEIVED:
           resetFilteredFoodItems(payload.filteredFoodItems);
           FilteredFoodItemStore.emit(QUERY_CHANGE_EVENT);

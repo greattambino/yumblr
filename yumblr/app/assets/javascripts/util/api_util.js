@@ -32,19 +32,30 @@ var ApiUtil = {
       }
     });
   },
-  fetchFilteredFoodItems: function(query) {
-    if(query !== '') {
+  fetchFilteredFoodItems: function(query, cuisine_id) {
+
       $.ajax({
         url: "api/food_items",
-        data: {search: query},
+        data: {search: query, cuisine: cuisine_id},
         success: function(filteredFoodItems) {
           ApiActions.receiveFilteredFoodItems(filteredFoodItems);
         }
       });
-    } else {
-      ApiActions.receiveFilteredFoodItems([]);
-    }
   },
+  // fetchFilteredFoodItems: function(query, cuisine_id) {
+  //   debugger;
+  //   if(query !== '') {
+  //     $.ajax({
+  //       url: "api/food_items",
+  //       data: {search: query, cuisine: cuisine_id},
+  //       success: function(filteredFoodItems) {
+  //         ApiActions.receiveFilteredFoodItems(filteredFoodItems);
+  //       }
+  //     });
+  //   } else {
+  //     ApiActions.receiveFilteredFoodItems([]);
+  //   }
+  // },
   fetchFilteredFoodItem: function(id) {
     $.ajax({
       url: "api/food_items/" + id,

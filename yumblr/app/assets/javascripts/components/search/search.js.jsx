@@ -13,6 +13,10 @@
              });
     },
 
+    componentWillMount: function() {
+      ApiUtil.fetchAllFoodItems();
+    },
+
     componentDidMount: function() {
       FilteredFoodItemStore.addChangeListener(this._onChange);
       CuisineStore.addChangeListener(this._onChange);
@@ -34,8 +38,7 @@
         e.preventDefault();
         var foodItem = FilteredFoodItemStore.next();
         // ApiUtil.fetchNextFilteredFoodItem(foodItem.id);
-        // var cuisine_id = e.currentTarget.cuisines.value;
-        console.log(foodItem);
+        console.log(FilteredFoodItemStore.all());
         // console.log(cuisine_id);
         this.history.pushState(null, "/food_items/" + foodItem.id);
         this.setState({ searchString: '', searching: false });
@@ -44,12 +47,14 @@
 
     handleChange: function(e) {
       console.log(e.target.value);
-      // ApiUtil.fetchFilteredFoodItems(e.target.value);
+      var cuisine_id = this.state.selectedCuisine;
+      ApiUtil.fetchFilteredFoodItems(e.target.value, cuisine_id);
       this.setState({ searchString: e.target.value });
       this.setState({ searching: true });
     },
-    
+
     updateCuisine: function(e){
+      ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
       this.setState({ selectedCuisine: e.target.value });
     },
     // handleSubmit: function(result) {
@@ -74,7 +79,7 @@
               </button>
 
                 <ul className="dropdown-menu dropdown-menu-food" role="menu" name="cuisines">
-                  <li value="-1">All Cuisines</li>
+                  <li value="-1" onClick={this.updateCuisine}>All Cuisines</li>
                   {this.state.cuisines.map(function(cuisine){
                     return <li key={cuisine.id} onClick={this.updateCuisine} value={cuisine.id}>{cuisine.cuisine}</li>;
                   }.bind(this))}

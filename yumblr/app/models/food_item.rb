@@ -15,8 +15,13 @@ class FoodItem < ActiveRecord::Base
   validates :name, :price, :image_url, presence: true
 
   belongs_to :restaurant
+  has_many :cuisines, through: :restaurant, source: :cuisines
 
   def self.find_by_substring(str)
-    FoodItem.where("LOWER(name) LIKE '%#{str.downcase}%'");
+    FoodItem.where("LOWER(name) LIKE '%#{str.downcase}%'")
+  end
+
+  def self.find_by_substring_and_cuisine(str, cuisine_id)
+    Cuisine.find(cuisine_id).food_items.where("LOWER(food_items.name) LIKE '%#{str.downcase}%'")
   end
 end

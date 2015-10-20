@@ -21,7 +21,11 @@
               {this.props.item.name}
             </span>
             <span className="food-item-price">
-              &nbsp; &nbsp; &nbsp; ${this.props.item.price}
+              ${this.props.item.price}
+            </span>
+            <br/>
+            <span className="food-item-city">
+              {this.props.item.restaurant.city}
             </span>
           </div>
 

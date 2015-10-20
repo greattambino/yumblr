@@ -15,6 +15,7 @@ class Cuisine < ActiveRecord::Base
 
   has_many :restaurant_cuisines, dependent: :destroy
   has_many :restaurants, through: :restaurant_cuisines, source: :restaurant
+  has_many :food_items, through: :restaurants, source: :food_items
 
   private
 

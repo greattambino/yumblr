@@ -24,6 +24,18 @@
     },
 
     componentDidMount: function() {
+      // $("#geocomplete")
+      //   .geocomplete()
+      //   .bind("geocode:result", function(event, results){
+      //     debugger
+      //     this.setState({ location: {
+      //       lat: event.currentTarget.lat.value,
+      //       lng: event.target.lng.value,
+      //       postal_code: event.target.postal_code.value,
+      //       city: event.currentTarget.city.value,
+      //       state: event.target.state.value
+      //     }});
+      //   })
       $("#geocomplete").geocomplete({location: "#locationDetails"});
       navigator.geolocation.getCurrentPosition(this.setLocation);
       CuisineStore.addChangeListener(this._onChange);
@@ -72,17 +84,7 @@
     },
 
     // updateLocation: function(event){
-    //   $("#geocomplete")
-    //     .geocomplete()
-    //     .bind("geocode:result", function(event, {location: "#locationDetails"}){
-    //       this.setState({ location: {
-    //         lat: event.currentTarget.lat.value,
-    //         lng: event.target.lng.value,
-    //         postal_code: event.target.postal_code.value,
-    //         city: event.currentTarget.city.value,
-    //         state: event.target.state.value
-    //       }});
-    //     });
+
     // },
 
     // updateLocation: function(e){

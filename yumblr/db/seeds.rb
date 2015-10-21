@@ -26,15 +26,19 @@ r1 = Restaurant.create!(name: "Blue Plate",
                   city: "San Francisco",
                   state: "CA",
                   zip_code: "94110",
+                  lat: "37.745215",
+                  lng: "-122.420483",
                   phone_number: "(415) 282-6777",
                   url: "http://www.blueplatesf.com")
 
 r2 = Restaurant.create!(name: "Ramen Underground",
                   description: "Authentic Ramen with no MSG.",
-                  address: "22 Peace Plz Ste 530",
+                  address: "356 Kearny St",
                   city: "San Francisco",
                   state: "CA",
-                  zip_code: "94115",
+                  zip_code: "94108",
+                  lat: "37.791355",
+                  lng: "-122.404174",
                   phone_number: "(415) 999-2509",
                   url: "http://www.ramenunderground.com")
 
@@ -44,6 +48,8 @@ r3 = Restaurant.create!(name: "Skool",
                   city: "San Francisco",
                   state: "CA",
                   zip_code: "94103",
+                  lat: "37.768521",
+                  lng: "-122.402286",
                   phone_number: "(415) 255-8800",
                   url: "http://skoolsf.com")
 
@@ -53,6 +59,8 @@ r4 = Restaurant.create!(name: "AG Ferrari Foods - SOMA",
                   city: "San Francisco",
                   state: "CA",
                   zip_code: "94105",
+                  lat: "37.786617",
+                  lng: "-122.401855",
                   phone_number: "(415) 344-0644",
                   url: "http://www.agferrari.com/")
 
@@ -62,6 +70,8 @@ r5 = Restaurant.create!(name: "Live Sushi Bistro",
                   city: "San Francisco",
                   state: "CA",
                   zip_code: "94103",
+                  lat: "37.774651",
+                  lng: "-122.403977",
                   phone_number: "(415) 558-8778",
                   url: "http://www.livesushibistro.com/")
 

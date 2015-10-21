@@ -7,6 +7,12 @@
     getInitialState: function() {
       return({ searchString: '',
                searching: false,
+               location: { lat: 37.77493,
+                           lng: -122.419416,
+                           postal_code: "94103",
+                           city: "San Francisco",
+                           state: "CA"
+                         },
                selectedCuisine: -1,
                cuisines: CuisineStore.all(),
                searchResults: FilteredFoodItemStore.all()
@@ -18,7 +24,8 @@
     },
 
     componentDidMount: function() {
-      FilteredFoodItemStore.addChangeListener(this._onChange);
+      $("#geocomplete").geocomplete({location: "#locationDetails"});
+      navigator.geolocation.getCurrentPosition(this.setLocation);
       CuisineStore.addChangeListener(this._onChange);
       ApiUtil.fetchCuisines();
     },
@@ -49,14 +56,39 @@
       console.log(e.target.value);
       var cuisine_id = this.state.selectedCuisine;
       ApiUtil.fetchFilteredFoodItems(e.target.value, cuisine_id);
-      this.setState({ searchString: e.target.value });
-      this.setState({ searching: true });
+      this.setState({ searchString: e.target.value, searching: true });
+    },
+
+    setLocation: function(position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      var location = { lat: lat, lng: lng };
+      this.setState({ location: location });
     },
 
     updateCuisine: function(e){
       ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
       this.setState({ selectedCuisine: e.target.value });
     },
+
+    // updateLocation: function(event){
+    //   $("#geocomplete")
+    //     .geocomplete()
+    //     .bind("geocode:result", function(event, {location: "#locationDetails"}){
+    //       this.setState({ location: {
+    //         lat: event.currentTarget.lat.value,
+    //         lng: event.target.lng.value,
+    //         postal_code: event.target.postal_code.value,
+    //         city: event.currentTarget.city.value,
+    //         state: event.target.state.value
+    //       }});
+    //     });
+    // },
+
+    // updateLocation: function(e){
+    //   ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
+    //   this.setState({ location: e.target.value });
+    // },
     // handleSubmit: function(result) {
     //   this.setState({ searchString: '' });
     //   ApiUtil.fetchFilteredFoodItems('');
@@ -115,10 +147,20 @@
                 <div className="search-label form-control">
                   Near
                 </div>
-                <input type="text"
-                       placeholder="Nearby"
-                       ref="locationSearchInput"
-                       className="search-input form-control" />
+                <input className="search-input form-control"
+                       id="geocomplete"
+                       type="text"
+                       name="location"
+                       placeholder="Nearby" />
+
+                <div id="locationDetails" className="hide">
+                  <input name="lat" type="hidden" value="" />
+                  <input name="lng" type="hidden" value="" />
+                  <input name="postal_code" type="hidden" value="" />
+                  <input name="city" type="hidden" value="" />
+                  <input name="state" type="hidden" value="" />
+                </div>
+
             </div>
           </form>
         </div>
@@ -127,10 +169,4 @@
   });
 }(this));
 
-
-// <li><a href="#">All</a></li>
-// <li><a href="#">American</a></li>
-// <li><a href="#">Italian</a></li>
-// <li><a href="#">Chinese</a></li>
-// <li><a href="#">Japanese</a></li>
-// <li><a href="#">Vegitarian</a></li>
+// onChange={this.updateLocation}

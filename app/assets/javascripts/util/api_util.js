@@ -32,11 +32,10 @@ var ApiUtil = {
       }
     });
   },
-  fetchFilteredFoodItems: function(query, cuisine_id) {
-
+  fetchFilteredFoodItems: function(query, cuisine_id, location, radius) {
       $.ajax({
         url: "api/food_items",
-        data: {search: query, cuisine: cuisine_id},
+        data: {search: query, cuisine: cuisine_id, location: location, radius: radius},
         success: function(filteredFoodItems) {
           ApiActions.receiveFilteredFoodItems(filteredFoodItems);
         }

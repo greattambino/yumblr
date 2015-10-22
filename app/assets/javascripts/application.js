@@ -15,7 +15,7 @@
 //= require bootstrap
 //= require react
 //= require react_ujs
-//= require jquery.geocomplete.min
+//= require jquery.geocomplete
 //= require flux
 //= require eventemitter
 //= require reactrouter.min

@@ -24,4 +24,14 @@ class Restaurant < ActiveRecord::Base
   has_many :food_items
   has_many :restaurant_cuisines, dependent: :destroy
   has_many :cuisines, through: :restaurant_cuisines, source: :cuisine
+
+  def distance(location, idx)
+    sleep(1) if idx % 10 == 0
+    # self.address
+    # restaurant_address = Restaurant.find(restaurant_id).address
+    Geokit::Geocoders::GoogleGeocoder.api_key = 
+    restaurant = Geokit::Geocoders::GoogleGeocoder.geocode(self.address)
+    user = Geokit::Geocoders::GoogleGeocoder.geocode (location[:address])
+    return restaurant.distance_to(user)
+  end
 end

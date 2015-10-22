@@ -27,6 +27,9 @@
             <span className="food-item-city">
               {this.props.item.restaurant.city}
             </span>
+            <span className="food-item-distance">
+              {this.props.item.restaurant.distance}
+            </span>
           </div>
 
       );

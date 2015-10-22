@@ -9,10 +9,14 @@ gem 'jquery-rails'
 gem 'jbuilder',         '~> 2.0'
 gem 'sdoc',             '~> 0.4.0', group: :doc
 gem 'bcrypt'
+gem 'geokit'
+gem 'seed_dump'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'react-rails',      '1.3.0'
 gem 'flux-rails-assets'
 gem 'figaro'
+gem 'geokit-rails'
+
 
 group :development, :test do
   gem 'pry-rails'

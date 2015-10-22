@@ -29,7 +29,7 @@ class Restaurant < ActiveRecord::Base
     sleep(1) if idx % 10 == 0
     # self.address
     # restaurant_address = Restaurant.find(restaurant_id).address
-    Geokit::Geocoders::GoogleGeocoder.api_key = 
+    Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyBi2gBEKxx4HFVS8X9dB7tYOAGjmKEMIa0'
     restaurant = Geokit::Geocoders::GoogleGeocoder.geocode(self.address)
     user = Geokit::Geocoders::GoogleGeocoder.geocode (location[:address])
     return restaurant.distance_to(user)

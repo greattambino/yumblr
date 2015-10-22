@@ -39,14 +39,14 @@
           ApiUtil.fetchFilteredFoodItems(that.state.searchString, that.state.selectedCuisine, that.state.location, that.state.selectedRadius);
         });
       // $("#geocomplete").geocomplete({location: "#locationDetails"});
-      CuisineStore.addChangeListener(this._onChange);
       FilteredFoodItemStore.addChangeListener(this._onChange);
+      CuisineStore.addChangeListener(this._onChange);
       ApiUtil.fetchCuisines();
     },
 
     componentWillUnmount: function() {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
-      CuisineStore.addChangeListener(this._onChange);
+      CuisineStore.removeChangeListener(this._onChange);
     },
 
     _onChange: function() {
@@ -83,7 +83,11 @@
       var cuisine_id = this.state.selectedCuisine;
       ApiUtil.fetchFilteredFoodItems(e.target.value, cuisine_id);
       // ApiUtil.fetchFilteredFoodItems(e.target.value, cuisine_id, this.state.location, this.state.selectedRadius);
-      this.setState({ searchString: e.target.value, searching: true });
+      if (e.target.value !== "") {
+        this.setState({ searchString: e.target.value, searching: true });
+      } else {
+        this.setState({ searchString: e.target.value, searching: false });
+      }
     },
 
     handleGenerate: function(e) {

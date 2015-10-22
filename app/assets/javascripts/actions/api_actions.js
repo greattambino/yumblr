@@ -23,20 +23,6 @@
       });
     },
 
-    receiveFilteredFoodItems: function(filteredFoodItems) {
-      AppDispatcher.dispatch({
-        actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEMS_RECEIVED,
-        filteredFoodItems: filteredFoodItems
-      });
-    },
-
-    receiveFilteredFoodItem: function(filteredFoodItem) {
-      AppDispatcher.dispatch({
-        actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEM_RECEIVED,
-        filteredFoodItem: filteredFoodItem
-      });
-    },
-
     receiveCuisines: function(cuisines) {
       AppDispatcher.dispatch({
         actionType: CuisineConstants.CUISINES_RECEIVED,

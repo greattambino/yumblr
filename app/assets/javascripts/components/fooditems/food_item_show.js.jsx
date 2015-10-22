@@ -25,15 +25,10 @@
 
     componentDidMount: function() {
       FilteredFoodItemStore.addChangeListener(this._onChange);
-
-      // this.setState({foodItem: FilteredFoodItemStore.find(parseInt(this.props.params.foodItemId))});
       this._fetchFoodItem(this.props.params.foodItemId);
     },
 
     componentWillReceiveProps: function (newProps) {
-      // debugger
-      // this._fetchFoodItem(newProps.params.foodItemId);
-      // this._onChange();
       this.setState({foodItem: this.getFoodItem(newProps.params.foodItemId)});
     },
 

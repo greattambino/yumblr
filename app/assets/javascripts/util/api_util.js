@@ -37,7 +37,7 @@ var ApiUtil = {
         url: "api/food_items",
         data: {search: query, cuisine: cuisine_id, location: location, radius: radius},
         success: function(filteredFoodItems) {
-          ApiActions.receiveFilteredFoodItems(filteredFoodItems);
+          FilterActions.receiveFilteredFoodItems(filteredFoodItems);
         }
       });
   },
@@ -59,7 +59,7 @@ var ApiUtil = {
     $.ajax({
       url: "api/food_items/" + id,
       success: function(foodItem) {
-        ApiActions.receiveFilteredFoodItem(foodItem);
+        FilterActions.receiveFilteredFoodItem(foodItem);
       }
     });
   }

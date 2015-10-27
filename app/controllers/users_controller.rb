@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in!,  only: [:show]
   before_action :require_signed_out!, only: [:new, :create]
 
   def new
@@ -12,9 +11,10 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
+      flash[:success] = "Welcome back, #{@user.username}!"
       redirect_to root_url
     else
-      flash.now[:errors] = @user.errors.full_messages
+      flash.now[:danger] = @user.errors.full_messages
       render :new
     end
   end

@@ -7,61 +7,80 @@
     getInitialState: function() {
       return({ searchString: '',
                searching: false,
-               location: { lat: 37.77493,
-                           lng: -122.419416,
-                           address: "San Francisco, CA 94103, USA"
-                         },
                selectedCuisine: -1,
                cuisines: CuisineStore.all(),
-               searchResults: FilteredFoodItemStore.all()
+               searchResults: ParamsStore.queryResults()
              });
     },
               //  foodItemId: null,
 
     componentWillMount: function() {
       ApiUtil.fetchAllFoodItems();
+      ApiUtil.fetchLocation();
     },
 
     componentDidMount: function() {
-      var that = this;
-      navigator.geolocation.getCurrentPosition(this.setLocation);
+      // var that = this;
       $("#geocomplete")
         .geocomplete()
         .bind("geocode:result", function(event, results){
-          that.setState({ location: {
+          ApiUtil.updateLocation({ location: {
             lat: results.geometry.location.lat(),
             lng: results.geometry.location.lng(),
             address: results.formatted_address
-            // postal_code: results.address_components.postal_code.long_name,
-            // city: results.address_components.locality.long_name,
-            // state: results.address_components.administrative_area_level_1.long_name
           }});
-          ApiUtil.fetchFilteredFoodItems(that.state.searchString, that.state.selectedCuisine, that.state.location, that.state.selectedRadius);
         });
-      // $("#geocomplete").geocomplete({location: "#locationDetails"});
+
       FilteredFoodItemStore.addChangeListener(this._onChange);
-      CuisineStore.addChangeListener(this._onChange);
+      ParamsStore.addQueryListener(this._onQueryChange);
+      // CuisineStore.addChangeListener(this._onChange);
       ApiUtil.fetchCuisines();
     },
 
     componentWillUnmount: function() {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
-      CuisineStore.removeChangeListener(this._onChange);
+      ParamsStore.removeQueryListener(this._onQueryChange);
+      // CuisineStore.removeChangeListener(this._onChange);
     },
 
     _onChange: function() {
-      this.setState({ searchResults: FilteredFoodItemStore.all() });
-      this.setState({ cuisines: CuisineStore.all() });
+      var foodItem = FilteredFoodItemStore.next();
+      this.history.pushState(null, "/food_items/" + foodItem.id);
+    },
+
+    _onQueryChange: function() {
+      this.setState({ searchResults: ParamsStore.queryResults() });
+      // this.setState({ cuisines: CuisineStore.all() });
+    },
+
+    handleChange: function(e) {
+      console.log(e.target.value);
+      var cuisine_id = this.state.selectedCuisine;
+      ApiUtil.fetchQueryResults(e.target.value, cuisine_id);
+
+      if (e.target.value !== "") {
+        this.setState({ searchString: e.target.value, searching: true });
+      } else {
+        this.setState({ searchString: e.target.value, searching: false });
+      }
+    },
+
+    updateCuisine: function(e){
+      this.setState({ selectedCuisine: e.target.value });
+      ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
+      // ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value, this.state.location, this.state.selectedRadius);
     },
 
     handleSubmit: function(e) {
       e.preventDefault();
-      var foodItem = FilteredFoodItemStore.next();
       // this.setState({ foodItemId: foodItem.id });
       // ApiUtil.fetchNextFilteredFoodItem(foodItem.id);
       console.log(FilteredFoodItemStore.all());
       // console.log(cuisine_id);
-      this.history.pushState(null, "/food_items/" + foodItem.id);
+      ApiUtil.fetchFilteredFoodItems(this.state.searchString,
+                                     this.state.selectedCuisine,
+                                     ParamsStore.params().location,
+                                     ParamsStore.params().radius);
       this.setState({ searchString: '', searching: false });
     },
     // handleEnter: function(e) {
@@ -78,36 +97,14 @@
     //   }
     // },
 
-    handleChange: function(e) {
-      console.log(e.target.value);
-      var cuisine_id = this.state.selectedCuisine;
-      ApiUtil.fetchFilteredFoodItems(e.target.value, cuisine_id);
-      // ApiUtil.fetchFilteredFoodItems(e.target.value, cuisine_id, this.state.location, this.state.selectedRadius);
-      if (e.target.value !== "") {
-        this.setState({ searchString: e.target.value, searching: true });
-      } else {
-        this.setState({ searchString: e.target.value, searching: false });
-      }
-    },
-
     handleGenerate: function(e) {
       var foodItem = FilteredFoodItemStore.next();
       this.history.pushState(null, "/food_items/" + foodItem.id);
       this.setState({ searchString: '', searching: false });
     },
 
-    setLocation: function(pos) {
-      var lat = pos.coords.latitude;
-      var lng = pos.coords.longitude;
-      var location = { lat: lat, lng: lng };
-      this.setState({ location: location });
-    },
 
-    updateCuisine: function(e){
-      this.setState({ selectedCuisine: e.target.value });
-      ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
-      // ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value, this.state.location, this.state.selectedRadius);
-    },
+
 
     // updateLocation: function(e){
     //   ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
@@ -166,8 +163,7 @@
                 <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
               </button>
                 <RadiusDropdown searchString={this.state.searchString}
-                                selectedCuisine={this.state.selectedCuisine}
-                                location={this.state.location} />
+                                selectedCuisine={this.state.selectedCuisine} />
                 <div className="search-label form-control">
                   Near
                 </div>

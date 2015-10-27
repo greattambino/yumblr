@@ -3,6 +3,31 @@
 
   var Link = ReactRouter.Link;
   var Navbar = root.Navbar = React.createClass({
+    getInitialState: function () {
+      return {currentUser: UserStore.findUser(window.CURRENT_USER)};
+    },
+
+    componentDidMount: function () {
+      UserStore.addChangeListener(this.setCurrentUser);
+
+      if (typeof window.CURRENT_USER !== "undefined" &&
+          window.CURRENT_USER !== this.state.currentUser.id) {
+        this.getCurrentUser();
+      }
+    },
+
+    componentWillUnmount: function () {
+      UserStore.removeChangeListener(this.setCurrentUser);
+    },
+
+    getCurrentUser: function () {
+      ApiUtil.fetchCurrentUser(window.CURRENT_USER);
+    },
+
+    setCurrentUser: function () {
+      this.setState({ currentUser: UserStore.currentUser() });
+    },
+
     handleSignOut: function() {
       root.SessionUtil.signOutUser();
     },
@@ -14,23 +39,16 @@
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
             <li className="dropdown">
-              <a data-toggle="dropdown" className="dropdown-toggle" href="#">Notifications <b className="caret"></b></a>
-              <ul role="menu" className="dropdown-menu">
-                <li><a href="#">Inbox</a></li>
-                <li><a href="#">Drafts</a></li>
-                <li><a href="#">Sent Items</a></li>
-                <li className="divider"></li>
-                <li><a href="#">Trash</a></li>
-              </ul>
-            </li>
-            <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               { window.CURRENT_USER_USERNAME }
               <span className="caret"></span></a>
               <ul className="dropdown-menu">
-                <li><a href="#">Yeeep</a></li>
-                <li><a href="#">Profile</a></li>
-                <li role="separator" className="divider"></li>
+                <li>
+                  <Link to={"/users/" + this.state.currentUser.id}>
+                    Profile
+                  </Link>
+                </li>
+                <li className="divider"></li>
                 <li><a href="/session/new" onClick={this.handleSignOut}>Sign Out</a></li>
               </ul>
             </li>
@@ -39,7 +57,6 @@
       } else {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Peep thiss</a></li>
             <p className="navbar-text">
               <a href="/session/new">Sign In</a>
               &nbsp; / &nbsp;

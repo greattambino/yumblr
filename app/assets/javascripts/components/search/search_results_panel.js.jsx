@@ -1,6 +1,10 @@
 (function(root) {
   'use strict';
 
+  function _getQueryResults(){
+    return FilteredFoodItemStore.queryResults();
+  }
+
   var SearchResultsPanel = root.SearchResultsPanel = React.createClass({
     mixins: [ReactRouter.History],
 
@@ -11,9 +15,11 @@
 
     render: function () {
       var idName = "";
+
       if (this.props.results.length !== 0) {
         idName = "search-results-panel";
       }
+
       return(
         <div id={idName}>
           <ul>
@@ -32,24 +38,3 @@
     }
   });
 }(this));
-
-// var SearchBox = React.createClass({
-//     doSearch:function(){
-//         var query=this.refs.searchInput.getDOMNode().value;
-//         this.props.doSearch(query); // make an ajax request instead
-//     },
-//     render:function(){
-//       return(
-//         <div className="form-group">
-//           <label htmlFor="find-search">Find </label>
-//           <input id="find-search"
-//                  ref="searchInput"
-//                  type="text"
-//                  value={this.props.query}
-//                  onChange={this.doSearch}
-//                  placeholder="Everything"
-//                  className="form-control" />
-//         </div>
-//       );
-//     }
-// });

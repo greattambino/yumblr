@@ -3,6 +3,10 @@ class Api::FoodItemsController < ApplicationController
     # @food_items = FoodItem.select do |item|
     #   item.restaurant.distance(params[:location]) < params[:radius]
     # end
+    @location = params[:location]
+    @radius = params[:radius]
+
+
     if (params[:restaurant_id])
       @food_items = Restaurant.find(params[:restaurant_id]).food_items
     elsif(params[:search] && (params[:cuisine] == "-1") && params[:location] && params[:radius])
@@ -17,6 +21,11 @@ class Api::FoodItemsController < ApplicationController
     else
       @food_items = FoodItem.all
     end
+
+    # @distances = @food_items.map do |food_item|
+    #   food_item.restaurant.distance(params[:location], 1)
+    # end
+
     render :index
   end
 

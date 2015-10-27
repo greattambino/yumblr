@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020190522) do
+ActiveRecord::Schema.define(version: 20151026063133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20151020190522) do
   add_index "food_items", ["name"], name: "index_food_items_on_name", using: :btree
   add_index "food_items", ["price"], name: "index_food_items_on_price", using: :btree
   add_index "food_items", ["restaurant_id"], name: "index_food_items_on_restaurant_id", using: :btree
+
+  create_table "likings", force: :cascade do |t|
+    t.integer  "user_id",      null: false
+    t.integer  "likable_id",   null: false
+    t.string   "likable_type", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "likings", ["likable_id"], name: "index_likings_on_likable_id", using: :btree
+  add_index "likings", ["likable_type"], name: "index_likings_on_likable_type", using: :btree
+  add_index "likings", ["user_id", "likable_id", "likable_type"], name: "index_likings_on_user_id_and_likable_id_and_likable_type", unique: true, using: :btree
+  add_index "likings", ["user_id"], name: "index_likings_on_user_id", using: :btree
 
   create_table "restaurant_cuisines", force: :cascade do |t|
     t.integer  "cuisine_id",    null: false

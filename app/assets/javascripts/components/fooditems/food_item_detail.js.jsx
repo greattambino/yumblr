@@ -1,15 +1,52 @@
 (function(root){
   'use strict';
 
+  function _getLocation(){
+    return ParamsStore.params().location;
+  }
+
   var FoodItemDetail = root.FoodItemDetail = React.createClass({
     mixins: [ReactRouter.History],
+
+    getInitialState: function() {
+      return({ location: _getLocation() });
+    },
 
     handleClick: function(e) {
       e.preventDefault();
       // ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
     },
 
+    componentDidMount: function() {
+      ParamsStore.addParamsListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+      ParamsStore.removeParamsListener(this._onChange);
+    },
+
+    _onChange: function(){
+      this.setState({ location: _getLocation() });
+    },
+
+    calculateDistance: function() {
+      var fromLat = this.state.location.lat,
+          fromLng = this.state.location.lng,
+          toLat   = this.props.item.restaurant.lat,
+          toLng   = this.props.item.restaurant.lng;
+
+      var location = new google.maps.LatLng(fromLat, fromLng);
+      var destination = new google.maps.LatLng(toLat, toLng);
+
+      var meters = google.maps.geometry.spherical.computeDistanceBetween(location, destination);
+      var distance = (meters * 0.000621371192).toFixed(1);
+
+      return distance;
+      // ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
+    },
+
     render: function() {
+
       return (
 
           <div className="food-item-detail">
@@ -28,7 +65,7 @@
               {this.props.item.restaurant.city}
             </span>
             <span className="food-item-distance">
-              {this.props.item.restaurant.distance}
+              {this.calculateDistance()} Miles
             </span>
           </div>
 
@@ -36,3 +73,4 @@
     }
   });
 })(this);
+              // {this.props.item.restaurant.distance(this.state.location, 1)}

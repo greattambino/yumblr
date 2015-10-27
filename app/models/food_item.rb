@@ -16,6 +16,13 @@ class FoodItem < ActiveRecord::Base
 
   belongs_to :restaurant
   has_many :cuisines, through: :restaurant, source: :cuisines
+  has_many :likes,
+    as: :likable,
+    class_name: "Liking",
+    foreign_key: :likable_id,
+    primary_key: :id,
+    dependent: :destroy
+
 
   def self.find_by_substring(str)
     FoodItem.includes(:restaurant).where("LOWER(name) LIKE '%#{str.downcase}%'")
@@ -46,5 +53,13 @@ class FoodItem < ActiveRecord::Base
     #   sleep(1) if idx % 10 == 0
     #   item.restaurant.distance(location) <= (radius)
     # end
+  end
+
+  def number_likes
+    self.likes.length;
+  end
+
+  def is_liked?(id)
+    return self.likes.any? { |like| like.user_id == id }
   end
 end

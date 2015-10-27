@@ -9,7 +9,7 @@ json.food_items do
   json.partial! 'api/food_items/food_item', collection: r.food_items, as: :food_item
 end
 
-json.distance r.distance
+
 
 cuisines = r.cuisines.pluck(:cuisine)
 json.cuisines cuisines.empty? ? ["(pending)"] : cuisines

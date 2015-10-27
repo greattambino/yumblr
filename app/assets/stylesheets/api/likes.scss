@@ -1,0 +1,52 @@
+// Place all the styles related to the Api::Likes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* track index */
+.food-item-like-btn {
+  z-index: 2;
+  bottom: 50px;
+  right: 5%;
+  position: fixed;
+  border-radius: 5px;
+  padding: 0 10px;
+  .track-index-item-header {
+    color: gray;
+    p {
+      margin: 0;
+    }
+    a {
+      color: gray;
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/* like button */
+.liked {
+  border-color: #D62B00;
+  color: #D62B00;
+  background-color: black;
+  opacity: 0.7;
+  transition-duration: 0.33s;
+  &:hover {
+    color: orange;
+  }
+  width: 84px;
+}
+
+.like {
+  transition-duration: 0.33s;
+  background-color: black;
+  opacity: 0.7;
+  color: #aaa;
+  &:hover {
+    color: cornflowerblue;
+    border-color: cornflowerblue;
+  }
+  width: 84px;
+}

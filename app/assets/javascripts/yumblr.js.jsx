@@ -20,7 +20,10 @@ $(function(){
   var routes = (
     <Route path="/" component={App}>
       <IndexRoute component={RestaurantIndexItem}/>
-      <Route path="food_items/:foodItemId" component={FoodItemShow} />
+      <Route path="users">
+        <Route path=":userId" component={UserShow} />
+      </Route>
+      <Route path="/food_items/:foodItemId" component={FoodItemShow} />
     </Route>
   );
   React.render(<Router>{routes}</Router>, root);

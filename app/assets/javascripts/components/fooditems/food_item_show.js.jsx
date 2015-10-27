@@ -37,7 +37,6 @@
     },
 
     render: function() {
-      // var foodItem = <img src={this.state.foodItem.image_url} />;
       var foodItem;
       if (typeof this.state.foodItem === "undefined") {
         foodItem = <div>Not Found</div>;
@@ -48,6 +47,9 @@
         <div className="food_item" id="bg">
           <h2>{foodItem}</h2>
           <FoodItemDetail item={this.state.foodItem} />
+          <div className="food-item-like-btn">
+            <LikeBtn likableType="FoodItem" likableId={this.state.foodItem.id} />
+          </div>
         </div>
       );
     }

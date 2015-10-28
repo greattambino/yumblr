@@ -36,14 +36,14 @@
     },
 
     render: function () {
-      var radius = ["0.1", "0.5", "1", "2", "3", "5"];
+      var radius = ["0.2", "0.5", "1.5", "3", "5", "10"];
       // var selected = this.state.selectedRadius === r ? (selected = "selected-radius") : (selected = "");
 
       return(
         <ul className="dropdown-menu dropdown-menu-location" role="menu" name="radius">
-          <li  value="99999999999" onClick={this.updateRadius.bind(null, 99999999999)}>All</li>
+          <li  value="99999999999" onClick={this.updateRadius.bind(null, 99999999999)}>Filter by distance</li>
           {radius.map(function(r){
-            return <li id={this.state.selectedRadius === r ? "selected-radius" : ""} key={r} onClick={this.updateRadius.bind(null, r)} value={r}>{r}</li>;
+            return <li id={this.state.selectedRadius === r ? "selected-radius" : ""} key={r} onClick={this.updateRadius.bind(null, r)} value={r}>{r} Miles</li>;
           }.bind(this))}
         </ul>
       );

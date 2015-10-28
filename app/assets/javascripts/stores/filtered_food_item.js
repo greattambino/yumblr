@@ -87,7 +87,6 @@
           FilteredFoodItemStore.emit(INITIALIZE_EVENT);
           break;
         case FilterConstants.FILTERED_FOOD_ITEMS_RECEIVED:
-        // debugger
           resetFilteredFoodItems(payload.filteredFoodItems);
           FilteredFoodItemStore.emit(CHANGE_EVENT);
           break;

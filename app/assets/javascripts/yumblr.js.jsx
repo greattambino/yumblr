@@ -19,7 +19,7 @@ $(function(){
 
   var routes = (
     <Route path="/" component={App}>
-      <IndexRoute component={RestaurantIndexItem}/>
+      <IndexRoute component={SplashCarousel}/>
       <Route path="users">
         <Route path=":userId" component={UserShow} />
       </Route>

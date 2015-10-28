@@ -15,7 +15,6 @@
               //  foodItemId: null,
 
     componentWillMount: function() {
-      ApiUtil.fetchAllFoodItems();
       ApiUtil.fetchLocation();
     },
 
@@ -33,14 +32,16 @@
 
       FilteredFoodItemStore.addChangeListener(this._onChange);
       ParamsStore.addQueryListener(this._onQueryChange);
-      // CuisineStore.addChangeListener(this._onChange);
+      CuisineStore.addChangeListener(this._onCuisinesChange);
       ApiUtil.fetchCuisines();
+      ApiUtil.fetchAllFoodItems();
+
     },
 
     componentWillUnmount: function() {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
       ParamsStore.removeQueryListener(this._onQueryChange);
-      // CuisineStore.removeChangeListener(this._onChange);
+      CuisineStore.removeChangeListener(this._onChange);
     },
 
     _onChange: function() {
@@ -51,6 +52,10 @@
     _onQueryChange: function() {
       this.setState({ searchResults: ParamsStore.queryResults() });
       // this.setState({ cuisines: CuisineStore.all() });
+    },
+
+    _onCuisinesChange: function() {
+      this.setState({ cuisines: CuisineStore.all() });
     },
 
     handleChange: function(e) {

@@ -1,0 +1,109 @@
+
+
+.login-container {
+  margin: -200px 0 0 -200px;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;;
+  height: 415px;
+  border: 1px solid #ccc;
+  opacity: 0.9;
+  background-color: #333;
+  -webkit-box-shadow: 1px -1px 5px 0px #333;
+  -moz-box-shadow: 1px -1px 5px 0px #333;
+  box-shadow: 1px -1px 5px 0px #333;
+  &.sign-up {
+    height: 650px;
+    margin: -256px 0 0 -200px;
+  }
+  & > .sign-in-form-header {
+    padding-top: 20px;
+    width: 277px;
+    height: auto;
+    margin: auto;
+    & > h1 {
+      display: inline;
+      font-size: 40px;
+      color: #E6D75B;
+    }
+    & > img {
+      float: left;
+      height: 50px;
+      width: 50px;
+      position: relative;
+      top: 10px;
+    }
+  }
+  & > .sign-in-form {
+    position: relative;
+    font-family: 'Lato', sans-serif;
+    margin: 20px auto;
+    & > form {
+      & > div.input-group {
+        width: 80%;
+        margin: auto;
+        padding: 10px;
+        & > span {
+          border-radius: 0;
+        }
+        & > input {
+          color: #333;
+          border-radius: 0;
+        }
+        & > input:focus {
+          border-color: #B6F086
+        }
+        &.gender-radio {
+          padding: 0;
+          text-align: center;
+          & > .radio {
+            display: inline-block;
+            color: #fff;
+            font-size: 16px;
+            padding: 0px 10px;
+            &:hover {
+              cursor: pointer;
+            }
+            & > label > input {
+              cursor: pointer;
+              &:focus {
+                outline-color: #B6F086;
+              }
+            }
+          }
+        }
+      }
+      & > .btn {
+        font-family: 'Lato', sans-serif;
+        color: #333333;
+        font-size: 16px;
+        background: cornflowerblue;
+        margin: 10px auto;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+        display: block;
+        &:hover {
+          background-color: blue;
+        }
+        &:focus {
+          outline-color: cornflowerblue;
+        }
+      }
+    }
+  }
+  & > h4 {
+    color: #E6D75B;
+    text-align: center;
+    & > a {
+      color: #fff;
+      &:focus {
+        outline-color: #B6F086
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,37 +1,14 @@
-<h2>Sign Up</h2>
-
-<form action="<%= users_url %>" method="post">
-  <%= auth_token_input %>
-
-  <label for="user_username">Username</label><br>
-  <input
-    type="text"
-    name="user[username]"
-    id="user_username"><br>
-
-  <label for="user_password">Password</label><br>
-  <input
-    type="password"
-    name="user[password]"
-    id="user_password"><br>
-
-  <label for="user_email">Email</label><br>
-  <input
-    type="text"
-    name="user[email]"
-    id="user_email"><br>
-
-  <label for="user_first_name">First Name</label><br>
-  <input
-    type="first_name"
-    name="user[first_name]"
-    id="user_first_name"><br>
-
-  <label for="user_last_name">Last Name</label><br>
-  <input
-    type="last_name"
-    name="user[last_name]"
-    id="user_last_name"><br>
-
-  <input type="submit" value="Sign Up">
-</form>
+<div id="background">
+  <%= image_tag "http://res.cloudinary.com/yumblr/image/upload/v1445956858/app/sign-in-background.jpg" %>
+</div>
+<div class="login-container sign-up">
+  <div class="sign-in-form-header">
+    <h1>Yumblr</h1>
+  </div>
+  <hr>
+  <div class="sign-in-form">
+    <%= render "shared/sign_in_form", user: @user, type: :new_user %>
+  </div>
+  <hr>
+  <h4>Already registered? <a href="/session/new">Log in!</a></h4>
+</div>

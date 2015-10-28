@@ -77,7 +77,7 @@
                 <span className="icon-bar"></span>
               </button>
 
-              <a href="/" className="navbar-brand">Yumblr</a>
+              <a href="/" className="navbar-brand"><img src="http://res.cloudinary.com/yumblr/image/upload/v1446005823/app/logo-smaller.png"/></a>
             </div>
             <div id="navbar" className="navbar-collapse collapse">
               <SearchBar />

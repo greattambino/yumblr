@@ -11,6 +11,7 @@ gem 'sdoc',             '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'geokit'
 gem 'seed_dump'
+gem 'react-bootstrap-rails'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'react-rails',      '1.3.0'
 gem 'flux-rails-assets'

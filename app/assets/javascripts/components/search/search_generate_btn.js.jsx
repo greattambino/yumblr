@@ -6,8 +6,8 @@
 
     render: function () {
       return(
-        <button className="active myButton">
-          <span className="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+        <button className="btn btn-default btn-circle btn-lg">
+          <span><img src="http://res.cloudinary.com/yumblr/image/upload/v1446014758/app/icon-small.png"/></span>
         </button>
       );
     }

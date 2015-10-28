@@ -1,0 +1,15 @@
+.modal-content {
+  background: none !important;
+}
+
+.modal-dialog {
+  top: 50px;
+}
+
+.carousel-caption {
+  height: 60%;
+  text-shadow: 1px 1px 1px #000;
+  & > p {
+    font-size: 24px;
+  }
+}

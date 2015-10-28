@@ -23,11 +23,11 @@
       $("#geocomplete")
         .geocomplete()
         .bind("geocode:result", function(event, results){
-          ApiUtil.updateLocation({ location: {
+          ApiUtil.updateLocation({
             lat: results.geometry.location.lat(),
             lng: results.geometry.location.lng(),
             address: results.formatted_address
-          }});
+          });
         });
 
       FilteredFoodItemStore.addChangeListener(this._onChange);
@@ -41,7 +41,7 @@
     componentWillUnmount: function() {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
       ParamsStore.removeQueryListener(this._onQueryChange);
-      CuisineStore.removeChangeListener(this._onChange);
+      CuisineStore.removeChangeListener(this._onCuisinesChange);
     },
 
     _onChange: function() {

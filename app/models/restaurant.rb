@@ -26,36 +26,42 @@ class Restaurant < ActiveRecord::Base
   has_many :cuisines, through: :restaurant_cuisines, source: :cuisine
 
   def distance(location, idx)
-    sleep(1) if idx % 10 == 0
-    current_location = location[:address]
-    # self.address
-    # restaurant_address = Restaurant.find(restaurant_id).address
-    # restaurant_address = [self.address, self.city, self.state].join(', ')
-    Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyBi2gBEKxx4HFVS8X9dB7tYOAGjmKEMIa0'
-    restaurant = Geokit::Geocoders::GoogleGeocoder.geocode(self.address)
 
-    if current_location.nil?
-      res = Geokit::Geocoders::GoogleGeocoder.reverse_geocode([location[:lat], location[:lng]])
-      current_location = res.full_address
-    end
-    user = Geokit::Geocoders::GoogleGeocoder.geocode (current_location)
-    return restaurant.distance_to(user)
+    # 'Haversine' formula to calculate distance between 2 points since Geokit was too slow
+
+    # a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)    // φ is latitude
+    # c = 2 ⋅ atan2( √a, √(1−a) )                      // λ is longitude
+    # d = R ⋅ c                                        // R is earth’s radius ~6,371km
+
+
+    user_lat       = location[:lat].to_f
+    user_lng       = location[:lng].to_f
+    restaurant_lat = self.lat
+    restaurant_lng = self.lng
+
+    return haversine(user_lat, user_lng, restaurant_lat, restaurant_lng)
   end
 
+  def haversine(lat1, lng1, lat2, lng2)
+    degrees_to_radians = Math::PI/180
+    earths_radius = 3958.756  #in miles
 
+    # convert lat/lng degrees to radians
+    rlat1  = lat1 * degrees_to_radians
+    rlng1  = lng1 * degrees_to_radians
+    rlat2  = lat2 * degrees_to_radians
+    rlng2  = lng2 * degrees_to_radians
 
-  # def distance(location, i)
-  #   from_lat = location[:lat]
-  #   fromLng = location[:lng]
-  #   toLat   = self.lat
-  #   toLng   = self.lng
-  #   fail
-  #   location = new google.maps.LatLng(fromLat, fromLng)
-  #   destination = new google.maps.LatLng(toLat, toLng)
-  #
-  #   meters = google.maps.geometry.spherical.computeDistanceBetween(location, destination);
-  #   distance = (meters * 0.000621371192).toFixed(2);
-  #
-  #   return distance
-  # end
+    #calculate distance btw lat/lng points
+    lng_distance = rlng1 - rlng2
+    lat_distance = rlat1 - rlat2
+
+    a = (Math::sin(lat_distance/2) ** 2) +
+        Math::cos(rlat1) * Math::cos(rlat2) *
+        (Math::sin(lng_distance/2) ** 2)
+    c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
+    distance = earths_radius * c
+
+    return distance
+  end
 end

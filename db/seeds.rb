@@ -267,42 +267,28 @@ f21 = FoodItem.create!(
 #----Boxed Foods Company---------------------
 
 f22 = FoodItem.create!(
-        name: "Udon, Soba, and Ramen (Lunch)",
-        price: 10.60,
-        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445360422/Live%20Sushi%20Bistro/68574-201508120013.jpg",
+        name: "Pear and Brie Press",
+        price: 12.00,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1446186824/Boxed%20Foods%20Company/67844-201508130350.jpg",
         restaurant_id: r6.id)
 
 f23 = FoodItem.create!(
-        name: "Udon, Soba, and Ramen (Lunch)",
-        price: 10.60,
-        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445360422/Live%20Sushi%20Bistro/68574-201508120013.jpg",
+        name: "B.L.T.A.",
+        price: 12.00,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1446186828/Boxed%20Foods%20Company/67849-201508130350.jpg",
         restaurant_id: r6.id)
 
 f24 = FoodItem.create!(
-        name: "Udon, Soba, and Ramen (Lunch)",
-        price: 10.60,
-        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445360422/Live%20Sushi%20Bistro/68574-201508120013.jpg",
+        name: "Roasted Veggie Salad",
+        price: 12.00,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1446186845/Boxed%20Foods%20Company/67854-201508130350.jpg",
         restaurant_id: r6.id)
 
 f25 = FoodItem.create!(
-        name: "Udon, Soba, and Ramen (Lunch)",
-        price: 10.60,
-        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445360422/Live%20Sushi%20Bistro/68574-201508120013.jpg",
+        name: "Baked Tofu and Noodle Salad",
+        price: 12.00,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1446186848/Boxed%20Foods%20Company/67858-201508130350.jpg",
         restaurant_id: r6.id)
-
-f26 = FoodItem.create!(
-        name: "Udon, Soba, and Ramen (Lunch)",
-        price: 10.60,
-        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445360422/Live%20Sushi%20Bistro/68574-201508120013.jpg",
-        restaurant_id: r6.id)
-
-f27 = FoodItem.create!(
-        name: "Udon, Soba, and Ramen (Lunch)",
-        price: 10.60,
-        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1445360422/Live%20Sushi%20Bistro/68574-201508120013.jpg",
-        restaurant_id: r6.id)
-
-
 
 
 
@@ -356,6 +342,13 @@ FoodCategory.create!([
       {food_item_id: f20.id, category_id: sashimi.id},
       {food_item_id: f20.id, category_id: seafood.id},
       {food_item_id: f21.id, category_id: noodles.id},
-      {food_item_id: f21.id, category_id: soup.id}
+      {food_item_id: f21.id, category_id: soup.id},
+      {food_item_id: f22.id, category_id: sandwich.id},
+      {food_item_id: f22.id, category_id: vegitarian.id},
+      {food_item_id: f23.id, category_id: sandwich.id},
+      {food_item_id: f24.id, category_id: salad.id},
+      {food_item_id: f24.id, category_id: vegitarian.id},
+      {food_item_id: f25.id, category_id: salad.id},
+      {food_item_id: f25.id, category_id: vegitarian.id}
 
 ])

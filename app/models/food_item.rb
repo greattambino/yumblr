@@ -16,6 +16,8 @@ class FoodItem < ActiveRecord::Base
 
   belongs_to :restaurant
   has_many :cuisines, through: :restaurant, source: :cuisines
+  has_many :food_categories, dependent: :destroy
+
   has_many :likes,
     as: :likable,
     class_name: "Liking",

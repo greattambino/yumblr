@@ -26,13 +26,12 @@ class Restaurant < ActiveRecord::Base
   has_many :cuisines, through: :restaurant_cuisines, source: :cuisine
 
   def distance(location, idx)
-
-    # 'Haversine' formula to calculate distance between 2 points since Geokit was too slow
+    # 'Haversine' formula to calculate distance
+    # between 2 points since Geokit was too slow
 
     # a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)    // φ is latitude
     # c = 2 ⋅ atan2( √a, √(1−a) )                      // λ is longitude
     # d = R ⋅ c                                        // R is earth’s radius ~6,371km
-
 
     user_lat       = location[:lat].to_f
     user_lng       = location[:lng].to_f

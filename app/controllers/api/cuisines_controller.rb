@@ -1,6 +1,6 @@
 class Api::CuisinesController < ApplicationController
   def index
     @cuisines = Cuisine.all
-    render json: @cuisines
+    render json: index
   end
 end

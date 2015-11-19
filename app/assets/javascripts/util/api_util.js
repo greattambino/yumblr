@@ -1,11 +1,28 @@
 var ApiUtil = {
-  fetchCurrentUser: function (userId) {
+  fetchAllFoodItems: function() {
     $.ajax({
-      url: '/api/users/' + userId,
-      type: 'get',
-      dataType: 'json',
-      success: function (user) {
-        ApiActions.receiveCurrentUser(user);
+      url: "api/food_items",
+      success: function(foodItems) {
+        ApiActions.receiveAllFoodItems(foodItems);
+      }
+    });
+  },
+
+  fetchAllRestaurants: function() {
+    $.ajax({
+      url: "api/restaurants",
+      success: function(restaurants) {
+        ApiActions.receiveAllRestaurants(restaurants);
+      }
+    });
+  },
+
+  fetchCategorySearchResults: function(query) {
+    $.ajax({
+      url: "api/categories",
+      data: {search: query},
+      success: function(categorySearchResults) {
+        FilterActions.receiveCategorySearchResults(categorySearchResults);
       }
     });
   },
@@ -19,30 +36,26 @@ var ApiUtil = {
     });
   },
 
-  fetchAllRestaurants: function() {
+  fetchCurrentUser: function (userId) {
     $.ajax({
-      url: "api/restaurants",
-      success: function(restaurants) {
-        ApiActions.receiveAllRestaurants(restaurants);
+      url: '/api/users/' + userId,
+      type: 'get',
+      dataType: 'json',
+      success: function (user) {
+        ApiActions.receiveCurrentUser(user);
       }
     });
   },
-  fetchSingleRestaurant: function(id) {
+
+  fetchFilteredFoodItem: function(id) {
     $.ajax({
-      url: "api/restaurants/" + id,
-      success: function(restaurant) {
-        ApiActions.receiveSingleRestaurant(restaurant);
+      url: "api/food_items/" + id,
+      success: function(foodItem) {
+        FilterActions.receiveFilteredFoodItem(foodItem);
       }
     });
   },
-  fetchAllFoodItems: function() {
-    $.ajax({
-      url: "api/food_items",
-      success: function(foodItems) {
-        ApiActions.receiveAllFoodItems(foodItems);
-      }
-    });
-  },
+
   fetchFilteredFoodItems: function(query, cuisine_id, location, radius) {
     $.ajax({
       url: "api/food_items",
@@ -53,12 +66,12 @@ var ApiUtil = {
     });
   },
 
-  fetchQueryResults: function(query, cuisine_id) {
+  fetchFoodSearchResults: function(query, cuisine_id) {
     $.ajax({
       url: "api/food_items",
       data: {search: query, cuisine: cuisine_id},
-      success: function(queryResults) {
-        FilterActions.receiveQueryResults(queryResults);
+      success: function(foodSearchResults) {
+        FilterActions.receiveQueryResults(foodSearchResults);
       }
     });
   },
@@ -67,34 +80,21 @@ var ApiUtil = {
     navigator.geolocation.getCurrentPosition(this.setLocation);
   },
 
-  setLocation: function(pos) {
-    // this.full_address = null;
-    geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+  fetchSingleRestaurant: function(id) {
+    $.ajax({
+      url: "api/restaurants/" + id,
+      success: function(restaurant) {
+        ApiActions.receiveSingleRestaurant(restaurant);
+      }
+    });
+  },
 
-    // this.full_address = geocoder.geocode({'latLng': latlng}, function(results, status) {
-    // 	if (status == google.maps.GeocoderStatus.OK) {
-    //     var result = results[0];
-    //
-    //     var street_number = "";
-    //     var street_name = "";
-    //     var city = "";
-    //     var state = "";
-    //     for(var i=0, len=result.address_components.length; i<len; i++) {
-    //     	var ac = result.address_components[i];
-    //     	if(ac.types.indexOf("street_number") >= 0) street_number = ac.long_name;
-    //     	if(ac.types.indexOf("route") >= 0) street_name = ac.long_name;
-    //     	if(ac.types.indexOf("locality") >= 0) city = ac.long_name;
-    //     	if(ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.short_name;
-    //     }
-    //     if(city !== '' && state !== '') {
-    //       this.full_address = (street_number+" "+street_name+", "+city+", "+state);
-    //     }
-    // 	}
-    // }.bind(this));
-    var lat = pos.coords.latitude;
-    var lng = pos.coords.longitude;
-    var location = { lat: lat, lng: lng };
+  setLocation: function(pos) {
+    geocoder = new google.maps.Geocoder();
+		var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+        lat = pos.coords.latitude,
+        lng = pos.coords.longitude,
+        location = { lat: lat, lng: lng };
     FilterActions.receiveLocation(location);
   },
 
@@ -104,28 +104,5 @@ var ApiUtil = {
 
   updateRadius: function(radius) {
     FilterActions.receiveRadius(radius);
-  },
-
-  // fetchFilteredFoodItems: function(query, cuisine_id) {
-  //   debugger;
-  //   if(query !== '') {
-  //     $.ajax({
-  //       url: "api/food_items",
-  //       data: {search: query, cuisine: cuisine_id},
-  //       success: function(filteredFoodItems) {
-  //         ApiActions.receiveFilteredFoodItems(filteredFoodItems);
-  //       }
-  //     });
-  //   } else {
-  //     ApiActions.receiveFilteredFoodItems([]);
-  //   }
-  // },
-  fetchFilteredFoodItem: function(id) {
-    $.ajax({
-      url: "api/food_items/" + id,
-      success: function(foodItem) {
-        FilterActions.receiveFilteredFoodItem(foodItem);
-      }
-    });
   }
 };

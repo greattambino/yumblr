@@ -2,24 +2,18 @@
   'use strict';
 
   var FilterActions = root.FilterActions = {
-    receiveRadius: function(radius) {
+
+    receiveCategorySearchResults: function(categorySearchResults) {
       AppDispatcher.dispatch({
-        actionType: FilterConstants.RADIUS_RECEIVED,
-        radius: radius
+        actionType: FilterConstants.CATEGORY_SEARCH_RESULTS_RECEIVED,
+        categorySearchResults: categorySearchResults
       });
     },
 
-    receiveLocation: function(location) {
+    receiveFilteredFoodItem: function(filteredFoodItem) {
       AppDispatcher.dispatch({
-        actionType: FilterConstants.LOCATION_RECEIVED,
-        location: location
-      });
-    },
-
-    receiveQueryResults: function(queryResults) {
-      AppDispatcher.dispatch({
-        actionType: FilterConstants.QUERY_RECEIVED,
-        queryResults: queryResults
+        actionType: FilterConstants.FILTERED_FOOD_ITEM_RECEIVED,
+        filteredFoodItem: filteredFoodItem
       });
     },
 
@@ -30,10 +24,24 @@
       });
     },
 
-    receiveFilteredFoodItem: function(filteredFoodItem) {
+    receiveLocation: function(location) {
       AppDispatcher.dispatch({
-        actionType: FilterConstants.FILTERED_FOOD_ITEM_RECEIVED,
-        filteredFoodItem: filteredFoodItem
+        actionType: FilterConstants.LOCATION_RECEIVED,
+        location: location
+      });
+    },
+    
+    receiveQueryResults: function(foodSearchResults) {
+      AppDispatcher.dispatch({
+        actionType: FilterConstants.FOOD_SEARCH_RESULTS_RECEIVED,
+        foodSearchResults: foodSearchResults
+      });
+    },
+
+    receiveRadius: function(radius) {
+      AppDispatcher.dispatch({
+        actionType: FilterConstants.RADIUS_RECEIVED,
+        radius: radius
       });
     }
   };

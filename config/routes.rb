@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :food_items, only: [:index, :show]
     resources :restaurants, only: [:index, :show]
     resources :cuisines, only: [:index]
+    resources :categories, only: [:index]
     resources :users, only: [:show]
     resources :likes, only: [:create, :destroy]
     get "user_likes" => "likes#user_index"

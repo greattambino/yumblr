@@ -2,7 +2,7 @@ json.extract!(f, :id, :name, :price, :image_url, :restaurant_id)
 
 json.restaurant (f.restaurant)
 
-category = r.categories.pluck(:name)
+categories = f.categories.pluck(:name)
 json.categories categories.empty? ? ["(pending)"] : categories
 
 json.likes(f.likes) do |like|

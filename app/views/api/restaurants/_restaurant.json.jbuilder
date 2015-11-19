@@ -6,7 +6,7 @@ json.phone_number (!!r.phone_number && !r.phone_number.empty?) ? r.phone_number 
 json.url (!!r.url && !r.url.empty?) ? r.url : "none"
 
 json.food_items do
-  json.partial! 'api/food_items/food_item', collection: r.food_items, as: :food_item
+  json.partial! 'api/food_items/food_item', collection: r.food_items, as: :f
 end
 
 

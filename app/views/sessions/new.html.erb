@@ -1,3 +1,23 @@
+<script>
+  var demo = function() {
+    $("#username").typed({
+      strings: ["stephcurry30"],
+      typespeed: 1,
+      showCursor: true,
+      callback: function() {
+        $("#password").typed({
+          strings: ["demopass"],
+          typespeed: 1,
+          showCursor: true,
+          callback: function() {
+            $("#submit-login").click();
+          }
+        })
+      }
+    })
+  };
+</script>
+
 <div id="background">
   <%= image_tag "http://res.cloudinary.com/yumblr/image/upload/v1445956858/app/sign-in-background.jpg" %>
 </div>
@@ -11,4 +31,5 @@
   </div>
   <hr>
   <h4>New to Yumblr? <a href="/users/new">Sign up!</a></h4>
+  <h4><a onClick="demo();">Sign in as Demo User</a></h4>
 </div>

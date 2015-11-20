@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require typed.min
 //= require bootstrap
 //= require react
 //= require react_ujs

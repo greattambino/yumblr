@@ -20,11 +20,19 @@
     },
 
     _onChange: function () {
+      debugger
       this.setState({foodItem: this.getFoodItem(this.props.params.foodItemId)});
     },
 
+    _onRefresh: function () {
+      debugger
+      this.setState({foodItem: FilteredFoodItemStore.current() });
+    },
+
     componentDidMount: function() {
+      debugger
       FilteredFoodItemStore.addChangeListener(this._onChange);
+      FilteredFoodItemStore.addRefreshListener(this._onChange);
       this._fetchFoodItem(this.props.params.foodItemId);
     },
 
@@ -34,21 +42,27 @@
 
     componentWillUnmount: function () {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
+      FilteredFoodItemStore.removeRefreshListener(this._onChange);
     },
 
     render: function() {
+      debugger
       var foodItem;
+      var foodItemDetail;
+      var likeBtn;
       if (typeof this.state.foodItem === "undefined") {
         foodItem = <div>Not Found</div>;
       } else {
         foodItem = <img src={this.state.foodItem.image_url} />;
+        foodItemDetail = <FoodItemDetail item={this.state.foodItem} />;
+        likeBtn = <LikeBtn likableType="FoodItem" likableId={this.state.foodItem.id} />;
       }
       return(
         <div className="food_item" id="bg">
           <h2>{foodItem}</h2>
-          <FoodItemDetail item={this.state.foodItem} />
+          {foodItemDetail}
           <div className="food-item-like-btn">
-            <LikeBtn likableType="FoodItem" likableId={this.state.foodItem.id} />
+            {likeBtn}
           </div>
         </div>
       );

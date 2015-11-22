@@ -40,7 +40,9 @@
           <ul className="nav navbar-nav navbar-right">
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              { window.CURRENT_USER_USERNAME }
+              <div className="user_icon">
+                <img src="./assets/user_icon.png"></img>
+              </div>
               <span className="caret"></span></a>
               <ul className="dropdown-menu">
                 <li>
@@ -58,9 +60,8 @@
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
             <p className="navbar-text">
-              <a href="/session/new">Sign In</a>
-              &nbsp; / &nbsp;
-              <a href="/users/new">Sign Up</a>
+              <a className="nav-login" href="/session/new">Login</a>
+              <a className="nav-join" href="/users/new">Join</a>
             </p>
           </ul>
         );
@@ -90,6 +91,7 @@
   });
 })(this);
 
+// { window.CURRENT_USER_USERNAME }
 
 // <a href="users/" + <%= current_user.id % <%= current_user.username %></a>
 // <% if signed_in? %>

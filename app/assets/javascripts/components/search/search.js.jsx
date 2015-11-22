@@ -97,7 +97,7 @@
         />;
       }
       return(
-        <div id="navbar-center">
+        <div id="center">
           <form role="search"
                 onSubmit={this.handleSubmit}
                 className="navbar-form navbar-left"

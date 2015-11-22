@@ -94,6 +94,7 @@
         resultsPanel = <SearchResultsPanel
           foodResults={this.state.foodSearchResults}
           categoryResults={this.state.categorySearchResults}
+          searching={this.state.searching}
         />;
       }
       return(

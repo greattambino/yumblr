@@ -7,7 +7,7 @@
     categorySearchHeader: function() {
       if (this.props.categoryResults.length > 0) {
         return (
-          <li key="category-header" className="list-title">Categories: </li>
+          <li key="category-header" className="list-header">Categories: </li>
         );
       }
     },
@@ -15,7 +15,7 @@
     foodSearchHeader: function() {
       if (this.props.foodResults.length > 0) {
         return (
-          <li key="food-header" className="list-title">Food Items: </li>
+          <li key="food-header" className="list-header">Food Items: </li>
         );
       }
     },
@@ -35,14 +35,16 @@
     },
 
     render: function () {
-      var idName = "";
-
-      if (this.props.foodResults.length !== 0) {
-        idName = "search-results-panel";
-      }
+      // var idName = "";
+      // debugger
+      // if (this.props.foodResults.length !== 0 &&
+      //     this.props.categoryResults.length !== 0 &&
+      //     this.props.searching) {
+      //   idName = "search-results-panel";
+      // }
 
       return(
-        <div id={idName}>
+        <div id="search-results-panel">
           <ul>
             {this.categorySearchHeader()}
             {this.props.categoryResults.map(function(result) {

@@ -26,8 +26,8 @@
   z-index: 10;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.5);
-  max-height: 88vh;
-  overflow-y: scroll;
+  max-height: 78vh;
+  overflow-y: auto;
 }
 
 .pac-container {
@@ -42,7 +42,7 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 12px !important;
   background-color: rgba(0, 0, 0, 0.5);
-  max-height: 88vh;
+  max-height: 78vh;
 }
 .pac-item {
   color: white !important;
@@ -75,8 +75,28 @@
   list-style: none;
   min-width: 220px;
   &:hover{
-  	color: cornflowerblue;
+  	color: #EA9A2F;
   }
+}
+
+.list-header {
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  padding-top: 10px;
+  list-style: none;
+  text-transform: uppercase;
+  color: #00cdbe;
+}
+
+.no-result {
+  min-width: 220px;
+  list-style: none;
+  padding-left: 30px;
+  padding-top: 10px;
+  margin-bottom: -0;
+  font-size: 16px;
+  color: #fff;
 }
 
 .myButton {

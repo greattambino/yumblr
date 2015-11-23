@@ -30,7 +30,7 @@ class Api::FoodItemsController < ApplicationController
         @food_items = FoodItem.find_by_food_and_cuisine(params[:search], params[:cuisine])
       end
     else
-      @food_items = FoodItem.all
+      @food_items = FoodItem.includes(:restaurant).all
     end
 
     render :index

@@ -41,7 +41,6 @@
 
     render: function () {
       // var idName = "";
-      // debugger
       // if (this.props.foodResults.length !== 0 &&
       //     this.props.categoryResults.length !== 0 &&
       //     this.props.searching) {

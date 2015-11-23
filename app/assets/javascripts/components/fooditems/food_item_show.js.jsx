@@ -20,17 +20,14 @@
     },
 
     _onChange: function () {
-      debugger
       this.setState({foodItem: this.getFoodItem(this.props.params.foodItemId)});
     },
 
     _onRefresh: function () {
-      debugger
       this.setState({foodItem: FilteredFoodItemStore.current() });
     },
 
     componentDidMount: function() {
-      debugger
       FilteredFoodItemStore.addChangeListener(this._onChange);
       FilteredFoodItemStore.addRefreshListener(this._onChange);
       this._fetchFoodItem(this.props.params.foodItemId);
@@ -46,7 +43,6 @@
     },
 
     render: function() {
-      debugger
       var foodItem;
       var foodItemDetail;
       var likeBtn;

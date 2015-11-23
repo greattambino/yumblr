@@ -3,7 +3,7 @@
 
   var LikeBtn = root.LikeBtn = React.createClass({
     getInitialState: function () {
-      return {likeState: ""};
+      return {likeState: "", hover: false};
     },
 
     componentDidMount: function () {
@@ -19,6 +19,13 @@
 
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setLike);
+    },
+    handleMouseOver: function () {
+      this.setState({hover: true});
+    },
+
+    handleMouseOut: function () {
+      this.setState({hover: false});
     },
 
     setLike: function (props) {
@@ -49,15 +56,23 @@
 
     render: function () {
       var likeState = this.state.likeState,
-          klass;
+          klass,
+          label;
+          // mouseOver;
       if (likeState === this.like) {
         klass = "like";
+        label = "like";
       } else {
         klass = "liked";
+        if (this.state.hover) {
+          label = "unlike";
+        } else {
+          label = "liked";
+        }
       }
       return (
-        <button className={"btn " + klass} onClick={this.handleLike} >
-          {likeState} {klass}
+        <button className={"btn " + klass} onClick={this.handleLike} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+          {likeState} {label}
         </button>
       );
     }

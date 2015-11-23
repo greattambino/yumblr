@@ -49,15 +49,15 @@
 
     render: function () {
       var likeState = this.state.likeState,
-          classname;
+          klass;
       if (likeState === this.like) {
-        classname = "like";
+        klass = "like";
       } else {
-        classname = "liked";
+        klass = "liked";
       }
       return (
-        <button className={"btn " + classname} onClick={this.handleLike} >
-          {likeState} {classname}
+        <button className={"btn " + klass} onClick={this.handleLike} >
+          {likeState} {klass}
         </button>
       );
     }

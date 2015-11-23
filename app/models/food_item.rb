@@ -24,11 +24,11 @@ class FoodItem < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy
 
-  def self.find_by_food(str)
+  def self.find_by_query(str)
     FoodItem.includes(:restaurant).where("LOWER(name) LIKE '%#{str.downcase}%'")
   end
 
-  def self.find_by_food_and_location(str, location, radius)
+  def self.find_by_query_and_location(str, location, radius)
     radius = radius.to_f
     idx = -1
     FoodItem
@@ -40,7 +40,7 @@ class FoodItem < ActiveRecord::Base
     end
   end
 
-  def self.find_by_food_and_cuisine(str, cuisine_id)
+  def self.find_by_query_and_cuisine(str, cuisine_id)
     Cuisine.find(cuisine_id).food_items
       .includes(:restaurant)
       .where("LOWER(food_items.name) LIKE '%#{str.downcase}%'")

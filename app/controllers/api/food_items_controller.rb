@@ -6,29 +6,17 @@ class Api::FoodItemsController < ApplicationController
     if (params[:restaurant_id])
       @food_items = Restaurant.find(params[:restaurant_id]).food_items
     elsif(params[:search] && (params[:cuisine] == "-1") && params[:location] && params[:radius])
-      if Category.any_results?(params[:search])
-        @food_items = Category.find_by_category_and_location(params[:search], params[:location], params[:radius])
-      else
-        @food_items = FoodItem.find_by_food_and_location(params[:search], params[:location], params[:radius])
-      end
+      Category.any_results?(params[:search]) ? klass = Category : klass = FoodItem
+      @food_items = klass.find_by_query_and_location(params[:search], params[:location], params[:radius])
     elsif(params[:search] && params[:cuisine] && params[:location] && params[:radius])
-      if Category.any_results?(params[:search])
-        @food_items = Category.find_by_all_params(params[:search], params[:cuisine], params[:location], params[:radius])
-      else
-        @food_items = FoodItem.find_by_all_params(params[:search], params[:cuisine], params[:location], params[:radius])
-      end
+      Category.any_results?(params[:search]) ? klass = Category : klass = FoodItem
+      @food_items = klass.find_by_all_params(params[:search], params[:cuisine], params[:location], params[:radius])
     elsif(params[:search] && (params[:cuisine] == "-1"))
-      if Category.any_results?(params[:search])
-        @food_items = Category.find_by_category(params[:search])
-      else
-        @food_items = FoodItem.find_by_food(params[:search])
-      end
+      Category.any_results?(params[:search]) ? klass = Category : klass = FoodItem
+      @food_items = klass.find_by_query(params[:search])
     elsif(params[:search])
-      if Category.any_results?(params[:search])
-        @food_items = Category.find_by_category_and_cuisine(params[:search], params[:cuisine])
-      else
-        @food_items = FoodItem.find_by_food_and_cuisine(params[:search], params[:cuisine])
-      end
+      Category.any_results?(params[:search]) ? klass = Category : klass = FoodItem
+      @food_items = klass.find_by_query_and_cuisine(params[:search], params[:cuisine])
     else
       @food_items = FoodItem.includes(:restaurant).all
     end

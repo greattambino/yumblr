@@ -13,7 +13,11 @@ class Category < ActiveRecord::Base
   end
 
   def self.find_by_category(str)
-    FoodItem.joins(:categories).where("LOWER(categories.name) LIKE '%#{str.downcase}%'").distinct
+    FoodItem
+      .joins(:categories)
+      .includes(:restaurant)
+      .where("LOWER(categories.name) LIKE '%#{str.downcase}%'")
+      .distinct
   end
 
   def self.find_by_category_and_location(str, location, radius)
@@ -32,6 +36,7 @@ class Category < ActiveRecord::Base
   def self.find_by_category_and_cuisine(str, cuisine_id)
     Cuisine.find(cuisine_id).food_items
       .joins(:categories)
+      .includes(:restaurant)
       .where("LOWER(categories.name) LIKE '%#{str.downcase}%'")
       .distinct
   end

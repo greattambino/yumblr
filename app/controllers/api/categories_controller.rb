@@ -5,7 +5,7 @@ class Api::CategoriesController < ApplicationController
     else
       @categories = Category.all
     end
-    
-    render json: @categories
+
+    render :index
   end
 end

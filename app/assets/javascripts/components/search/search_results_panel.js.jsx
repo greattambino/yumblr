@@ -20,7 +20,12 @@
       }
     },
 
-    handleClick: function(id, e){
+    handleCategoryClick: function(id, e){
+      e.preventDefault();
+      this.history.pushState(null, "/food_items/" + id.toString());
+    },
+
+    handleFoodClick: function(id, e){
       e.preventDefault();
       this.history.pushState(null, "/food_items/" + id.toString());
     },
@@ -50,7 +55,7 @@
             {this.props.categoryResults.map(function(result) {
               return(
                 <li key={result.id}
-                    onClick={this.handleClick.bind(null, result.id)}
+                    onClick={this.handleCategoryClick.bind(null, result.id)}
                     id="search-result">
                   {result.name}
                 </li>
@@ -60,7 +65,7 @@
             {this.props.foodResults.map(function(result) {
               return(
                 <li key={result.id}
-                    onClick={this.handleClick.bind(null, result.id)}
+                    onClick={this.handleFoodClick.bind(null, result.id)}
                     id="search-result">
                   {result.name}
                 </li>

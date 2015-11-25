@@ -5,7 +5,27 @@
 //   color: black;
 //   background-color: inherit;
 // }
+// #7299B9
+.generate-btn {
+  position: relative;
+  background-color: #819AAF !important;
+  box-shadow: inset 0 0 3pt 0pt #000000 !important;
+  border: none !important;
+  &:hover {
+    background-color: #768DA0 !important;
+    box-shadow: inset 0 0 5pt 0pt #000000 !important;
+  }
+  & > span > img {
+    right: 0.8px;
+    bottom: 0.8px;
+    position: absolute;
+  }
+}
 
+.btn-circle:focus {
+  outline: none !important;
+  box-shadow: 0 0 3pt 2pt #408c99 !important;
+}
 #find-search-bar {
   position: relative;
 }

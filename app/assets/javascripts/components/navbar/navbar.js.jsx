@@ -40,7 +40,7 @@
           <ul className="nav navbar-nav navbar-right">
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <div className="user_icon">
+              <div className="user-icon">
                 <img src="./assets/user_icon.png"></img>
               </div>
               <span className="caret"></span></a>

@@ -34,8 +34,14 @@
   position: relative;
 }
 
+.clear-radius {
+  color: #aaa;
+  font-weight: bold;
+}
+
 #selected-radius {
-  background-color: #ccc;
+  color: #00cdbe;
+  font-weight: bold;
 }
 
 #search-results-panel {

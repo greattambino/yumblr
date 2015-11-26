@@ -34,13 +34,14 @@
     },
 
     render: function () {
-      var radius = ["0.2", "0.5", "1.5", "3", "5", "10"];
+      var radius = ["0.2", "0.5", "1.5", "3", "5", "10", "15", "20"];
 
       return(
         <ul className="dropdown-menu dropdown-menu-location" role="menu" name="radius">
-          <li value="99999999999"
+          <li className="clear-radius"
+              value="Clear"
               onClick={this.updateRadius.bind(null, 99999999999)}>
-              Filter by distance
+              Clear
           </li>
           {radius.map(function(r){
             return <li id={this.state.selectedRadius === r ? "selected-radius" : ""}

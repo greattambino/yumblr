@@ -17,7 +17,7 @@
             placement="bottom"
             overlay={tooltip}>
             <button className="btn btn-default btn-circle btn-lg generate-btn">
-              <span><img src="http://res.cloudinary.com/yumblr/image/upload/v1448393942/app/yumblr-icon17.png"/></span>
+              <span><img src="http://res.cloudinary.com/yumblr/image/upload/v1448513651/app/yumblr-icon19.png"/></span>
             </button>
           </OverlayTrigger>
         </ButtonToolbar>

@@ -1,6 +1,10 @@
 (function(root) {
   'use strict';
 
+  var ButtonToolbar = ReactBootstrap.ButtonToolbar;
+  var OverlayTrigger = ReactBootstrap.OverlayTrigger;
+  var Tooltip = ReactBootstrap.Tooltip;
+
   var SearchBar = root.SearchBar = React.createClass({
     mixins: [ReactRouter.History],
 
@@ -89,6 +93,9 @@
     },
 
     render: function() {
+      var findInputTooltip = (
+        <Tooltip>Search by name or category (i.e. sandwich, sushi, salad)</Tooltip>
+      );
       var resultsPanel;
       if (this.state.searching) {
         resultsPanel = <SearchResultsPanel
@@ -97,6 +104,7 @@
           searching={this.state.searching}
         />;
       }
+
       return(
         <div id="center">
           <form role="search"
@@ -123,18 +131,25 @@
                 }.bind(this))}
               </ul>
 
-              <div className="search-label form-control">
-                Find
-              </div>
-              <input ref="searchInput"
-                     onChange={this.handleChange}
-                     type="text"
-                     className="search-input form-control"
-                     placeholder="Everything"
-                     name="searchQuery"
-                     value={this.state.searchString} />
+              <OverlayTrigger
+                placement="bottom"
+                overlay={findInputTooltip}>
+                <span>
+                  <div className="search-label form-control">
+                    Find
+                  </div>
+                  <input ref="searchInput"
+                         onChange={this.handleChange}
+                         type="text"
+                         className="search-input form-control"
+                         placeholder="Everything"
+                         name="searchQuery"
+                         value={this.state.searchString} />
+                 </span>
+               </OverlayTrigger>
             </div>
           </form>
+
 
           {resultsPanel}
 

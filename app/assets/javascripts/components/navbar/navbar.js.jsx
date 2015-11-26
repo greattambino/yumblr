@@ -44,7 +44,7 @@
                 <img src="./assets/user_icon.png"></img>
               </div>
               <span className="caret"></span></a>
-              <ul className="dropdown-menu">
+              <ul className="dropdown-menu user-dropdown">
                 <li>
                   <Link to={"/users/" + this.state.currentUser.id}>
                     Profile

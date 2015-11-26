@@ -96,13 +96,13 @@
 //   text-decoration: none;
 // }
 
- #find-search-bar {
-   opacity: 0.95;
- }
-
- #location-search-bar {
-   opacity: 0.95;
- }
+ // #find-search-bar {
+ //   opacity: 0.95;
+ // }
+ //
+ // #location-search-bar {
+ //   opacity: 0.95;
+ // }
 
  #nav {
    width:750px;
@@ -130,6 +130,10 @@
 
  .search-glyphicon {
 
+ }
+
+ .dropdown-menu {
+   background-color: #000;
  }
 
  .dropdown-menu-food {

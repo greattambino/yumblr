@@ -92,10 +92,26 @@
       this.setState({ searchString: '', searching: false });
     },
 
+    tooltipEntered: function() {
+      setTimeout(function(){
+        $('.tooltip').tooltip('hide');
+      }, 2000);
+    },
+
     render: function() {
       var findInputTooltip = (
-        <Tooltip>Search by name or category (i.e. sandwich, sushi, salad)</Tooltip>
+        <Tooltip>Search by name or category (i.e. sandwich, sushi, salad).</Tooltip>
       );
+      var cuisineDropdownTooltip = (
+        <Tooltip>Filter by cuisine.</Tooltip>
+      );
+      var radiusDropdownTooltip = (
+        <Tooltip>Filter by distance.</Tooltip>
+      );
+      var locationInputTooltip = (
+        <Tooltip>Filter by location.</Tooltip>
+      );
+
       var resultsPanel;
       if (this.state.searching) {
         resultsPanel = <SearchResultsPanel
@@ -112,14 +128,17 @@
                 className="navbar-form navbar-left"
                 id="find-search-bar">
             <div className="form-group search-form">
-              <button type="button"
-                      className="btn btn-default dropdown-toggle search-btn"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false">
-                <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
-              </button>
-
+              <OverlayTrigger
+                placement="bottom"
+                overlay={cuisineDropdownTooltip}>
+                <button type="button"
+                        className="btn btn-default dropdown-toggle search-btn"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                  <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
+                </button>
+              </OverlayTrigger>
               <ul className="dropdown-menu dropdown-menu-food" role="menu" name="cuisines">
                 <li value="-1" onClick={this.updateCuisine}>All Cuisines</li>
                 {this.state.cuisines.map(function(cuisine){
@@ -133,8 +152,11 @@
 
               <OverlayTrigger
                 placement="bottom"
+                id="findInputTooltip"
+                onEnter={this.tooltipEntered}
+                dataToggle="tooltip"
                 overlay={findInputTooltip}>
-                <span>
+                <span className="findInputTooltip">
                   <div className="search-label form-control">
                     Find
                   </div>
@@ -159,35 +181,44 @@
 
           <form role="search" className="navbar-form navbar-left" id="location-search-bar">
             <div className="form-group search-form">
-              <button type="button"
-                      className="btn btn-default dropdown-toggle search-btn"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false">
-                <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
-              </button>
-
+              <OverlayTrigger
+                placement="bottom"
+                overlay={radiusDropdownTooltip}>
+                <button type="button"
+                        className="btn btn-default dropdown-toggle search-btn"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                  <span className="glyphicon glyphicon-menu-hamburger search-glyphicon"></span>
+                </button>
+              </OverlayTrigger>
               <RadiusDropdown
                 searchString={this.state.searchString}
                 selectedCuisine={this.state.selectedCuisine}
               />
 
-              <div className="search-label form-control">
-                Near
-              </div>
-              <input className="search-input form-control"
-                     id="geocomplete"
-                     type="text"
-                     name="location"
-                     placeholder="Nearby" />
+              <OverlayTrigger
+                placement="bottom"
+                overlay={locationInputTooltip}>
+                <span>
+                  <div className="search-label form-control">
+                    Near
+                  </div>
+                  <input className="search-input form-control"
+                         id="geocomplete"
+                         type="text"
+                         name="location"
+                         placeholder="Nearby" />
 
-              <div id="locationDetails" className="hide">
-                <input name="lat" type="hidden" value="" />
-                <input name="lng" type="hidden" value="" />
-                <input name="postal_code" type="hidden" value="" />
-                <input name="city" type="hidden" value="" />
-                <input name="state" type="hidden" value="" />
-              </div>
+                  <div id="locationDetails" className="hide">
+                    <input name="lat" type="hidden" value="" />
+                    <input name="lng" type="hidden" value="" />
+                    <input name="postal_code" type="hidden" value="" />
+                    <input name="city" type="hidden" value="" />
+                    <input name="state" type="hidden" value="" />
+                  </div>
+                </span>
+              </OverlayTrigger>
             </div>
           </form>
         </div>

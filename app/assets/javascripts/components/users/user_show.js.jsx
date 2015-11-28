@@ -6,6 +6,7 @@
       var userId = this.props.params.userId;
       return ({
         user: UserStore.findUser(userId),
+        activeTab: "favorite"
       });
     },
 
@@ -46,8 +47,28 @@
       }
     },
 
+    changeFavoriteState: function () {
+      this.setState({activeTab: "favorite"});
+    },
+
+    changeFollowingState: function () {
+      this.setState({activeTab: "following"});
+    },
+
     render: function () {
-      var user = this.state.user;
+      var user = this.state.user,
+          activeState = this.state.activeTab,
+          favoriteClass,
+          followingClass;
+
+      if (this.state.activeTab === "favorite") {
+        favoriteClass = "btn btn-primary";
+        followingClass = "btn btn-default";
+      } else {
+        favoriteClass = "btn btn-default";
+        followingClass = "btn btn-primary";
+      }
+
       return (
         <div className="profile-image-container">
           <div className="card hovercard">
@@ -63,13 +84,13 @@
           </div>
           <div className="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
             <div className="btn-group" role="group">
-              <button type="button" id="favorites" className="btn btn-default" href="#tab1" data-toggle="tab">
+              <button type="button" id="favorites" className={favoriteClass} href="#tab1" data-toggle="tab" onClick={this.changeFavoriteState}>
                 <span className="glyphicon glyphicon-heart" aria-hidden="true"></span>
                 <div className="hidden-xs">Favorites</div>
               </button>
             </div>
             <div className="btn-group" role="group">
-              <button type="button" id="following" className="btn btn-default" href="#tab2" data-toggle="tab">
+              <button type="button" id="following" className={followingClass} href="#tab2" data-toggle="tab" onClick={this.changeFollowingState}>
                 <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <div className="hidden-xs">Following</div>
               </button>

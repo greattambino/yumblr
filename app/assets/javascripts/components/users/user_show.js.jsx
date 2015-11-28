@@ -73,10 +73,10 @@
         <div className="profile-image-container">
           <div className="card hovercard">
             <div className="card-background">
-              <img className="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/" />
+              <img className="card-bkimg" alt="" src="http://res.cloudinary.com/yumblr/image/upload/v1448695629/app/steph-curry-avatar.png" />
             </div>
             <div className="useravatar">
-              <img alt="" src="http://lorempixel.com/100/100/people/9/" />
+              <img alt="" src="http://res.cloudinary.com/yumblr/image/upload/v1448695629/app/steph-curry-avatar.png" />
             </div>
             <div className="card-info">
               <span className="card-title">{window.CURRENT_USER_USERNAME}</span>

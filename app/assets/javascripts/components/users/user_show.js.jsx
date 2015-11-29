@@ -111,6 +111,13 @@
               </div>
               <div className="tab-pane fade in" id="tab2">
                 <h3>Following</h3>
+                  <div className="container-fluid">
+                  	<div className="row text-center">
+                  	</div>
+                  	<div className="row">
+                      <p>Currently not following any users.</p>
+                  	</div>
+                  </div>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 # Yumblr
 
-[Heroku link][heroku] **NB:** This will be a link to Yumblr
+[www.yumblr.io][yumblr] **NB:** Check out the live link to Yumblr!
 
-[heroku]: http://www.herokuapp.com
+[yumblr]: http://www.yumblr.io
 
 ## Minimum Viable Product
 

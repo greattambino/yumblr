@@ -4,6 +4,8 @@
 
 [yumblr]: http://www.yumblr.io
 
+![alt text](http://res.cloudinary.com/yumblr/image/upload/v1448955568/app/yumblr.jpg "www.yumblr.io")
+
 ## Minimum Viable Product
 
 Can't decide what to eat? Yumblr is like a Stumble Upon for discovering what to

@@ -63,7 +63,7 @@ class FoodItem < ActiveRecord::Base
   end
 
   def num_likes
-    self.likes.length;
+    self.likes.length
   end
 
   def is_liked?(id)

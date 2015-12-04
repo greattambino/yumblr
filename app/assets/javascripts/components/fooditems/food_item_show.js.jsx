@@ -51,7 +51,10 @@
       } else {
         foodItem = <img src={this.state.foodItem.image_url} />;
         foodItemDetail = <FoodItemDetail item={this.state.foodItem} />;
-        likeBtn = <LikeBtn likableType="FoodItem" likableId={this.state.foodItem.id} />;
+        likeBtn = <LikeBtn
+                    likableType="FoodItem"
+                    likableId={this.state.foodItem.id}
+                    numLikes={this.state.foodItem.num_likes} />;
       }
       return(
         <div className="food_item" id="bg">
@@ -65,3 +68,5 @@
     }
   });
 }(this));
+
+// numLikes={this.state.foodItem.num_likes}

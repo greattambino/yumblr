@@ -3,7 +3,7 @@
 
   var LikeBtn = root.LikeBtn = React.createClass({
     getInitialState: function () {
-      return {likeState: "", hover: false};
+      return {likeState: "", hover: false, disabled: false};
     },
 
     componentDidMount: function () {
@@ -36,29 +36,36 @@
           likableId   = props.likableId;
 
       if (UserStore.doesCurrentUserLike(likableType, likableId)) {
-        this.setState({likeState: this.unlike});
+        this.setState({likeState: this.unlike, disabled: false});
       } else {
-        this.setState({likeState: this.like});
+        this.setState({likeState: this.like, disabled: false});
       }
     },
 
     handleLike: function () {
       var likableType = this.props.likableType,
           likableId   = this.props.likableId;
+      this.setState({disabled: true});
       if (this.state.likeState === this.like) {
         LikeApiUtil.createLike(likableType, likableId);
-        this.setState({likeState: this.unlike});
+        setTimeout(function() {
+          this.setState({likeState: this.unlike});
+        }.bind(this), 200);
       } else {
         LikeApiUtil.destroyLike(likableType, likableId);
-        this.setState({likeState: this.like});
+        setTimeout(function() {
+          this.setState({likeState: this.like});
+        }.bind(this), 200);
       }
       ApiUtil.fetchCurrentUser(window.CURRENT_USER);
     },
 
     render: function () {
       var likeState = this.state.likeState,
+          numLikes  = this.props.numLikes,
           klass,
           label;
+      var disabled  = this.state.disabled;
           // mouseOver;
       if (likeState === this.like) {
         klass = "like";
@@ -72,8 +79,13 @@
         }
       }
       return (
-        <button className={"btn " + klass} onClick={this.handleLike} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
-          {likeState} {label}
+        <button
+          className={"btn " + klass}
+          onClick={this.handleLike}
+          onMouseOver={this.handleMouseOver}
+          onMouseOut={this.handleMouseOut}
+          disabled={disabled} >
+            {numLikes} {likeState} {label}
         </button>
       );
     }

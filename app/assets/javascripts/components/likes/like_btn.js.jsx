@@ -34,6 +34,7 @@
       }
       var likableType = props.likableType,
           likableId   = props.likableId;
+
       if (UserStore.doesCurrentUserLike(likableType, likableId)) {
         this.setState({likeState: this.unlike});
       } else {

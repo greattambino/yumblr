@@ -10,5 +10,7 @@ json.likes(f.likes) do |like|
   json.user_id like.user_id
   json.username like.user.username
 end
-# json.likes f.number_likes
+
+json.num_likes f.num_likes
+
 # json.liked f.is_liked?(@id)

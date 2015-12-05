@@ -90,7 +90,7 @@
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut}
           disabled={disabled} >
-            {numLikes} {likeState} {label}
+            {likeState} {label}
         </button>
         </div>
       );

@@ -60,6 +60,36 @@
   cursor: wait;
 }
 
+
+.heart-container {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  margin: -75px 0 0 -75px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.heart-container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.heart-container > img {
+  display: inline-block;
+  width: 150px;
+  height: 134px;
+  opacity: 1;
+  vertical-align: middle;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+}
+
+
 #navbar {
   margin-bottom: 0;
 }

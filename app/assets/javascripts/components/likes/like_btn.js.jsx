@@ -3,7 +3,7 @@
 
   var LikeBtn = root.LikeBtn = React.createClass({
     getInitialState: function () {
-      return {likeState: "", hover: false, disabled: false};
+      return {likeState: "", hover: false, disabled: false, status: ""};
     },
 
     componentDidMount: function () {
@@ -11,6 +11,7 @@
       this.unlike = <span className="glyphicon glyphicon-heart"/>;
       this.like = <span className="glyphicon glyphicon-heart-empty"/>;
       this.setLike(this.props);
+      $('.heart-container').hide(1);
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -48,6 +49,7 @@
       this.setState({disabled: true});
       if (this.state.likeState === this.like) {
         LikeApiUtil.createLike(likableType, likableId);
+        $('.heart-container').fadeIn(800).delay(500).fadeOut(600);
         setTimeout(function() {
           this.setState({likeState: this.unlike});
         }.bind(this), 200);
@@ -63,10 +65,9 @@
     render: function () {
       var likeState = this.state.likeState,
           numLikes  = this.props.numLikes,
+          disabled  = this.state.disabled,
           klass,
           label;
-      var disabled  = this.state.disabled;
-          // mouseOver;
       if (likeState === this.like) {
         klass = "like";
         label = "like";
@@ -79,6 +80,10 @@
         }
       }
       return (
+        <div className="like-container">
+          <div className="heart-container">
+            <img src="./assets/heart.png"></img>
+          </div>
         <button
           className={"btn " + klass}
           onClick={this.handleLike}
@@ -87,6 +92,7 @@
           disabled={disabled} >
             {numLikes} {likeState} {label}
         </button>
+        </div>
       );
     }
   });

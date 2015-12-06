@@ -37,16 +37,16 @@
           likableId   = props.likableId;
 
       if (UserStore.doesCurrentUserLike(likableType, likableId)) {
-        this.setState({likeState: this.unlike, disabled: false});
+        this.setState({ likeState: this.unlike });
       } else {
-        this.setState({likeState: this.like, disabled: false});
+        this.setState({ likeState: this.like });
       }
     },
 
     handleLike: function () {
       var likableType = this.props.likableType,
           likableId   = this.props.likableId;
-      this.setState({disabled: true});
+
       if (this.state.likeState === this.like) {
         LikeApiUtil.createLike(likableType, likableId);
         $('.heart-container').fadeIn(800).delay(500).fadeOut(600);
@@ -65,7 +65,6 @@
     render: function () {
       var likeState = this.state.likeState,
           numLikes  = this.props.numLikes,
-          disabled  = this.state.disabled,
           klass,
           label;
       if (likeState === this.like) {
@@ -84,14 +83,13 @@
           <div className="heart-container">
             <img src="./assets/heart.png"></img>
           </div>
-        <button
-          className={"btn " + klass}
-          onClick={this.handleLike}
-          onMouseOver={this.handleMouseOver}
-          onMouseOut={this.handleMouseOut}
-          disabled={disabled} >
-            {likeState} {label}
-        </button>
+          <button
+            className={"btn " + klass}
+            onClick={this.handleLike}
+            onMouseOver={this.handleMouseOver}
+            onMouseOut={this.handleMouseOut}>
+              {likeState} {label}
+          </button>
         </div>
       );
     }

@@ -10,11 +10,12 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 # AIzaSyCM6PcdWi8Yz8t_E70_vMJaXULmYKmxn8Q
-# development:
-#   google_map_api_key: AIzaSyCLt1ikBU15g-5A0A-6tL_xaFKvJBO7i9s
-#
-# production:
-#   google_map_api_key: AIzaSyCLt1ikBU15g-5A0A-6tL_xaFKvJBO7i9s
+# AIzaSyCrnFlmDMdJdsl4o7KhYF2mtL7Dpv1lBIY
+development:
+  google_maps_key: "AIzaSyCrnFlmDMdJdsl4o7KhYF2mtL7Dpv1lBIY"
+
+production:
+  google_maps_key: "AIzaSyCrnFlmDMdJdsl4o7KhYF2mtL7Dpv1lBIY"
 
 # production:
 #   google_map_api_key: AIzaSyCM6PcdWi8Yz8t_E70_vMJaXULmYKmxn8Q

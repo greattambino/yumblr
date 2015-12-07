@@ -5,10 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <!-- <%="#{ENV['google_maps_api_key']}"%> -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi2gBEKxx4HFVS8X9dB7tYOAGjmKEMIa0&libraries=geometry,places"
-  type="text/javascript"></script>
-<link href='https://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
+  <script src="<%= @google %>" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
   <% if signed_in? %>
     <script>
       window.CURRENT_USER = "<%= current_user.id %>"

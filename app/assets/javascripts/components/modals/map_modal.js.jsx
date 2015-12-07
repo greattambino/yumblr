@@ -4,8 +4,6 @@
   var Modal = ReactBootstrap.Modal;
 
   var MapModal = root.MapModal = React.createClass({
-    mixins: [React.addons.LinkedStateMixin],
-
     render: function () {
       return (
         <div id="restaurant-modal-container">
@@ -29,7 +27,6 @@
                 />
               </div>
             </Modal.Body>
-
           </Modal>
         </div>
       );

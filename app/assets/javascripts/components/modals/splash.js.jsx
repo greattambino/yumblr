@@ -2,7 +2,6 @@
   'use strict';
 
   var Modal = ReactBootstrap.Modal;
-  var Button = ReactBootstrap.Button;
 
   var Splash = root.Splash = React.createClass({
     mixins: [React.addons.LinkedStateMixin],

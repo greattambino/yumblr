@@ -9,7 +9,7 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function() {
-      return({ location: _getLocation() });
+      return({ location: _getLocation(), showMapModal: false });
     },
 
     handleClick: function(e) {
@@ -45,15 +45,27 @@
       // ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
     },
 
-    render: function() {
+    toggleModal: function() {
+      this.setState({ showMapModal: !this.state.showMapModal });
+    },
 
+    mapModal: function() {
       return (
+        <MapModal
+          show={this.state.showMapModal}
+          onHide={this.toggleModal}
+          restaurant={this.props.item.restaurant}
+        />
+      );
+    },
 
+    render: function() {
+      return (
           <div className="food-item-detail">
-            <span className="food-item-restaurant" onClick={this.handleClick}>
+            <span className="food-item-restaurant" onClick={this.toggleModal}>
               {this.props.item.restaurant.name}
             </span>
-            <br/>
+              {this.mapModal()}
             <span className="food-item-name">
               {this.props.item.name}
             </span>
@@ -68,7 +80,6 @@
               {this.calculateDistance()} Miles
             </span>
           </div>
-
       );
     }
   });

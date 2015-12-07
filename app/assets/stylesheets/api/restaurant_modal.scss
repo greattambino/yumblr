@@ -10,7 +10,7 @@
 }
 
 #map-modal-content {
-  padding-bottom: 75px;
+  // padding-bottom: 75px;
   background: rgba(0, 0, 0, 0.7);
 }
 
@@ -21,6 +21,24 @@
 .close {
   color: #888888 !important;
   opacity: 0.7 !important;
+}
+
+.restaurant-modal-details {
+  color: #FFFFFF;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+}
+
+.glyphicon-map-marker {
+  color: #00cdbe;
+}
+
+.glyphicon-earphone {
+  color: #00cdbe;
+}
+
+.glyphicon-link {
+  color: #00cdbe;
 }
 
 // #restaurant-modal-container {

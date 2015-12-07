@@ -39,7 +39,7 @@
                 <span className="glyphicon glyphicon-earphone"></span>
                   &nbsp;&nbsp; {phone_number}<br/>
                 <span className="glyphicon glyphicon-link"></span>
-                  &nbsp;&nbsp; {url}
+                  &nbsp;&nbsp; <a href={url}>{url}</a>
               </div>
             </Modal.Body>
           </Modal>

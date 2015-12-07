@@ -5,6 +5,13 @@
 
   var MapModal = root.MapModal = React.createClass({
     render: function () {
+      var address      = this.props.restaurant.address,
+          city         = this.props.restaurant.city,
+          state        = this.props.restaurant.state,
+          zip_code     = this.props.restaurant.zip_code,
+          phone_number = this.props.restaurant.phone_number,
+          url          = this.props.restaurant.url,
+          description  = this.props.restaurant.description;
       return (
         <div id="restaurant-modal-container">
           <Modal
@@ -25,6 +32,14 @@
                   restaurantLat={this.props.restaurant.lat}
                   restaurantLng={this.props.restaurant.lng}
                 />
+              </div>
+              <div className="restaurant-modal-details">
+                <span className="glyphicon glyphicon-map-marker"></span>
+                  &nbsp; {address}, {city}, {state} {zip_code}<br/>
+                <span className="glyphicon glyphicon-earphone"></span>
+                  &nbsp;&nbsp; {phone_number}<br/>
+                <span className="glyphicon glyphicon-link"></span>
+                  &nbsp;&nbsp; {url}
               </div>
             </Modal.Body>
           </Modal>

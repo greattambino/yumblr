@@ -33,8 +33,9 @@
     },
 
     render: function() {
-      var navbarRight;
-      // var userShowUrl = "api/users/" + { this.props.currentUser.id };
+      var navbarRight,
+          center;
+
       if (this.props.currentUser) {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
@@ -56,6 +57,7 @@
             </li>
           </ul>
         );
+        center = { left: '-1em' };
       } else {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
@@ -65,6 +67,7 @@
             </p>
           </ul>
         );
+        center = { left: '1.5em' };
       }
 
       return(
@@ -81,7 +84,7 @@
               <a href="/" className="navbar-brand"><img src="http://res.cloudinary.com/yumblr/image/upload/v1446005823/app/logo-smaller.png"/></a>
             </div>
             <div id="navbar" className="navbar-collapse collapse">
-              <SearchBar />
+              <SearchBar style={center} />
               { navbarRight }
             </div>
           </div>

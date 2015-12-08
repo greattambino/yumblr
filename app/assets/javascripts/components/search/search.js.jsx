@@ -122,7 +122,7 @@
       }
 
       return(
-        <div id="center">
+        <div id="center" style={this.props.style}>
           <form role="search"
                 onSubmit={this.handleSubmit}
                 className="navbar-form navbar-left"

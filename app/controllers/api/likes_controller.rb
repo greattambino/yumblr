@@ -27,7 +27,7 @@ class Api::LikesController < ApplicationController
   end
 
   def user_index
-    @likes = Liking.includes(:likable).where(user_id: params[:user_id])
+    @likes = Liking.includes(:likable, {likable: :restaurant}).where(user_id: params[:user_id])
     render :index
   end
 

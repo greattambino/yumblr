@@ -9,7 +9,7 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function() {
-      return({ location: _getLocation(), showMapModal: false });
+      return({ location: _getLocation(), showRestaurantModal: false });
     },
 
     handleClick: function(e) {
@@ -46,13 +46,13 @@
     },
 
     toggleModal: function() {
-      this.setState({ showMapModal: !this.state.showMapModal });
+      this.setState({ showRestaurantModal: !this.state.showRestaurantModal });
     },
 
-    mapModal: function() {
+    restaurantModal: function() {
       return (
-        <MapModal
-          show={this.state.showMapModal}
+        <RestaurantModal
+          show={this.state.showRestaurantModal}
           onHide={this.toggleModal}
           restaurant={this.props.item.restaurant}
         />
@@ -65,7 +65,7 @@
             <span className="food-item-restaurant" onClick={this.toggleModal}>
               {this.props.item.restaurant.name}
             </span>
-              {this.mapModal()}
+              {this.restaurantModal()}
             <span className="food-item-name">
               {this.props.item.name}
             </span>

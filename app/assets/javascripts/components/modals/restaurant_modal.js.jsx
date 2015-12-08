@@ -3,7 +3,7 @@
 
   var Modal = ReactBootstrap.Modal;
 
-  var MapModal = root.MapModal = React.createClass({
+  var RestaurantModal = root.RestaurantModal = React.createClass({
     render: function () {
       var address      = this.props.restaurant.address,
           city         = this.props.restaurant.city,

@@ -5,4 +5,4 @@ json.extract!(
 json.likable_type like.likable_type.downcase
 json.foodItem like.likable.name
 json.foodItemImage like.likable.image_url
-json.restaurant like.likable.restaurant.name
+json.restaurant like.likable.restaurant

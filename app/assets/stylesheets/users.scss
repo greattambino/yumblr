@@ -96,6 +96,12 @@
 	padding: 0px;
 	margin: 0px;
 	height:200px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    cursor: pointer;
+  }
 }
 .cover-card > p {
 	text-align: center;

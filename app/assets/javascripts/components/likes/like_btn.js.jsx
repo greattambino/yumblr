@@ -78,6 +78,7 @@
           label = "liked";
         }
       }
+
       return (
         <div className="like-container">
           <div className="heart-container">

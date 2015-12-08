@@ -18,7 +18,7 @@ class Api::FoodItemsController < ApplicationController
       Category.any_results?(params[:search]) ? klass = Category : klass = FoodItem
       @food_items = klass.find_by_query_and_cuisine(params[:search], params[:cuisine])
     else
-      @food_items = FoodItem.includes(:restaurant, :likes).all
+      @food_items = FoodItem.includes(:restaurant).all
     end
 
     render :index

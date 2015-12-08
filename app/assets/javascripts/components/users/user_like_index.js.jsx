@@ -9,8 +9,10 @@
     },
 
     componentDidMount: function () {
-      var userId = this.props.userId;
       UserLikeStore.addChangeListener(this.setLikes);
+      // UserLikeStore.addRefreshListener(this.setLikes);
+
+      var userId = this.props.userId;
       if (UserLikeStore.hasUserLikes(userId)) {
         this.setLikes(userId);
       } else {
@@ -20,13 +22,14 @@
 
     componentWillUnmount: function () {
       UserLikeStore.removeChangeListener(this.setLikes);
+      // UserLikeStore.removeRefreshListener(this.setLikes);
     },
 
-    componentWillReceiveProps: function (nextProps) {
-      if (UserLikeStore.hasUserLikes(nextProps.userId)) {
-        this.setLikes(nextProps.userId);
+    componentWillReceiveProps: function (newProps) {
+      if (UserLikeStore.hasUserLikes(newProps.userId)) {
+        this.setLikes(newProps.userId);
       } else {
-        this.getLikes(nextProps);
+        this.getLikes(newProps);
       }
     },
 
@@ -61,7 +64,7 @@
           </div>
         );
       }
-      
+
       return (
         <div className="like-index">
           {likeList}

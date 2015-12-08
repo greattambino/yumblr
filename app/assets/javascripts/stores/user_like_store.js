@@ -32,7 +32,7 @@
     all: function () {
       return _userLikes;
     },
-    
+
     findLikes: function (userId) {
       if (typeof _userLikes[userId] === "undefined") {
         return [_defaultLike];

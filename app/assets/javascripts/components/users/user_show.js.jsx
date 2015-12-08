@@ -24,24 +24,26 @@
       UserStore.removeChangeListener(this.setUser);
     },
 
-    componentWillReceiveProps: function (nextProps) {
-      var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
-
-      if (parseInt(nextProps.params.userId) === newUser.id) {
-        ApiActions.updateUserShow(newUser);
-        this.setUser(newUser.id);
-      } else {
-        this.getUser(nextProps);
-      }
-    },
+    // componentWillReceiveProps: function (nextProps) {
+    //   var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
+    //
+    //   if (parseInt(nextProps.params.userId) === newUser.id) {
+    //     ApiActions.updateUserShow(newUser);
+    //     this.setUser(newUser.id);
+    //   } else {
+    //     this.getUser(nextProps);
+    //   }
+    // },
 
     getUser: function (props) {
-      ApiUtil.fetchCurrentUser(props.params.userId);
+      ApiUtil.fetchSingleUser(props.params.userId);
     },
 
     setUser: function (optionalUserId) {
       if (typeof optionalUserId === "undefined") {
-        this.setState({user: UserStore.user()});
+        if (UserStore.user().id !== -1) {
+          this.setState({user: UserStore.user()});
+        }
       } else {
         this.setState({user: UserStore.findUser(optionalUserId)});
       }
@@ -57,7 +59,6 @@
 
     render: function () {
       var user = this.state.user,
-          activeState = this.state.activeTab,
           favoriteClass,
           followingClass;
 

@@ -2,17 +2,10 @@
   'use strict';
 
   var ApiActions = root.ApiActions = {
-    receiveCurrentUser: function (user) {
+    receiveAllFoodItems: function(foodItems) {
       AppDispatcher.dispatch({
-        actionType: UserConstants.CURRENT_USER_RECEIVED,
-        user: user
-      });
-    },
-
-    updateUserShow: function (user) {
-      AppDispatcher.dispatch({
-        actionType: UserConstants.SET_USER_SHOW,
-        user: user
+        actionType: FoodItemConstants.FOOD_ITEMS_RECEIVED,
+        foodItems: foodItems
       });
     },
 
@@ -23,6 +16,20 @@
       });
     },
 
+    receiveCuisines: function(cuisines) {
+      AppDispatcher.dispatch({
+        actionType: CuisineConstants.CUISINES_RECEIVED,
+        cuisines: cuisines
+      });
+    },
+
+    receiveCurrentUser: function (user) {
+      AppDispatcher.dispatch({
+        actionType: UserConstants.CURRENT_USER_RECEIVED,
+        user: user
+      });
+    },
+
     receiveSingleRestaurant: function (restaurant) {
       AppDispatcher.dispatch({
         actionType: RestaurantConstants.RESTAURANT_RECEIVED,
@@ -30,26 +37,18 @@
       });
     },
 
-    receiveAllFoodItems: function(foodItems) {
+    receiveSingleUser: function (user) {
       AppDispatcher.dispatch({
-        actionType: FoodItemConstants.FOOD_ITEMS_RECEIVED,
-        foodItems: foodItems
+        actionType: UserConstants.USER_RECEIVED,
+        user: user
       });
     },
 
-    receiveCuisines: function(cuisines) {
+    updateUserShow: function (user) {
       AppDispatcher.dispatch({
-        actionType: CuisineConstants.CUISINES_RECEIVED,
-        cuisines: cuisines
+        actionType: UserConstants.SET_USER_SHOW,
+        user: user
       });
     }
-
-    // receiveFilteredFoodItemId: function(filteredFoodItem) {
-    //   AppDispatcher.dispatch({
-    //     actionType: FilteredFoodItemConstants.FILTERED_FOOD_ITEM_ID_RECEIVED,
-    //     filteredFoodItemId: filteredFoodItemId
-    //   });
-    // }
-
   };
 }(this));

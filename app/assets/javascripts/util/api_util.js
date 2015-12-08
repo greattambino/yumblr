@@ -89,6 +89,17 @@ var ApiUtil = {
     });
   },
 
+  fetchSingleUser: function (userId) {
+    $.ajax({
+      url: '/api/users/' + userId,
+      type: 'get',
+      dataType: 'json',
+      success: function (user) {
+        ApiActions.receiveSingleUser(user);
+      }
+    });
+  },
+
   setLocation: function(pos) {
     geocoder = new google.maps.Geocoder();
 		var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),

@@ -9,24 +9,34 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function() {
-      return({ location: _getLocation(), showRestaurantModal: false });
+      return({
+        location: _getLocation(),
+        showRestaurantModal: false,
+        rating: 0
+      });
     },
 
-    handleClick: function(e) {
-      e.preventDefault();
-      // ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
-    },
+    // handleClick: function(e) {
+    //   e.preventDefault();
+    //   ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
+    // },
 
     componentDidMount: function() {
       ParamsStore.addParamsListener(this._onChange);
+      ReviewStore.addChangeListener(this._onRatingChange);
     },
 
     componentWillUnmount: function() {
       ParamsStore.removeParamsListener(this._onChange);
+      ReviewStore.removeChangeListener(this._onRatingChange);
     },
 
     _onChange: function(){
       this.setState({ location: _getLocation() });
+    },
+
+    _onRatingChange: function(){
+      this.setState({ rating: ReviewStore.averageScore() });
     },
 
     calculateDistance: function() {
@@ -78,6 +88,12 @@
             </span>
             <span className="food-item-distance">
               {this.calculateDistance()} Miles
+            </span>
+            <span className="food-item-rating">
+              <Rating
+                rating={this.state.rating}
+                readOnly={true}
+              />
             </span>
           </div>
       );

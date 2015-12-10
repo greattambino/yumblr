@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   alias_attribute :likes, :likings
 
   has_many :likings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

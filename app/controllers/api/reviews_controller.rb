@@ -14,7 +14,7 @@ class Api::ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.save
-      render :show
+      render :create
     else
       render json: @review.errors.full_messages, status: 422
     end
@@ -25,7 +25,7 @@ class Api::ReviewsController < ApplicationController
 
     if @review.user_id == current_user.id
       @review.destroy
-      render json: {}
+      render :destroy
     else
       render json: @review.errors.full_messages, status: 422
     end
@@ -35,9 +35,10 @@ class Api::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
 
     if @review.save
-      render :show
+      render json: {}
     else
       render json: @review.errors.full_messages, status: 422
+    end
   end
 
   private

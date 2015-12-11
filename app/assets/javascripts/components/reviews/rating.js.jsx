@@ -43,6 +43,9 @@
         }
       }
     },
+    renderReviews: function() {
+
+    },
 
     render: function () {
       if (this.props.readOnly) {
@@ -50,8 +53,19 @@
       } else {
         this.renderClickable();
       }
+
+      var reviews = "reviews";
+      if (this.props.rating === 1) {
+        reviews = "review";
+      }
+
       return(
-        <ul className="rating-container">{this.stars}</ul>
+        <ul className="rating-container">
+          {this.stars}
+          <span className="review-count" onClick={this.renderReviews}>
+            {this.props.rating} {reviews}
+          </span>
+        </ul>
       );
     }
   });

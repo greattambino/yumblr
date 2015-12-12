@@ -12,14 +12,10 @@
       return({
         location: _getLocation(),
         showRestaurantModal: false,
+        showReviewModal: false,
         rating: 0
       });
     },
-
-    // handleClick: function(e) {
-    //   e.preventDefault();
-    //   ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
-    // },
 
     componentDidMount: function() {
       ParamsStore.addParamsListener(this._onChange);
@@ -52,19 +48,33 @@
       var distance = (meters * 0.000621371192).toFixed(1);
 
       return distance;
-      // ApiUtil.fetchSingleRestaurant(this.props.item.restaurant.id);
     },
 
-    toggleModal: function() {
+    toggleRestaurantModal: function() {
       this.setState({ showRestaurantModal: !this.state.showRestaurantModal });
     },
 
-    restaurantModal: function() {
+    toggleReviewModal: function() {
+      this.setState({ showReviewModal: !this.state.showReviewModal });
+    },
+
+    renderRestaurantModal: function() {
       return (
         <RestaurantModal
           show={this.state.showRestaurantModal}
-          onHide={this.toggleModal}
+          onHide={this.toggleRestaurantModal}
           restaurant={this.props.item.restaurant}
+        />
+      );
+    },
+
+    renderReviewModal: function() {
+      return (
+        <Review
+          show={this.state.showReviewModal}
+          onHide={this.toggleReviewModal}
+          foodItem={this.props.item}
+          rating={this.state.rating}
         />
       );
     },
@@ -72,10 +82,10 @@
     render: function() {
       return (
           <div className="food-item-detail">
-            <span className="food-item-restaurant" onClick={this.toggleModal}>
+            <span className="food-item-restaurant" onClick={this.toggleRestaurantModal}>
               {this.props.item.restaurant.name}
             </span>
-              {this.restaurantModal()}
+              {this.renderRestaurantModal()}
             <span className="food-item-name">
               {this.props.item.name}
             </span>
@@ -89,12 +99,13 @@
             <span className="food-item-distance">
               {this.calculateDistance()} Miles
             </span>
-            <span className="food-item-rating">
+            <span className="food-item-rating" onClick={this.toggleReviewModal}>
               <Rating
                 rating={this.state.rating}
                 readOnly={true}
               />
             </span>
+              {this.renderReviewModal()}
           </div>
       );
     }

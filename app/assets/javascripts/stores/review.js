@@ -24,6 +24,10 @@
       return (_totalRating / _reviews.length);
     },
 
+    reviewCount: function () {
+      return _reviews.length;
+    },
+
     addChangeListener: function (callback) {
       this.addListener(CHANGE_EVENT, callback);
     },

@@ -26,10 +26,25 @@
       for (var k = 0; k < (5 - fullStars + halfStars); k++) {
         this.stars.push(<li key={k + 'empty'} className="star" />);
       }
+
+      var reviews = "reviews";
+      if (this.props.rating === 1) { reviews = "review"; }
+
+      this.stars.push(
+        <span className="review-count" key="review-count">
+          {this.props.reviewCount} {reviews}
+        </span>
+      );
     },
 
-    handleHover: function (e) {
+    handleMouseOver: function (e) {
+      e.preventDefault();
       this.setState({ rate: e.currentTarget.value });
+    },
+
+    handleMouseOut: function (e) {
+      e.preventDefault();
+      this.setState({ rate: this.props.rating });
     },
 
     renderClickable: function() {
@@ -41,7 +56,8 @@
             <li key={i}
               value={i}
               onClick={handleClick}
-              onMouseOver={this.handleHover}
+              onMouseOver={this.handleMouseOver}
+              onMouseOut={this.handleMouseOut}
               className="star on" />
           );
         } else {
@@ -49,7 +65,8 @@
             <li key={i}
               value={i}
               onClick={handleClick}
-              onMouseOver={this.handleHover}
+              onMouseOver={this.handleMouseOver}
+              onMouseOut={this.handleMouseOut}
               className="star" />
           );
         }
@@ -63,17 +80,9 @@
         this.renderClickable();
       }
 
-      var reviews = "reviews";
-      if (this.props.rating === 1) {
-        reviews = "review";
-      }
-
       return(
         <ul className="rating-container">
           {this.stars}
-          <span className="review-count">
-            {this.props.rating} {reviews}
-          </span>
         </ul>
       );
     }

@@ -37,9 +37,9 @@
               </div>
               <div className="row">
                 <div className="span12">
-                  <form id="custom-search-form" className="form-search form-horizontal">
+                  <form id="review-input-form" className="form-search form-horizontal">
                     <div className="input-append span12">
-                      <input type="text" className="search-query mac-style" placeholder="Write a review" />
+                      <input type="text" className="review-input-text" placeholder="Write a review" />
                       <button type="submit" className="btn btn-default">Submit</button>
                     </div>
                   </form>

@@ -1,0 +1,76 @@
+.review-modal-header {
+  color: #FFFFFF;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-bottom: 1px solid #00cdbe !important;
+}
+
+.review-modal-name {
+  padding-left: 1em;
+}
+
+#review-modal-content {
+  background: rgb(204, 204, 204);
+}
+
+// .map-container {
+//   height: 300px;
+// }
+
+// .close {
+//   color: #888888 !important;
+//   opacity: 0.7 !important;
+// }
+
+.review-modal-details {
+  color: #FFFFFF;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  & > a {
+    color: #FFFFFF !important;
+  }
+}
+
+
+/*  Review Input  */
+
+#review-input-form {
+  margin:0;
+  margin-top: 5px;
+  padding-left: 15px;
+}
+
+#review-input-form .review-input-text {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: width  0.2s ease-in-out;
+  -moz-transition:width  0.2s ease-in-out;
+  -o-transition: width  0.2s ease-in-out;
+  transition: width  0.2s ease-in-out;
+}
+
+#review-input-form button {
+  border: 0;
+  background: none;
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  // left: -28px;
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.review-input-text:focus + button {
+  z-index: 3;
+}
+.review-input-text:focus{
+  width: 89%;
+}

@@ -2,6 +2,10 @@
   'use strict';
 
   var Rating = root.Rating = React.createClass({
+    getInitialState: function () {
+      return { rate: 0 };
+    },
+
     renderReadOnly: function () {
       this.stars = [];
       var fullStars = 0,
@@ -24,27 +28,32 @@
       }
     },
 
+    handleHover: function (e) {
+      this.setState({ rate: e.currentTarget.value });
+    },
+
     renderClickable: function() {
       this.stars = [];
       for (var i = 1; i <= 5; i++) {
-        var handleClick = this.props.handleClick.bind(null, i);
-        if (i <= this.props.rating) {
+        var handleClick = this.props.onClick.bind(null, i);
+        if (this.state.rate >= i) {
           this.stars.push(
             <li key={i}
+              value={i}
               onClick={handleClick}
+              onMouseOver={this.handleHover}
               className="star on" />
           );
         } else {
           this.stars.push(
             <li key={i}
+              value={i}
               onClick={handleClick}
+              onMouseOver={this.handleHover}
               className="star" />
           );
         }
       }
-    },
-    renderReviews: function() {
-
     },
 
     render: function () {
@@ -62,7 +71,7 @@
       return(
         <ul className="rating-container">
           {this.stars}
-          <span className="review-count" onClick={this.renderReviews}>
+          <span className="review-count">
             {this.props.rating} {reviews}
           </span>
         </ul>

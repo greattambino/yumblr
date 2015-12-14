@@ -23,7 +23,7 @@
       for (var j = 0; j < halfStars; j++) {
         this.stars.push(<li key={j + 'half'} className="half star on" />);
       }
-      for (var k = 0; k < (5 - fullStars + halfStars); k++) {
+      for (var k = 0; k < (5 - (fullStars + halfStars)); k++) {
         this.stars.push(<li key={k + 'empty'} className="star" />);
       }
 

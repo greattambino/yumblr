@@ -13,13 +13,16 @@
         location: _getLocation(),
         showRestaurantModal: false,
         showReviewModal: false,
-        rating: 0
+        rating: 0,
+        reviewCount: 0
       });
     },
 
     componentDidMount: function() {
       ParamsStore.addParamsListener(this._onChange);
       ReviewStore.addChangeListener(this._onRatingChange);
+
+      ReviewApiUtil.fetchAllReviews(this.props.item.id);
     },
 
     componentWillUnmount: function() {
@@ -32,7 +35,10 @@
     },
 
     _onRatingChange: function(){
-      this.setState({ rating: ReviewStore.averageScore() });
+      this.setState({
+        rating: ReviewStore.averageScore(),
+        reviewCount: ReviewStore.reviewCount()
+      });
     },
 
     calculateDistance: function() {
@@ -103,6 +109,7 @@
               <Rating
                 rating={this.state.rating}
                 readOnly={true}
+                reviewCount={this.state.reviewCount}
               />
             </span>
               {this.renderReviewModal()}

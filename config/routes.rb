@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:index]
     resources :users, only: [:show]
     resources :likes, only: [:create, :destroy]
+    resources :reviews, only: [:create, :destroy, :index, :show]
     get "user_likes" => "likes#user_index"
   end
 end

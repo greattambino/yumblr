@@ -14,7 +14,7 @@
       if (rating % 1 === 0) {
         fullStars = rating;
       } else {
-        fullstars = rating - 0.5;
+        fullStars = rating - 0.5;
         halfStars = 1;
       }
       for (var i = 0; i < fullStars; i++) {

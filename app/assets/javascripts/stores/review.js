@@ -6,8 +6,12 @@
       CHANGE_EVENT = "CHANGE_EVENT";
 
   var _resetReviews = function (reviews) {
-        _reviews = reviews.reviews;
-        _totalRating = reviews.totalRating;
+        _reviews = reviews;
+        var total = 0;
+        reviews.map(function(review) {
+          total += review.rating;
+        });
+        _totalRating = total;
       },
       _addReview = function (review) {
         _reviews.push(review);
@@ -17,15 +21,15 @@
 
   var ReviewStore = root.ReviewStore = $.extend({}, EventEmitter.prototype, {
     all: function () {
-      return _reviews;
+      return _reviews.slice();
     },
 
     averageScore: function () {
-      return (_totalRating / _reviews.length);
+      return (_totalRating / _reviews.length) || 0.00;
     },
 
     reviewCount: function () {
-      return _reviews.length;
+      return _reviews.length || 0;
     },
 
     addChangeListener: function (callback) {

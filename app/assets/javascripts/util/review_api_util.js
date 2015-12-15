@@ -2,14 +2,14 @@
   'use strict';
 
   var ReviewApiUtil = root.ReviewApiUtil = {
-    createReview: function (review) {
+    createReview: function (foodItemId, review) {
       $.ajax({
         url: '/api/reviews/',
         type: 'POST',
         dataType: 'json',
         data: { review: review },
         success: function (review) {
-          ReviewActions.addReview(review);
+          ReviewActions.addReview(foodItemId, review);
         },
         error: function (err) {
           console.log(err);
@@ -24,7 +24,7 @@
         dataType: 'json',
         data: { food_item_id: foodItemId },
         success: function (reviews) {
-          ReviewActions.receiveReviews(reviews);
+          ReviewActions.receiveReviews(foodItemId, reviews);
         },
         error: function (err) {
           console.log(err);

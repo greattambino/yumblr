@@ -26,7 +26,11 @@
              if (interval >= 1) {
                intervalType = "minute";
              } else { interval = seconds;
-               intervalType = "second";
+               if (interval > 1) {
+                 intervalType = "second";
+               } else {
+                 return "just now";
+               }
              }
            }
          }

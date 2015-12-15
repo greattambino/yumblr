@@ -35,6 +35,10 @@
     },
 
     render: function () {
+      var focus = "";
+      if (this.state.reviewBody.length > 0) {
+        focus = " focus";
+      }
 
       return (
         <div id="review-modal-container">
@@ -69,7 +73,7 @@
                     onSubmit={this.handleSubmit}>
                     <div className="input-append span12">
                       <textarea
-                        className="review-input-text"
+                        className={"review-input-text" + focus}
                         valueLink={this.linkState("reviewBody")}
                         placeholder="Write a review" /><br/>
                       <input type="submit" className="btn-review-save" value="Submit" />

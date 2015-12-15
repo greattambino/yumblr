@@ -19,11 +19,12 @@
     },
 
     render: function () {
+      var length = this.state.reviews.length;
       return(
         <ul id="sortable" className="list-unstyled ui-sortable">
-          {this.state.reviews.map(function (review) {
+          {this.state.reviews.map(function (review, i) {
             return(
-              <ReviewIndexItem key={review.id} review={review} />
+              <ReviewIndexItem key={i} review={this.state.reviews[length - i - 1]} />
             );
           }.bind(this))}
         </ul>

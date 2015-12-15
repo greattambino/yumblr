@@ -4,17 +4,17 @@
   var Modal = ReactBootstrap.Modal;
 
   var Review = root.Review = React.createClass({
+    mixins: [React.addons.LinkedStateMixin],
+
     getInitialState: function() {
-      return { reviewBody: "", rating: 3.5 };
+      return {
+        reviews: ReviewStore.reviews(this.props.foodItemId),
+        reviewBody: "",
+        rating: 0 };
     },
 
     handleRatingChange: function (rating) {
       this.setState({ rating: rating });
-    },
-
-    handleReviewChange: function (e) {
-      e.preventDefault();
-      this.setState({ reviewBody: e.currentTarget.value });
     },
 
     handleSubmit: function (e) {
@@ -29,12 +29,13 @@
             food_item_id: foodItemId,
             user_id: userId
           };
-      ReviewApiUtil.createReview(review);
-      this.setState( { content: "", rating: 3 });
+      ReviewApiUtil.createReview(foodItemId, review);
+      this.setState( { reviewBody: "", rating: 2 });
 
     },
 
     render: function () {
+
       return (
         <div id="review-modal-container">
           <Modal
@@ -69,16 +70,16 @@
                     <div className="input-append span12">
                       <textarea
                         className="review-input-text"
-                        onChange={this.handleReviewChange}
+                        valueLink={this.linkState("reviewBody")}
                         placeholder="Write a review" /><br/>
-                      <button type="submit" className="btn-review-save">Submit</button>
+                      <input type="submit" className="btn-review-save" value="Submit" />
                     </div>
                   </form>
                 </div>
               </div>
 
               <div className="review-modal-index">
-                <ReviewIndex />
+                <ReviewIndex foodItemId={this.props.foodItem.id} />
               </div>
             </Modal.Body>
           </Modal>

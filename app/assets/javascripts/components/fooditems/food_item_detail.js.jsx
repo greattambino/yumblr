@@ -5,6 +5,14 @@
     return ParamsStore.params().location;
   }
 
+  function _getRating(foodItemId){
+    return ReviewStore.averageScore(foodItemId);
+  }
+
+  function _getReviewCount(foodItemId){
+    return ReviewStore.reviewCount(foodItemId);
+  }
+
   var FoodItemDetail = root.FoodItemDetail = React.createClass({
     mixins: [ReactRouter.History],
 
@@ -21,8 +29,6 @@
     componentDidMount: function() {
       ParamsStore.addParamsListener(this._onChange);
       ReviewStore.addChangeListener(this._onRatingChange);
-
-      ReviewApiUtil.fetchAllReviews(this.props.item.id);
     },
 
     componentWillUnmount: function() {
@@ -36,8 +42,8 @@
 
     _onRatingChange: function(){
       this.setState({
-        rating: ReviewStore.averageScore(),
-        reviewCount: ReviewStore.reviewCount()
+        rating: _getRating(this.props.item.id),
+        reviewCount: _getReviewCount(this.props.item.id)
       });
     },
 
@@ -110,6 +116,7 @@
                 rating={this.state.rating}
                 readOnly={true}
                 reviewCount={this.state.reviewCount}
+                foodItemId={this.props.item.id}
               />
             </span>
               {this.renderReviewModal()}

@@ -1,35 +1,38 @@
 (function (root) {
   'use strict';
 
-  var _reviews = [],
-      _totalRating = 0,
+  var _reviews = {},
       CHANGE_EVENT = "CHANGE_EVENT";
 
-  var _resetReviews = function (reviews) {
-        _reviews = reviews;
+  var _updateReviews = function (foodItemId, reviews) {
+        _reviews[foodItemId] = reviews;
         var total = 0;
         reviews.map(function(review) {
           total += review.rating;
         });
-        _totalRating = total;
+        _reviews[foodItemId].totalRating = total;
       },
-      _addReview = function (review) {
-        _reviews.push(review);
-        _totalRating += review.rating;
+      _addReview = function (foodItemId, review) {
+        if (_reviews[foodItemId] && _reviews[foodItemId].length > 0) {
+          _reviews[foodItemId].push(review);
+          _reviews[foodItemId].totalRating += review.rating;
+        } else {
+          _reviews[foodItemId] = [review];
+          _reviews[foodItemId].totalRating = review.rating;
+        }
       };
 
-
   var ReviewStore = root.ReviewStore = $.extend({}, EventEmitter.prototype, {
-    all: function () {
-      return _reviews.slice();
+    reviews: function (foodItemId) {
+      return _reviews[foodItemId] ? _reviews[foodItemId].slice() : [];
     },
 
-    averageScore: function () {
-      return (_totalRating / _reviews.length) || 0.00;
+    averageScore: function (foodItemId) {
+      return (_reviews[foodItemId].totalRating / _reviews[foodItemId].length) || 0.00;
     },
 
-    reviewCount: function () {
-      return _reviews.length || 0;
+    reviewCount: function (foodItemId) {
+      return _reviews[foodItemId].length || 0;
     },
 
     addChangeListener: function (callback) {
@@ -43,11 +46,11 @@
     dispatcherId: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
         case ReviewConstants.REVIEWS_RECEIVED:
-          _resetReviews(payload.reviews);
+          _updateReviews(payload.foodItemId, payload.reviews);
           ReviewStore.emit(CHANGE_EVENT);
           break;
         case ReviewConstants.REVIEW_RECEIVED:
-          _addReview(payload.review);
+          _addReview(payload.foodItemId, payload.review);
           ReviewStore.emit(CHANGE_EVENT);
           break;
       }

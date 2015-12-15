@@ -2,17 +2,20 @@
   'use strict';
 
   var ReviewActions = root.ReviewActions = {
-    addReview: function (review) {
+    addReview: function (foodItemId, review) {
       AppDispatcher.dispatch({
         actionType: ReviewConstants.REVIEW_RECEIVED,
-        review: review
+        review: review,
+        foodItemId: foodItemId
+
       });
     },
-    
-    receiveReviews: function (reviews) {
+
+    receiveReviews: function (foodItemId, reviews) {
       AppDispatcher.dispatch({
         actionType: ReviewConstants.REVIEWS_RECEIVED,
-        reviews: reviews
+        reviews: reviews,
+        foodItemId: foodItemId
       });
     }
   };

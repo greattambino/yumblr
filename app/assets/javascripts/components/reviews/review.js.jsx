@@ -35,6 +35,11 @@
     },
 
     renderReviewForm: function () {
+      var focus = "";
+      if (this.state.reviewBody.length > 0) {
+        focus = " focus";
+      }
+      
       return(
         <div className="review-form">
           <div className="review-rating-container" >
@@ -98,10 +103,6 @@
     },
 
     render: function () {
-      var focus = "";
-      if (this.state.reviewBody.length > 0) {
-        focus = " focus";
-      }
       var reviewHeader,
           currentUserId = UserStore.currentUser().id,
           foodItemId = this.props.foodItem.id;

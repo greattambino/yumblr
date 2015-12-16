@@ -40,6 +40,7 @@
   color: #6D6D6D;
   &:hover {
     color: #A5A5A5;
+    cursor: pointer;
   }
 }
 
@@ -68,4 +69,47 @@
   &:hover {
     color: rgb(255, 234, 122);
   }
+}
+
+
+
+/*    USER-RATING-STARS */
+
+.user-review-username {
+  padding-right: 5px;
+}
+
+.star-user {
+  font-size: 16px;
+  width: 17px;
+  display: inline-block;
+  color: #A5A1A1;
+  position: relative;
+  bottom: 1px;
+}
+
+.star-user:last-child {
+  margin-right: 0;
+}
+
+.star-user:before {
+  content:'\2605';
+}
+
+.star-user.on {
+  color: #F3CD00;
+  position: relative;
+  bottom: 2px;
+  text-shadow: 2px 1px #A2A2A2;
+}
+
+.star-user.half:after {
+  content:'\2605';
+  color: #F3CD00;
+  position: absolute;
+  margin-left: -17px;
+  width: 8.5px;
+  overflow: hidden;
+  position: relative;
+  bottom: 3px;
 }

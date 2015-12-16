@@ -99,15 +99,36 @@
       }
     },
 
+    renderUserRating: function() {
+      this.stars = [];
+      // this.stars.push(<div className="user-rating-stars">);
+      for (var i = 1; i <= 5; i++) {
+        if (i <= this.props.rating) {
+          this.stars.push(
+            <li key={i} className="star-user on" />
+          );
+        } else {
+          this.stars.push(
+            <li key={i} className="star-user" />
+          );
+        }
+      }
+      // this.stars.push(</div>);
+    },
+
     render: function () {
-      if (this.props.readOnly) {
+      var style;
+      if (this.props.userRating) {
+        this.renderUserRating();
+        style = {display: 'inline-block'};
+      } else if (this.props.readOnly) {
         this.renderReadOnly();
       } else {
         this.renderClickable();
       }
 
       return(
-        <ul className="rating-container">
+        <ul className="rating-container" style={style}>
           {this.stars}
         </ul>
       );

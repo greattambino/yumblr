@@ -24,7 +24,10 @@
         <ul id="sortable" className="list-unstyled ui-sortable">
           {this.state.reviews.map(function (review, i) {
             return(
-              <ReviewIndexItem key={i} review={this.state.reviews[length - i - 1]} />
+              <ReviewIndexItem
+                key={"ror-" + review.id}
+                readOnly={true}
+                review={this.state.reviews[length - i - 1]} />
             );
           }.bind(this))}
         </ul>

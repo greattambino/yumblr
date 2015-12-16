@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates :session_token, uniqueness: true
   validates_confirmation_of :password
 
+  before_save :capitalize_username
   after_initialize :ensure_session_token
   attr_reader :password
   alias_attribute :likes, :likings
@@ -51,6 +52,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def capitalize_username
+    self.username.capitalize!
+  end
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)

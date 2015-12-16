@@ -19,3 +19,4 @@ json.extract!(
 
 json.type "User"
 json.likes user.likes
+json.reviews user.reviews

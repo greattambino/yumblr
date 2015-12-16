@@ -42,16 +42,45 @@
       return interval + " " + intervalType + " ago";
     },
 
-    render: function () {
-      return(
-        <div>
+    renderReadOnly: function () {
+      this.index = [];
+      this.index.push(
+        <div className="review-li-read-only" key="read-only-reviews">
           <strong className="pull-left primary-font">{this.props.review.author.username}</strong>
           <small className="pull-right text-muted">
             {this.timeSince(this.props.review.created_at)}
           </small>
           <br/>
           <li className="ui-state-default">{this.props.review.body}</li>
-        <br/>
+          <br/>
+        </div>
+      );
+    },
+
+    renderEditable: function () {
+      this.index = [];
+      this.index.push(
+        <div className="review-li-editable" key="editable-reviews">
+          <strong className="pull-left primary-font">{this.props.author}</strong>
+          <small className="pull-right text-muted">
+            {this.timeSince(this.props.review.created_at)}
+          </small>
+          <br/>
+          <li className="ui-state-default">{this.props.review.body}</li>
+          <br/>
+        </div>
+      );
+    },
+
+    render: function () {
+      if (this.props.readOnly) {
+        this.renderReadOnly();
+      } else {
+        this.renderEditable();
+      }
+      return(
+        <div className="review-list-items">
+          {this.index}
         </div>
       );
     }

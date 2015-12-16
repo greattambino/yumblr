@@ -16,7 +16,7 @@
   var resetCurrentUser = function (user) {
     _currentUser = user;
   };
-  
+
   var resetUser = function (user) {
     _user = user;
   };
@@ -53,6 +53,20 @@
       }
       return false;
     },
+
+    currentUserHasReviewed: function (foodItemId) {
+      var review;
+      if (_currentUser.id !== -1) {
+        for (var i = 0; i < _currentUser.reviews.length; i++) {
+          review = _currentUser.reviews[i];
+          if (review.food_item_id === foodItemId) {
+            return true;
+          }
+        }
+        return false;
+      }
+    },
+
 
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);

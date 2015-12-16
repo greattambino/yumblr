@@ -46,7 +46,14 @@
       this.index = [];
       this.index.push(
         <div className="review-li-read-only" key="read-only-reviews">
-          <strong className="pull-left primary-font">{this.props.review.author.username}</strong>
+          <strong className="pull-left primary-font user-review-username">
+            {this.props.review.author.username}
+          </strong>
+          <Rating
+            rating={this.props.review.rating}
+            readOnly={true}
+            userRating={true}
+          />
           <small className="pull-right text-muted">
             {this.timeSince(this.props.review.created_at)}
           </small>
@@ -61,7 +68,14 @@
       this.index = [];
       this.index.push(
         <div className="review-li-editable" key="editable-reviews">
-          <strong className="pull-left primary-font">{this.props.author}</strong>
+          <strong className="pull-left primary-font user-review-username">
+            {this.props.author}
+          </strong>
+          <Rating
+            rating={this.props.review.rating}
+            readOnly={true}
+            userRating={true}
+          />
           <small className="pull-right text-muted">
             {this.timeSince(this.props.review.created_at)}
           </small>

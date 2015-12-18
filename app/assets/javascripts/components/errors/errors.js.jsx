@@ -34,7 +34,7 @@
         );
       }
       return(
-        <div className="errors">
+        <div className="errors-container">
           <FadeOut delay={5000}>{errors}</FadeOut>
         </div>
       );

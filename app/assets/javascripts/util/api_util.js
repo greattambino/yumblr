@@ -4,6 +4,9 @@ var ApiUtil = {
       url: "api/food_items",
       success: function(foodItems) {
         ApiActions.receiveAllFoodItems(foodItems);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -13,6 +16,9 @@ var ApiUtil = {
       url: "api/restaurants",
       success: function(restaurants) {
         ApiActions.receiveAllRestaurants(restaurants);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -23,6 +29,9 @@ var ApiUtil = {
       data: {search: query},
       success: function(categorySearchResults) {
         FilterActions.receiveCategorySearchResults(categorySearchResults);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -32,17 +41,23 @@ var ApiUtil = {
       url: "api/cuisines",
       success: function(cuisines) {
         ApiActions.receiveCuisines(cuisines);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
 
-  fetchCurrentUser: function (userId) {
+  fetchCurrentUser: function(userId) {
     $.ajax({
       url: '/api/users/' + userId,
       type: 'get',
       dataType: 'json',
-      success: function (user) {
+      success: function(user) {
         ApiActions.receiveCurrentUser(user);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -52,6 +67,9 @@ var ApiUtil = {
       url: "api/food_items/" + id,
       success: function(foodItem) {
         FilterActions.receiveFilteredFoodItem(foodItem);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -62,6 +80,9 @@ var ApiUtil = {
       data: {search: query, cuisine: cuisine_id, location: location, radius: radius},
       success: function(filteredFoodItems) {
         FilterActions.receiveFilteredFoodItems(filteredFoodItems);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -72,6 +93,9 @@ var ApiUtil = {
       data: {search: query, cuisine: cuisine_id},
       success: function(foodSearchResults) {
         FilterActions.receiveQueryResults(foodSearchResults);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
@@ -85,17 +109,23 @@ var ApiUtil = {
       url: "api/restaurants/" + id,
       success: function(restaurant) {
         ApiActions.receiveSingleRestaurant(restaurant);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },
 
-  fetchSingleUser: function (userId) {
+  fetchSingleUser: function(userId) {
     $.ajax({
       url: '/api/users/' + userId,
       type: 'get',
       dataType: 'json',
-      success: function (user) {
+      success: function(user) {
         ApiActions.receiveSingleUser(user);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
       }
     });
   },

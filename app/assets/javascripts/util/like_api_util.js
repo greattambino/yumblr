@@ -2,7 +2,7 @@
   'use strict';
 
   var LikeApiUtil = root.LikeApiUtil = {
-    createLike: function (likableType, likableId) {
+    createLike: function(likableType, likableId) {
       $.ajax({
         url: '/api/likes/',
         type: 'POST',
@@ -13,13 +13,16 @@
             likable_id: likableId
           }
         },
-        success: function (like) {
+        success: function(like) {
           LikeActions.addLike(like);
+        },
+        error: function(errors) {
+          ApiActions.receiveErrors(errors.responseJSON);
         }
       });
     },
 
-    destroyLike: function (likableType, likableId) {
+    destroyLike: function(likableType, likableId) {
       $.ajax({
         url: "/api/likes/" + likableId,
         type: "DELETE",
@@ -30,13 +33,11 @@
             likable_id: likableId
           }
         },
-        success: function (like) {
+        success: function(like) {
           LikeActions.removeLike(like);
         },
-        error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in");
-          }
+        error: function(errors) {
+          ApiActions.receiveErrors(errors.responseJSON);
         }
       });
     },
@@ -47,8 +48,11 @@
         type: "GET",
         dataType: "json",
         data: {user_id: userId},
-        success: function (likes) {
+        success: function(likes) {
           LikeActions.receiveUserLikes(userId, likes);
+        },
+        error: function(errors) {
+          ApiActions.receiveErrors(errors.responseJSON);
         }
       });
     }

@@ -8,6 +8,9 @@
         type: "delete",
         success: function(resp) {
           window.location = "/";
+        },
+        error: function(errors) {
+          ApiActions.receiveErrors(errors.responseJSON);
         }
       });
     }

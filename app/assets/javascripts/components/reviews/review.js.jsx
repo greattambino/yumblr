@@ -10,7 +10,8 @@
       return {
         reviews: ReviewStore.reviews(this.props.foodItemId),
         reviewBody: "",
-        rating: 0 };
+        rating: 0
+      };
     },
 
     handleRatingChange: function (rating) {
@@ -30,8 +31,7 @@
             user_id: userId
           };
       ReviewApiUtil.createReview(foodItemId, review);
-      this.setState( { reviewBody: "", rating: 2 });
-
+      this.setState({ reviewBody: "", rating: 0 });
     },
 
     renderReviewForm: function () {
@@ -39,7 +39,7 @@
       if (this.state.reviewBody.length > 0) {
         focus = " focus";
       }
-      
+
       return(
         <div className="review-form">
           <div className="review-rating-container" >
@@ -62,6 +62,7 @@
                     valueLink={this.linkState("reviewBody")}
                     placeholder="Write a review" /><br/>
                   <input type="submit" className="btn-review-save" value="Submit" />
+                  <Errors />
                 </div>
               </form>
             </div>

@@ -23,28 +23,35 @@
       });
     },
 
-    receiveCurrentUser: function (user) {
+    receiveCurrentUser: function(user) {
       AppDispatcher.dispatch({
         actionType: UserConstants.CURRENT_USER_RECEIVED,
         user: user
       });
     },
 
-    receiveSingleRestaurant: function (restaurant) {
+    receiveErrors: function(errors) {
+      AppDispatcher.dispatch({
+        actionType: ErrorConstants.ERRORS_RECEIVED,
+        errors: errors
+      });
+    },
+
+    receiveSingleRestaurant: function(restaurant) {
       AppDispatcher.dispatch({
         actionType: RestaurantConstants.RESTAURANT_RECEIVED,
         restaurant: restaurant
       });
     },
 
-    receiveSingleUser: function (user) {
+    receiveSingleUser: function(user) {
       AppDispatcher.dispatch({
         actionType: UserConstants.USER_RECEIVED,
         user: user
       });
     },
 
-    updateUserShow: function (user) {
+    updateUserShow: function(user) {
       AppDispatcher.dispatch({
         actionType: UserConstants.SET_USER_SHOW,
         user: user

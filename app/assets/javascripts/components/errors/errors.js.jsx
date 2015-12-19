@@ -28,7 +28,7 @@
         errors = (
             <ul>
               {this.state.errors.map(function(error, i) {
-                return(<li key={"error-" + i}>{error}</li>);
+                return(<li key={"error-" + i}><span className="glyphicon glyphicon-exclamation-sign"></span> {error}</li>);
               }.bind(this))}
             </ul>
         );

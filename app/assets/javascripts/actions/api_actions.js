@@ -2,6 +2,12 @@
   'use strict';
 
   var ApiActions = root.ApiActions = {
+    clearErrors: function() {
+      AppDispatcher.dispatch({
+        actionType: ErrorConstants.ERRORS_CLEARED
+      });
+    },
+    
     receiveAllFoodItems: function(foodItems) {
       AppDispatcher.dispatch({
         actionType: FoodItemConstants.FOOD_ITEMS_RECEIVED,

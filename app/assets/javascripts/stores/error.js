@@ -8,6 +8,10 @@
     _errors = errors;
   };
 
+  var _clearErrors = function() {
+    _errors = [];
+  };
+
   var ErrorStore = root.ErrorStore = $.extend({}, EventEmitter.prototype, {
     all: function() {
       return _errors;
@@ -25,6 +29,10 @@
       switch (payload.actionType) {
         case ErrorConstants.ERRORS_RECEIVED:
           _resetErrors(payload.errors);
+          ErrorStore.emit(ERRORS_CHANGED);
+          break;
+        case ErrorConstants.ERRORS_CLEARED:
+          _clearErrors();
           ErrorStore.emit(ERRORS_CHANGED);
           break;
       }

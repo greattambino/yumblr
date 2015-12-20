@@ -27,10 +27,11 @@
         clearTimeout(this._timer);
       }
 
-      // hide after delay
+      // hide after delay and clear errors
       this._timer = setTimeout(function() {
         this.setState({ visible: false });
         this._timer = null;
+        ApiActions.clearErrors();
       }.bind(this), this.props.delay);
     },
 

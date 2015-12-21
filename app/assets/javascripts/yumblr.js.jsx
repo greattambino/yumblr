@@ -1,10 +1,11 @@
 $(function(){
-  var root = document.getElementById('content');
   var Router = ReactRouter.Router;
   var Route = ReactRouter.Route;
   var IndexRoute = ReactRouter.IndexRoute;
   var Link = ReactRouter.Link;
   var RouteHandler = ReactRouter.RouteHandler;
+
+  var root = document.getElementById('content');
 
   var App = React.createClass({
     render: function() {
@@ -26,5 +27,11 @@ $(function(){
       <Route path="/food_items/:foodItemId" component={FoodItemShow} />
     </Route>
   );
-  React.render(<Router>{routes}</Router>, root);
+
+  var path = window.location.pathname;
+
+  if (path !== "/users/"    && path !== "/session" &&
+      path !== "/users/new" && path !== "/session/new") {
+    React.render(<Router>{routes}</Router>, root);
+  }
 });

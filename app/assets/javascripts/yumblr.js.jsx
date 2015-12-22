@@ -30,7 +30,7 @@ $(function(){
 
   var path = window.location.pathname;
 
-  if (path !== "/users/"    && path !== "/session" &&
+  if (path !== "/users"    && path !== "/session" &&
       path !== "/users/new" && path !== "/session/new") {
     React.render(<Router>{routes}</Router>, root);
   }

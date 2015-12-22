@@ -11,10 +11,9 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
-      flash[:success] = "Welcome back, #{@user.username}!"
-      redirect_to root_url
+      redirect_to controller: "static_pages", action: "root"
     else
-      flash.now[:danger] = @user.errors.full_messages
+      # flash.now[:danger] = @user.errors.full_messages
       render :new
     end
   end

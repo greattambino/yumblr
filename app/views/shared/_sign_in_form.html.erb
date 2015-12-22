@@ -32,6 +32,13 @@
              placeholder="Email"
              name="user[email]">
     </div>
+    <% if @user.errors[:email].any? %>
+      <div class="static-errors-container flash">
+        <div class="alert-danger">
+          Email <%= @user.errors[:email].first %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
     <div class="input-group input-group-lg">
@@ -44,6 +51,14 @@
              name="user[username]"
              placeholder="Username">
     </div>
+    <% if @user.errors[:username].any? %>
+      <div class="static-errors-container flash">
+        <div class="alert-danger">
+          Username <%= @user.errors[:username].first %>
+        </div>
+      </div>
+    <% end %>
+
     <div class="input-group input-group-lg">
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-lock"></span>
@@ -54,6 +69,13 @@
              placeholder="Password"
              name="user[password]">
     </div>
+    <% if @user.errors[:password].any? %>
+      <div class="static-errors-container flash">
+        <div class="alert-danger">
+          Password <%= @user.errors[:password].first %>
+        </div>
+      </div>
+    <% end %>
 
   <% if type == :new_user %>
     <div class="input-group input-group-lg">
@@ -66,6 +88,13 @@
              placeholder="Confirm password"
              name="user[password_confirmation]">
     </div>
+    <% if @user.errors[:password_confirmation].any? %>
+      <div class="static-errors-container flash">
+        <div class="alert-danger">
+          Confirmation <%= @user.errors[:password_confirmation].first %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
   <input id="submit-login" class="btn" type="submit" value="<%= submit_text %>">

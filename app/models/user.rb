@@ -14,12 +14,23 @@
 #
 
 class User < ActiveRecord::Base
+  VALID_EMAIL_REGEX = %r{
+    ^[A-Z0-9] # begins with a letter or number
+    [A-Z0-9._%+-]{1,63}+ # local part limited to these chars, max length of 64
+    @ # separator
+    (?:[A-Z0-9-]{1,63}\.){1,8}+ # 1-8 optional subdomains
+    [A-Z]{2,63}+ # domain ends with 2-63 letters
+    $ # end of line, case insensitive
+  }xi
+
   validates :username, :email, :first_name, :last_name,
             :password_digest, :session_token, presence: true
-  validates :password, length: { minimum: 6, allow_nil: true }
-  validates :username, :email, uniqueness: {case_sensitive: false}
   validates :session_token, uniqueness: true
+  validates :username, :email, uniqueness: {case_sensitive: false}
+  validates :password, length: { minimum: 6, allow_nil: true }
+  validates_format_of :email, { with: VALID_EMAIL_REGEX }
   validates_confirmation_of :password, presence: true
+
 
   before_save :capitalize_username
   after_initialize :ensure_session_token

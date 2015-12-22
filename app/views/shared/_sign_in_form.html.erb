@@ -11,6 +11,7 @@
              type="text"
              placeholder="First name"
              name="user[first_name]"
+             value="<%= user.first_name %>"
              required autofocus>
     </div>
 
@@ -19,7 +20,8 @@
              id="user_last_name"
              type="text"
              placeholder="Last name"
-             name="user[last_name]">
+             name="user[last_name]"
+             value="<%= user.last_name %>">
     </div>
 
     <div class="input-group input-group-lg">
@@ -30,7 +32,8 @@
              id="user_email"
              type="text"
              placeholder="Email"
-             name="user[email]">
+             name="user[email]"
+             value="<%= user.email %>">
     </div>
     <% if @user.errors[:email].any? %>
       <div class="static-errors-container flash">
@@ -49,7 +52,8 @@
              id="username"
              type="text"
              name="user[username]"
-             placeholder="Username">
+             placeholder="Username"
+             value="<%= user.username %>">
     </div>
     <% if @user.errors[:username].any? %>
       <div class="static-errors-container flash">

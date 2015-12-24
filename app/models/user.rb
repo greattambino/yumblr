@@ -41,7 +41,8 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
 
   def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+    user = User.where('LOWER(username) = ?', username.downcase).first
+    return if user.nil?
     user.try(:is_password?, password) ? user : nil
   end
 

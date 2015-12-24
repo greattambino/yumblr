@@ -1,5 +1,6 @@
 <% action_url = type == :new_user ? users_url : session_url %>
 <% submit_text = type == :new_user ? "Sign Up" : "Log In" %>
+<% username_value = type == :new_user ? "user.username" : "" %>
 
 <form action="<%= action_url %>" method="post">
   <%= auth_token_input %>
@@ -52,15 +53,16 @@
              id="username"
              type="text"
              name="user[username]"
-             placeholder="Username"
-             value="<%= user.username %>">
+             placeholder="Username">
     </div>
-    <% if @user.errors[:username].any? %>
-      <div class="static-errors-container flash">
-        <div class="alert-danger">
-          Username <%= @user.errors[:username].first %>
+    <% if type == :new_user %>
+      <% if @user.errors[:username].any? %>
+        <div class="static-errors-container flash">
+          <div class="alert-danger">
+            Username <%= @user.errors[:username].first %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
 
     <div class="input-group input-group-lg">
@@ -73,12 +75,22 @@
              placeholder="Password"
              name="user[password]">
     </div>
-    <% if @user.errors[:password].any? %>
-      <div class="static-errors-container flash">
-        <div class="alert-danger">
-          Password <%= @user.errors[:password].first %>
+    <% if type == :new_user %>
+      <% if @user.errors[:password].any? %>
+        <div class="static-errors-container flash">
+          <div class="alert-danger">
+            Password <%= @user.errors[:password].first %>
+          </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+    <% if flash[:errors].present? %>
+        <div class="static-errors-container flash">
+          <div class="alert-danger">
+            <%= flash[:errors].first %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
 
   <% if type == :new_user %>

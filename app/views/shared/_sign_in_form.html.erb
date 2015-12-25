@@ -15,6 +15,13 @@
              value="<%= user.first_name %>"
              required autofocus>
     </div>
+    <% if @user.errors[:first_name].any? %>
+      <div class="static-errors-container flash">
+        <div class="alert-danger">
+          First name <%= @user.errors[:first_name].first %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="input-group input-group-lg">
       <input class="form-control"
@@ -24,6 +31,13 @@
              name="user[last_name]"
              value="<%= user.last_name %>">
     </div>
+    <% if @user.errors[:last_name].any? %>
+      <div class="static-errors-container flash">
+        <div class="alert-danger">
+          Last name <%= @user.errors[:last_name].first %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="input-group input-group-lg">
       <span class="input-group-addon">

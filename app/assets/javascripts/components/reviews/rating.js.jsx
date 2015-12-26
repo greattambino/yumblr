@@ -75,6 +75,12 @@
 
     renderClickable: function() {
       this.stars = [];
+      var currentStar;
+      if (this.props.rating !== 0 && this.state.hoverRating === 0) {
+        currentStar = this.props.rating;
+      } else {
+        currentStar = this.state.hoverRating;
+      }
       for (var i = 1; i <= 5; i++) {
         var handleClick = this.props.onClick.bind(null, i);
         if (this.state.hoverRating >= i) {
@@ -101,7 +107,6 @@
 
     renderUserRating: function() {
       this.stars = [];
-      // this.stars.push(<div className="user-rating-stars">);
       for (var i = 1; i <= 5; i++) {
         if (i <= this.props.rating) {
           this.stars.push(
@@ -113,7 +118,6 @@
           );
         }
       }
-      // this.stars.push(</div>);
     },
 
     render: function () {

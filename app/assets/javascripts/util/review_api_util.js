@@ -12,7 +12,37 @@
           ReviewActions.addReview(foodItemId, review);
         },
         error: function(errors) {
-          ApiActions.receiveErrors(errors.responseJSON);
+          if (errors.responseText === "Please log in or sign up first") {
+            ApiActions.receiveErrors(["Please log in or sign up to review"]);
+          } else {
+            ApiActions.receiveErrors(errors.responseJSON);
+          }
+        }
+      });
+    },
+
+    updateReview: function(reviewId, body, rating, foodItemId) {
+      $.ajax({
+        url: '/api/reviews/' + reviewId,
+        type: 'PATCH',
+        dataType: 'json',
+        data: {
+          review: {
+            id: reviewId,
+            body: body,
+            rating: rating
+          }
+        },
+        success: function(review) {
+          ReviewActions.updateReview(reviewId, foodItemId, body, rating);
+        },
+        error: function(errors) {
+          console.log(errors);
+          if (errors.responseText === "Please log in or sign up first") {
+            ApiActions.receiveErrors(["Please log in or sign up to review"]);
+          } else {
+            ApiActions.receiveErrors(errors.responseJSON);
+          }
         }
       });
     },

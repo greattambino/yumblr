@@ -20,6 +20,15 @@
           _reviews[foodItemId] = [review];
           _reviews[foodItemId].totalRating = review.rating;
         }
+      },
+      _updateReview = function (reviewId, foodItemId, body, rating) {
+        for(var i = 0; i < _reviews[foodItemId].length; i++){
+          if(_reviews[foodItemId][i].id === reviewId){
+            _reviews[foodItemId][i].body = body;
+            _reviews[foodItemId][i].rating = rating;
+            return;
+          }
+        }
       };
 
   var ReviewStore = root.ReviewStore = $.extend({}, EventEmitter.prototype, {
@@ -51,6 +60,15 @@
           break;
         case ReviewConstants.REVIEW_RECEIVED:
           _addReview(payload.foodItemId, payload.review);
+          ReviewStore.emit(CHANGE_EVENT);
+          break;
+        case ReviewConstants.REVIEW_UPDATED:
+          _updateReview(
+            payload.reviewId,
+            payload.foodItemId,
+            payload.body,
+            payload.rating
+          );
           ReviewStore.emit(CHANGE_EVENT);
           break;
       }

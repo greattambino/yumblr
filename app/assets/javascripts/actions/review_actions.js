@@ -17,6 +17,16 @@
         reviews: reviews,
         foodItemId: foodItemId
       });
+    },
+
+    updateReview: function (reviewId, foodItemId, body, rating) {
+      AppDispatcher.dispatch({
+        actionType: ReviewConstants.REVIEW_UPDATED,
+        reviewId: reviewId,
+        foodItemId: foodItemId,
+        body: body,
+        rating: rating
+      });
     }
   };
 })(this);

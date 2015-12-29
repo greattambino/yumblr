@@ -73,33 +73,19 @@
 
     renderUserReviews: function () {
       var currentUser = UserStore.currentUser(),
+          currentUserId = currentUser.id,
           currentUserUsername = currentUser.username,
           currentUserReviews = currentUser.reviews,
-          reviewCount = currentUserReviews.length,
-          foodItemId = this.props.foodItem.id;
+          foodItemId = this.props.foodItem.id,
+          foodItemName = this.props.foodItem.name;
 
       return(
-        <div className="user-review-container">
-          <div className="user-review-food-item-header">{this.props.foodItem.name}</div>
-          <div className="user-review-food-item-sub-header">Your recent reviews</div>
-          <div className="row">
-            <div className="span12">
-              <ul id="sortable" className="list-unstyled ui-sortable">
-                {currentUserReviews.map(function (review) {
-                  if (review.food_item_id === foodItemId) {
-                    return(
-                      <ReviewIndexItem
-                        key={"user-reviews-" + review.id}
-                        readOnly={false}
-                        author={currentUserUsername}
-                        review={review} />
-                    );
-                  }
-                }.bind(this))}
-              </ul>
-            </div>
-          </div>
-        </div>
+        <UserReviewIndex
+          currentUserUsername={currentUserUsername}
+          currentUserId={currentUserId}
+          currentUserReviews={currentUserReviews}
+          foodItemId={foodItemId}
+          foodItemName={foodItemName} />
       );
     },
 

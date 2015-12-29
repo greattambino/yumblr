@@ -2,7 +2,19 @@
   'use strict';
 
   var ReviewIndexItem = root.ReviewIndexItem = React.createClass({
-    timeSince: function (date) {
+    getInitialState: function() {
+      return { showEditForm: false };
+    },
+
+    disableEdit: function() {
+      this.setState({ showEditForm: false });
+    },
+
+    editReview: function() {
+      this.setState({ showEditForm: true });
+    },
+
+    timeSince: function(date) {
       if (typeof date !== 'object') {
         date = new Date(date);
       }
@@ -42,9 +54,42 @@
       return interval + " " + intervalType + " ago";
     },
 
-    renderReadOnly: function () {
-      this.index = [];
-      this.index.push(
+    renderEditable: function() {
+      this.reviewItem = [];
+      if (this.state.showEditForm) {
+        this.reviewItem.push(
+          <UserReviewEditForm
+            key={"edit-review-form" + this.props.review.id}
+            review={this.props.review}
+            disableEdit={this.disableEdit} />
+        );
+      } else {
+        this.reviewItem.push(
+          <div className="review-li-editable" key={"editable-reviews" + this.props.review.id}>
+            <strong className="pull-left primary-font user-review-username">
+              {this.props.author}
+            </strong>
+            <Rating
+              rating={this.props.review.rating}
+              readOnly={true}
+              userRating={true}
+              />
+            <small className="pull-right text-muted">
+              {this.timeSince(this.props.review.created_at)}
+            </small>
+            <br/>
+            <li className="pull-left">{this.props.review.body}</li>
+            <UserReviewOptions
+              enableEdit={this.editReview} />
+            <br/>
+          </div>
+        );
+      }
+    },
+
+    renderReadOnly: function() {
+      this.reviewItem = [];
+      this.reviewItem.push(
         <div className="review-li-read-only" key="read-only-reviews">
           <strong className="pull-left primary-font user-review-username">
             {this.props.review.author.username}
@@ -64,29 +109,7 @@
       );
     },
 
-    renderEditable: function () {
-      this.index = [];
-      this.index.push(
-        <div className="review-li-editable" key="editable-reviews">
-          <strong className="pull-left primary-font user-review-username">
-            {this.props.author}
-          </strong>
-          <Rating
-            rating={this.props.review.rating}
-            readOnly={true}
-            userRating={true}
-          />
-          <small className="pull-right text-muted">
-            {this.timeSince(this.props.review.created_at)}
-          </small>
-          <br/>
-          <li className="ui-state-default">{this.props.review.body}</li>
-          <br/>
-        </div>
-      );
-    },
-
-    render: function () {
+    render: function() {
       if (this.props.readOnly) {
         this.renderReadOnly();
       } else {
@@ -94,7 +117,7 @@
       }
       return(
         <div className="review-list-items">
-          {this.index}
+          {this.reviewItem}
         </div>
       );
     }

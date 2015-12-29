@@ -62,8 +62,8 @@
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
             <p className="navbar-text">
-              <a className="nav-login" href="/session/new">Login</a>
-              <a className="nav-join" href="/users/new">Join</a>
+              <a className="nav-login" href="/login">Login</a>
+              <a className="nav-join" href="/sign_up">Join</a>
             </p>
           </ul>
         );

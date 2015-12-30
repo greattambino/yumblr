@@ -4,70 +4,41 @@
   var Modal = ReactBootstrap.Modal;
 
   var Review = root.Review = React.createClass({
-    mixins: [React.addons.LinkedStateMixin],
-
     getInitialState: function() {
       return {
-        reviews: ReviewStore.reviews(this.props.foodItemId),
-        reviewBody: "",
-        rating: 0
+        showForm: true
       };
     },
 
-    handleRatingChange: function (rating) {
-      this.setState({ rating: rating });
+    componentDidMount: function() {
+      ReviewStore.addCreateListener(this.disableForm);
     },
 
-    handleSubmit: function (e) {
-      e.preventDefault();
-      var foodItemId = this.props.foodItem.id,
-          userId = UserStore.currentUser().id,
-          body = this.state.reviewBody,
-          rating = this.state.rating,
-          review = {
-            body: body,
-            rating: rating,
-            food_item_id: foodItemId,
-            user_id: userId
-          };
-      ReviewApiUtil.createReview(foodItemId, review);
-      this.setState({ reviewBody: "", rating: 0 });
+    componentWillUnmount: function() {
+      ReviewStore.removeCreateListener(this.disableForm);
+    },
+
+    componentWillReceiveProps: function (newProps) {
+      if (this.props.foodItem !== newProps.foodItem) {
+        this.setState({ showForm: true });
+      }
+    },
+
+    disableForm: function() {
+      this.setState({ showForm: false });
+    },
+
+    enableForm: function() {
+      this.setState({ showForm: true });
     },
 
     renderReviewForm: function () {
-      var focus = "";
-      if (this.state.reviewBody.length > 0) {
-        focus = " focus";
-      }
+      var foodItemId = this.props.foodItem.id;
 
       return(
-        <div className="review-form">
-          <div className="review-rating-container" >
-            {this.props.foodItem.name}
-            <Rating
-              rating={this.state.rating}
-              readOnly={false}
-              onClick={this.handleRatingChange}
-              reviewCount={this.props.reviewCount}
-            />
-          </div>
-          <div className="row">
-            <div className="span12">
-              <form id="review-input-form"
-                className="form-search form-horizontal"
-                onSubmit={this.handleSubmit}>
-                <div className="input-append span12">
-                  <textarea
-                    className={"review-input-text" + focus}
-                    valueLink={this.linkState("reviewBody")}
-                    placeholder="Write a review" /><br/>
-                  <input type="submit" className="btn-review-save" value="Submit" />
-                  <Errors />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <ReviewEditForm
+          foodItemId={foodItemId}
+          newReview={true} />
       );
     },
 
@@ -96,6 +67,8 @@
 
       if (UserStore.currentUserHasReviewed(foodItemId)) {
         reviewHeader = this.renderUserReviews();
+      } else if (!this.state.showForm) {
+        reviewHeader = this.renderUserReviews();
       } else {
         reviewHeader = this.renderReviewForm();
       }
@@ -116,9 +89,12 @@
               </Modal.Title>
             </Modal.Header>
             <Modal.Body id="review-modal-content">
-
-              {reviewHeader}
-
+              <div className="review-container">
+                <div className="review-food-item-header">
+                  {this.props.foodItem.name}
+                </div>
+                {reviewHeader}
+              </div>
               <div className="review-modal-index">
                 <ReviewIndex foodItemId={this.props.foodItem.id} />
               </div>

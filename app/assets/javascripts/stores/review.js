@@ -2,7 +2,8 @@
   'use strict';
 
   var _reviews = {},
-      CHANGE_EVENT = "CHANGE_EVENT";
+      CHANGE_EVENT = "CHANGE_EVENT",
+      CREATE_EVENT = "CREATE_EVENT";
 
   var _updateReviews = function (foodItemId, reviews) {
         _reviews[foodItemId] = reviews;
@@ -52,6 +53,14 @@
       this.removeListener(CHANGE_EVENT, callback);
     },
 
+    addCreateListener: function (callback) {
+      this.addListener(CREATE_EVENT, callback);
+    },
+
+    removeCreateListener: function (callback) {
+      this.removeListener(CREATE_EVENT, callback);
+    },
+
     dispatcherId: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
         case ReviewConstants.REVIEWS_RECEIVED:
@@ -61,6 +70,7 @@
         case ReviewConstants.REVIEW_RECEIVED:
           _addReview(payload.foodItemId, payload.review);
           ReviewStore.emit(CHANGE_EVENT);
+          ReviewStore.emit(CREATE_EVENT);
           break;
         case ReviewConstants.REVIEW_UPDATED:
           _updateReview(

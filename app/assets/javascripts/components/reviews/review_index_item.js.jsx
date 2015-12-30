@@ -58,9 +58,12 @@
       this.reviewItem = [];
       if (this.state.showEditForm) {
         this.reviewItem.push(
-          <UserReviewEditForm
+          <ReviewEditForm
             key={"edit-review-form" + this.props.review.id}
             review={this.props.review}
+            reviewBody={this.props.review.body}
+            reviewRating={this.props.review.rating}
+            newReview={false}
             disableEdit={this.disableEdit} />
         );
       } else {
@@ -72,8 +75,7 @@
             <Rating
               rating={this.props.review.rating}
               readOnly={true}
-              userRating={true}
-              />
+              userRating={true} />
             <small className="pull-right text-muted">
               {this.timeSince(this.props.review.created_at)}
             </small>
@@ -97,8 +99,7 @@
           <Rating
             rating={this.props.review.rating}
             readOnly={true}
-            userRating={true}
-          />
+            userRating={true} />
           <small className="pull-right text-muted">
             {this.timeSince(this.props.review.created_at)}
           </small>

@@ -7,7 +7,15 @@
         actionType: ReviewConstants.REVIEW_RECEIVED,
         review: review,
         foodItemId: foodItemId
+      });
+    },
 
+    deleteReview: function(reviewId, foodItemId, oldRating) {
+      AppDispatcher.dispatch({
+        actionType: ReviewConstants.REVIEW_DELETED,
+        reviewId: reviewId,
+        foodItemId: foodItemId,
+        oldRating: oldRating
       });
     },
 
@@ -19,13 +27,14 @@
       });
     },
 
-    updateReview: function (reviewId, foodItemId, body, rating) {
+    updateReview: function (reviewId, foodItemId, body, rating, oldRating) {
       AppDispatcher.dispatch({
         actionType: ReviewConstants.REVIEW_UPDATED,
         reviewId: reviewId,
         foodItemId: foodItemId,
         body: body,
-        rating: rating
+        rating: rating,
+        oldRating: oldRating
       });
     }
   };

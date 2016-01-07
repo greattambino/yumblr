@@ -21,8 +21,8 @@
     render: function() {
       return(
         <div className="user-review-container">
-          <div className="user-review-food-item-sub-header">
-            Your recent reviews
+          <div className="review-food-item-sub-header">
+            Your Recent Reviews
           </div>
           <ul id="sortable" className="list-unstyled ui-sortable">
             {this.state.reviews.map(function(review) {

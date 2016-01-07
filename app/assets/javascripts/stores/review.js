@@ -3,7 +3,8 @@
 
   var _reviews = {},
       CHANGE_EVENT = "CHANGE_EVENT",
-      CREATE_EVENT = "CREATE_EVENT";
+      CREATE_EVENT = "CREATE_EVENT",
+      DESTROY_EVENT = "DESTROY_EVENT";
 
   var _updateReviews = function (foodItemId, reviews) {
         _reviews[foodItemId] = reviews;
@@ -22,11 +23,21 @@
           _reviews[foodItemId].totalRating = review.rating;
         }
       },
-      _updateReview = function (reviewId, foodItemId, body, rating) {
-        for(var i = 0; i < _reviews[foodItemId].length; i++){
-          if(_reviews[foodItemId][i].id === reviewId){
+      _deleteReview = function (reviewId, foodItemId, oldRating) {
+        for (var i = 0; i < _reviews[foodItemId].length; i++) {
+          if (_reviews[foodItemId][i].id === reviewId) {
+            _reviews[foodItemId].splice(i, 1);
+            _reviews[foodItemId].totalRating -= oldRating;
+            return;
+          }
+        }
+      },
+      _updateReview = function (reviewId, foodItemId, body, rating, oldRating) {
+        for (var i = 0; i < _reviews[foodItemId].length; i++) {
+          if (_reviews[foodItemId][i].id === reviewId) {
             _reviews[foodItemId][i].body = body;
             _reviews[foodItemId][i].rating = rating;
+            _reviews[foodItemId].totalRating += (rating - oldRating);
             return;
           }
         }
@@ -38,11 +49,28 @@
     },
 
     averageScore: function (foodItemId) {
-      return (_reviews[foodItemId].totalRating / _reviews[foodItemId].length) || 0.00;
+      if (typeof foodItemId !== "undefined") {
+        return (_reviews[foodItemId].totalRating / _reviews[foodItemId].length) || 0.00;
+      }
+    },
+
+    currentUserHasReviewed: function (currentUser, foodItemId) {
+      var review;
+      if (currentUser.id !== -1) {
+        for (var i = 0; i < currentUser.reviews.length; i++) {
+          review = currentUser.reviews[i];
+          if (review.food_item_id === foodItemId) {
+            return true;
+          }
+        }
+        return false;
+      }
     },
 
     reviewCount: function (foodItemId) {
-      return _reviews[foodItemId].length || 0;
+      if (typeof foodItemId !== "undefined") {
+        return _reviews[foodItemId].length || 0;
+      }
     },
 
     addChangeListener: function (callback) {
@@ -61,6 +89,14 @@
       this.removeListener(CREATE_EVENT, callback);
     },
 
+    addDestroyListener: function (callback) {
+      this.addListener(DESTROY_EVENT, callback);
+    },
+
+    removeDestroyListener: function (callback) {
+      this.removeListener(DESTROY_EVENT, callback);
+    },
+
     dispatcherId: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
         case ReviewConstants.REVIEWS_RECEIVED:
@@ -69,15 +105,25 @@
           break;
         case ReviewConstants.REVIEW_RECEIVED:
           _addReview(payload.foodItemId, payload.review);
-          ReviewStore.emit(CHANGE_EVENT);
           ReviewStore.emit(CREATE_EVENT);
+          ReviewStore.emit(CHANGE_EVENT);
+          break;
+        case ReviewConstants.REVIEW_DELETED:
+          _deleteReview(
+            payload.reviewId,
+            payload.foodItemId,
+            payload.oldRating
+          );
+          ReviewStore.emit(DESTROY_EVENT);
+          ReviewStore.emit(CHANGE_EVENT);
           break;
         case ReviewConstants.REVIEW_UPDATED:
           _updateReview(
             payload.reviewId,
             payload.foodItemId,
             payload.body,
-            payload.rating
+            payload.rating,
+            payload.oldRating
           );
           ReviewStore.emit(CHANGE_EVENT);
           break;

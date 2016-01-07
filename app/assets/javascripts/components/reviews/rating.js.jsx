@@ -7,12 +7,14 @@
         foodItemId: this.props.foodItemId,
         rating: 0,
         reviewCount: 0,
-        hoverRating: 0
+        hoverRating: this.props.rating
       };
     },
     componentDidMount: function () {
       ReviewStore.addChangeListener(this._onChange);
-      ReviewApiUtil.fetchAllReviews(this.props.foodItemId);
+      if (typeof this.props.foodItemId !== "undefined") {
+        ReviewApiUtil.fetchAllReviews(this.props.foodItemId);
+      }
     },
 
     componentWillUnmount: function () {
@@ -75,12 +77,7 @@
 
     renderClickable: function() {
       this.stars = [];
-      var currentStar;
-      if (this.props.rating !== 0 && this.state.hoverRating === 0) {
-        currentStar = this.props.rating;
-      } else {
-        currentStar = this.state.hoverRating;
-      }
+
       for (var i = 1; i <= 5; i++) {
         var handleClick = this.props.onClick.bind(null, i);
         if (this.state.hoverRating >= i) {

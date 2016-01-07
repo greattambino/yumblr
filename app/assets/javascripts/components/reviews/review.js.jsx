@@ -6,16 +6,18 @@
   var Review = root.Review = React.createClass({
     getInitialState: function() {
       return {
-        showForm: true
+        showForm: !UserStore.currentUserHasReviewed(this.props.foodItem.id)
       };
     },
 
     componentDidMount: function() {
       ReviewStore.addCreateListener(this.disableForm);
+      ReviewStore.addDestroyListener(this.enableForm);
     },
 
     componentWillUnmount: function() {
       ReviewStore.removeCreateListener(this.disableForm);
+      ReviewStore.removeDestroyListener(this.enableForm);
     },
 
     componentWillReceiveProps: function (newProps) {
@@ -62,15 +64,13 @@
 
     render: function () {
       var reviewHeader,
-          currentUserId = UserStore.currentUser().id,
+          currentUser = UserStore.currentUser(),
+          currentUserId = currentUser.id,
           foodItemId = this.props.foodItem.id;
-
-      if (UserStore.currentUserHasReviewed(foodItemId)) {
-        reviewHeader = this.renderUserReviews();
-      } else if (!this.state.showForm) {
-        reviewHeader = this.renderUserReviews();
-      } else {
+      if (this.state.showForm) {
         reviewHeader = this.renderReviewForm();
+      } else {
+        reviewHeader = this.renderUserReviews();
       }
 
       return (

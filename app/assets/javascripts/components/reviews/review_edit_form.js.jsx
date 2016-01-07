@@ -27,8 +27,9 @@
       var reviewId = this.props.review.id,
           body = this.state.body,
           rating = this.state.rating,
-          foodItemId = this.props.review.food_item_id;
-      ReviewApiUtil.updateReview(reviewId, body, rating, foodItemId);
+          foodItemId = this.props.review.food_item_id,
+          oldRating = this.props.review.rating;
+      ReviewApiUtil.updateReview(reviewId, body, rating, foodItemId, oldRating);
       this.props.disableEdit();
     },
 

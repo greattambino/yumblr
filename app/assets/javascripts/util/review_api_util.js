@@ -21,7 +21,22 @@
       });
     },
 
-    updateReview: function(reviewId, body, rating, foodItemId) {
+    deleteReview: function (reviewId, foodItemId, oldRating) {
+      $.ajax({
+        url: '/api/reviews/' + reviewId,
+        type: 'DELETE',
+        dataType: 'json',
+        data: { review: { id: reviewId } },
+        success: function() {
+          ReviewActions.deleteReview(reviewId, foodItemId, oldRating);
+        },
+        error: function(errors) {
+          console.log(errors);
+        }
+      });
+    },
+
+    updateReview: function(reviewId, body, rating, foodItemId, oldRating) {
       $.ajax({
         url: '/api/reviews/' + reviewId,
         type: 'PATCH',
@@ -34,7 +49,7 @@
           }
         },
         success: function(review) {
-          ReviewActions.updateReview(reviewId, foodItemId, body, rating);
+          ReviewActions.updateReview(reviewId, foodItemId, body, rating, oldRating);
         },
         error: function(errors) {
           console.log(errors);

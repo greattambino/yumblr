@@ -32,17 +32,22 @@
     render: function () {
       var length = this.state.reviews.length;
       return(
-        <ul id="sortable" className="list-unstyled ui-sortable">
-          {this.state.reviews.map(function (review, i) {
-            return(
-              <ReviewIndexItem
-                key={"ror-" + review.id}
-                readOnly={true}
-                review={this.state.reviews[length - i - 1]} />
-            );
-          }.bind(this))}
-          {this.noReviews()}
-        </ul>
+        <div className="review-food-item-index-continer">
+          <div className="review-food-item-sub-header">
+            Most Recent Customer Reviews
+          </div>
+          <ul id="sortable" className="list-unstyled ui-sortable">
+            {this.state.reviews.map(function (review, i) {
+              return(
+                <ReviewIndexItem
+                  key={"ror-" + review.id}
+                  readOnly={true}
+                  review={this.state.reviews[length - i - 1]} />
+              );
+            }.bind(this))}
+            {this.noReviews()}
+          </ul>
+        </div>
       );
     }
   });

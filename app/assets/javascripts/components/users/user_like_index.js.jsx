@@ -10,40 +10,33 @@
 
     componentDidMount: function () {
       UserLikeStore.addChangeListener(this.setLikes);
-      // UserLikeStore.addRefreshListener(this.setLikes);
-
-      var userId = this.props.userId;
-      if (UserLikeStore.hasUserLikes(userId)) {
-        this.setLikes(userId);
-      } else {
-        this.getLikes(this.props);
-      }
+      this.getLikes(this.props.userId);
     },
 
     componentWillUnmount: function () {
       UserLikeStore.removeChangeListener(this.setLikes);
-      // UserLikeStore.removeRefreshListener(this.setLikes);
     },
 
     componentWillReceiveProps: function (newProps) {
       if (UserLikeStore.hasUserLikes(newProps.userId)) {
         this.setLikes(newProps.userId);
       } else {
-        this.getLikes(newProps);
+        this.getLikes(newProps.userId);
       }
     },
 
-    getLikes: function (props) {
-      var userId = props.userId;
-      LikeApiUtil.fetchUserLikes(userId);
+    getLikes: function (userId) {
+      if (userId !== -1) {
+        LikeApiUtil.fetchUserLikes(userId);
+      }
     },
 
-    setLikes: function (optionalUserId) {
-      var userId = this.props.userId;
-      if (typeof optionalUserId === "undefined") {
-        this.setState({likes: UserLikeStore.findLikes(userId)});
+    setLikes: function (userId) {
+      if (typeof userId === "undefined") {
+        this.setState({likes: UserLikeStore.findLikes(this.props.userId)});
       } else {
-        this.setState({likes: UserLikeStore.findLikes(optionalUserId)});
+        LikeApiUtil.fetchUserLikes(userId);
+        this.setState({likes: UserLikeStore.findLikes(userId)});
       }
     },
 

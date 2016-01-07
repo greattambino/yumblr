@@ -82,7 +82,10 @@
             <br/>
             <li className="pull-left">{this.props.review.body}</li>
             <UserReviewOptions
-              enableEdit={this.editReview} />
+              enableEdit={this.editReview}
+              reviewId={this.props.review.id}
+              foodItemId={this.props.review.food_item_id}
+              oldRating={this.props.review.rating} />
             <br/>
           </div>
         );

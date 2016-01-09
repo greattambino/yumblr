@@ -10,6 +10,12 @@
       return { show: true };
     },
 
+    componentWillMount: function () {
+      if (typeof window.CURRENT_USER !== "undefined") {
+        this.setState({ show: false });
+      }
+    },
+
     hideModal: function () {
       this.setState({ show: false});
     },

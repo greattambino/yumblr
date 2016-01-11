@@ -20,7 +20,7 @@ class Api::LikesController < ApplicationController
     )
 
     if @like.destroy
-      render json: {}
+      render json: @like 
     else
       render json: @like.errors.full_messages, status: 422
     end

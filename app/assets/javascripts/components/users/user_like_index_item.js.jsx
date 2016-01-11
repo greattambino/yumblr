@@ -8,8 +8,17 @@
       return({ showRestaurantModal: false });
     },
 
-    toggleModal: function() {
-      this.setState({ showRestaurantModal: !this.state.showRestaurantModal });
+    deleteLike: function () {
+      var likableType = "FoodItem",
+          likableId = parseInt(this.props.like.likable_id),
+          userId = this.props.like.user_id,
+          confirmed = confirm(
+            "Are you sure you want to remove this item from your Favorites list?"
+          );
+
+      if (confirmed) {
+        LikeApiUtil.destroyLike(likableType, likableId);
+      }
     },
 
     showRestaurantModal: function () {
@@ -20,6 +29,10 @@
           restaurant={this.props.like.restaurant}
         />
       );
+    },
+
+    toggleModal: function() {
+      this.setState({ showRestaurantModal: !this.state.showRestaurantModal });
     },
 
     render: function () {
@@ -35,12 +48,16 @@
           <div className="cover-card col-sm-4"
                style={image}
                onClick={this.toggleModal}>
-            <p>
-              <span className="cover-card-restaurant">
+            <div>
+              <div className="cover-card-restaurant">
                 {this.props.like.restaurant.name}
-              </span><br></br>
+              </div>
               {this.props.like.foodItem}
-            </p>
+              <div className="user-unlike-btn">
+                <div className="glyphicon glyphicon-heart"
+                  onClick={this.deleteLike} />
+              </div>
+            </div>
           </div>
           {this.showRestaurantModal()}
         </div>

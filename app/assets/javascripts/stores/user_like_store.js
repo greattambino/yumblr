@@ -7,6 +7,7 @@
         likable_type: "FoodItem",
         likable_id: -1
       },
+      CHANGE_EVENT = "CHANGE_EVENT",
       resetUserLikes = function (userId, likes) {
         _userLikes[userId] = likes;
       },
@@ -17,16 +18,18 @@
           _userLikes[userId].push(like);
         }
       },
-      removeUserLike = function (userId, like) {
+      removeUserLike = function (like) {
+        var userId = like.user_id;
+
         if (typeof _userLikes[userId] !== "undefined") {
           for (var i = 0; i < _userLikes[userId].length; i++) {
             if (_userLikes[userId][i].id === like.id) {
-              return _userLikes[userId].splice(i, 1);
+              _userLikes[userId].splice(i, 1);
             }
           }
         }
-      },
-      CHANGE_EVENT = "CHANGE_EVENT";
+        UserLikeStore.emit(CHANGE_EVENT);
+      };
 
   var UserLikeStore = root.UserLikeStore = $.extend({}, EventEmitter.prototype,{
     all: function () {
@@ -64,8 +67,7 @@
           UserLikeStore.emit(CHANGE_EVENT);
           break;
         case LikeConstants.LIKE_DESTROYED:
-          removeUserLike(payload.userId, payload.like);
-          UserLikeStore.emit(CHANGE_EVENT);
+          removeUserLike(payload.like);
           break;
       }
     })

@@ -4,6 +4,7 @@
 
 
 /* USER PROFILE PAGE */
+
 .profile-image-container {
   position: absolute;
   top: 0;
@@ -87,7 +88,7 @@
 
 
 
-
+/* FAVORITE FOODS INDEX */
 
 .cover-card {
 	border: 2px solid white;
@@ -103,22 +104,58 @@
     cursor: pointer;
   }
 }
-.cover-card > p {
+
+.cover-card > * {
 	text-align: center;
 	background-color: rgba(6,6,6,0.0);
 	color: rgba(6,6,6,0.0);
 	width: 100%;
 	height: 100%;
-	font-size: 16px;
-}
-.cover-card:hover > p {
-	background-color: rgba(6,6,6,0.3);
-	color: white;
-	text-shadow: 3px 3px 10px #000;
+	font-size: 13px;
+  & > * > * {
+    background: rgba(6,6,6,0.0) !important;
+  }
 }
 
-.cover-card:hover > p > .cover-card-restaurant {
-	background-color: rgba(6,6,6,0.3);
-	color: cornflowerblue;
+.cover-card:hover > * {
+	background-color: rgba(6,6,6,0.5);
+	color: white;
 	text-shadow: 3px 3px 10px #000;
+  & > * > * {
+    color: #D62B00;
+    background: rgba(27, 27, 27, 0.47) !important;
+    &:hover {
+      color: #D8D8D8;
+      background: rgba(42, 42, 42, 0.42) !important;
+    }
+  }
+}
+
+.cover-card:hover > * > .cover-card-restaurant {
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+	color: #6495ED;
+  padding-top: 10px;
+}
+
+.user-unlike-btn > *{
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-unlike-btn {
+  display: block;
+  float: right;
+  position: absolute;
+  bottom: 1em;
+  right: 1.5em;
+}
+
+.user-unlike-btn > *:hover {
+  background: #F5F5F0;
 }

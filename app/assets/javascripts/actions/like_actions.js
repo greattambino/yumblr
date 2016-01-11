@@ -12,7 +12,6 @@
     removeLike: function (like) {
       AppDispatcher.dispatch({
         actionType: LikeConstants.LIKE_DESTROYED,
-        userId: like.user_id,
         like: like
       });
     },

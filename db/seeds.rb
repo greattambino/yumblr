@@ -16,22 +16,23 @@
 # barbeque              = Category.find_or_create_by(name: 'Barbeque')
 # bbq                   = Category.find_or_create_by(name: 'BBQ')
 beef                  = Category.find_or_create_by(name: 'Beef')
-# breakfast             = Category.find_or_create_by(name: 'Breakfast')
+breakfast             = Category.find_or_create_by(name: 'Breakfast')
 # burrito               = Category.find_or_create_by(name: 'Burrito')
-# chicken_wings         = Category.find_or_create_by(name: 'Chicken Wings')
+cheese                = Category.find_or_create_by(name: 'Cheese')
+# chicken_wings         = Category.find_or_create_by(name: 'Chicken wings')
 chicken               = Category.find_or_create_by(name: 'Chicken')
 crab                  = Category.find_or_create_by(name: 'Crab')
-# curry                 = Category.find_or_create_by(name: 'Curry')
+curry                 = Category.find_or_create_by(name: 'Curry')
 # desert                = Category.find_or_create_by(name: 'Desert')
 # duck                  = Category.find_or_create_by(name: 'Duck')
-# fish                  = Category.find_or_create_by(name: 'Fish')
-french_fries          = Category.find_or_create_by(name: 'French Fries')
+fish                  = Category.find_or_create_by(name: 'Fish')
+french_fries          = Category.find_or_create_by(name: 'French fries')
 # fruit                 = Category.find_or_create_by(name: 'Fruit')
 hamburger             = Category.find_or_create_by(name: 'Hamburger')
-# hot_dog               = Category.find_or_create_by(name: 'Hot Dog')
-macaroni_and_cheese   = Category.find_or_create_by(name: 'Macaroni and Cheese')
+# hot_dog               = Category.find_or_create_by(name: 'Hot dog')
+macaroni_and_cheese   = Category.find_or_create_by(name: 'Macaroni and cheese')
 noodles               = Category.find_or_create_by(name: 'Noodles')
-# pasta                 = Category.find_or_create_by(name: 'Pasta')
+pasta                 = Category.find_or_create_by(name: 'Pasta')
 # pastries              = Category.find_or_create_by(name: 'Pastries')
 # pie                   = Category.find_or_create_by(name: 'Pie')
 pork                  = Category.find_or_create_by(name: 'Pork')
@@ -942,34 +943,224 @@ f36 = FoodItem.find_or_create_by(
 
 #----Baan Restaurant & Wine Bar---------------------
 
+f37 = FoodItem.find_or_create_by(
+name: "Avocado Mango Spring Roll",
+price: 8.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452845639/Baan%20Restaurant/69200-201508171942.jpg",
+restaurant_id: r8.id)
+
+f38 = FoodItem.find_or_create_by(
+name: "Exotic Seafood",
+price: 16.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452845638/Baan%20Restaurant/69226-201508171942.jpg",
+restaurant_id: r8.id)
+
+f39 = FoodItem.find_or_create_by(
+name: "Fire Cooked Beef",
+price: 15.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452845639/Baan%20Restaurant/69224-201508171942.jpg",
+restaurant_id: r8.id)
+
+f40 = FoodItem.find_or_create_by(
+name: "Delightful Fried Rice",
+price: 12.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452845639/Baan%20Restaurant/72167-201508271816.jpg",
+restaurant_id: r8.id)
+
+f41 = FoodItem.find_or_create_by(
+name: "Basil Eggplant",
+price: 10.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452845639/Baan%20Restaurant/72170-201508271816.jpg",
+restaurant_id: r8.id)
+
+f42 = FoodItem.find_or_create_by(
+name: "Yellow Curry",
+price: 12.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452845639/Baan%20Restaurant/69253-201508171942.jpg",
+restaurant_id: r8.id)
 
 
 #----Balompie Cafe---------------------
 
+f43 = FoodItem.find_or_create_by(
+name: "Mariscada",
+price: 14.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847258/Balompie%20Caf%C3%A9/7277.jpg",
+restaurant_id: r9.id)
+
+f44 = FoodItem.find_or_create_by(
+name: "Pollo Con Camarones",
+price: 15.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847258/Balompie%20Caf%C3%A9/7276.jpg",
+restaurant_id: r9.id)
 
 
 #----Barbacco---------------------
 
+f45 = FoodItem.find_or_create_by(
+name: "Cheese Selection",
+price: 9.30,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847448/Barbacco/1631.jpg",
+restaurant_id: r10.id)
+
+f46 = FoodItem.find_or_create_by(
+name: "Kale and Roasted Squash Salad",
+price: 9.20,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847449/Barbacco/19223.jpg",
+restaurant_id: r10.id)
+
+f47 = FoodItem.find_or_create_by(
+name: "Poached Tuna Sandwich",
+price: 14.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847448/Barbacco/1623.jpg",
+restaurant_id: r10.id)
+
+f48 = FoodItem.find_or_create_by(
+name: "Orecchiette Pasta",
+price: 17.25,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847449/Barbacco/1632.jpg",
+restaurant_id: r10.id)
+
+f49 = FoodItem.find_or_create_by(
+name: "Farrotto",
+price: 17.25,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847449/Barbacco/1635.jpg",
+restaurant_id: r10.id)
+
+f50 = FoodItem.find_or_create_by(
+name: "Braised Chicken Thighs",
+price: 17.25,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847449/Barbacco/1639.jpg",
+restaurant_id: r10.id)
+
+f51 = FoodItem.find_or_create_by(
+name: "Brussel Sprouts",
+price: 6.90,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452847449/Barbacco/1644.jpg",
+restaurant_id: r10.id)
 
 
 #----Basa Seafood Express---------------------
 
+f52 = FoodItem.find_or_create_by(
+name: "French Fries",
+price: 3.99,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848201/Basa%20Seafood%20Express/29392.jpg",
+restaurant_id: r11.id)
+
+f53 = FoodItem.find_or_create_by(
+name: "Salmon or Shrimp Rice Plate",
+price: 9.99,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848202/Basa%20Seafood%20Express/29350.jpg",
+restaurant_id: r11.id)
+
+f54 = FoodItem.find_or_create_by(
+name: "49ers Roll",
+price: 10.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848201/Basa%20Seafood%20Express/29332.jpg",
+restaurant_id: r11.id)
+
+f55 = FoodItem.find_or_create_by(
+name: "Salmon Poke",
+price: 7.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848202/Basa%20Seafood%20Express/29352.jpg",
+restaurant_id: r11.id)
+
+f56 = FoodItem.find_or_create_by(
+name: "Fish Burger",
+price: 6.99,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848201/Basa%20Seafood%20Express/29349.jpg",
+restaurant_id: r11.id)
 
 
 #----Beanstalk Cafe---------------------
 
+f57 = FoodItem.find_or_create_by(
+name: "Pastrami Sandwich",
+price: 10.50,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848765/Beanstalk%20Cafe/32284.jpg",
+restaurant_id: r12.id)
+
+f58 = FoodItem.find_or_create_by(
+name: "Bul Go Gi Sandwich",
+price: 10.50,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848765/Beanstalk%20Cafe/10875.jpg",
+restaurant_id: r12.id)
+
+f59 = FoodItem.find_or_create_by(
+name: "Bacon and Cheese Bagel ",
+price: 5.50,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848765/Beanstalk%20Cafe/32292.jpg",
+restaurant_id: r12.id)
+
+f60 = FoodItem.find_or_create_by(
+name: "Veggie Sandwich",
+price: 10.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452848765/Beanstalk%20Cafe/32290.jpg",
+restaurant_id: r12.id)
 
 
 #----Big Chef Tom's Belly Burgers---------------------
 
+f61 = FoodItem.find_or_create_by(
+name: "Cheese Fries",
+price: 5.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452849208/Big%20Chef%20Tom's%20Belly%20Burgers/33344.jpg",
+restaurant_id: r13.id)
+
+f62 = FoodItem.find_or_create_by(
+name: "Classic",
+price: 8.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452849208/Big%20Chef%20Tom's%20Belly%20Burgers/22492.jpg",
+restaurant_id: r13.id)
+
+f63 = FoodItem.find_or_create_by(
+name: "Truck Stop",
+price: 8.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452849207/Big%20Chef%20Tom's%20Belly%20Burgers/22496-2.jpg",
+restaurant_id: r13.id)
 
 
 #----Blackwood---------------------
 
+f64 = FoodItem.find_or_create_by(
+name: "Two Eggs with Bacon or Sausage",
+price: 10.95,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452852108/Blackwood/53580-201505270028.jpg",
+restaurant_id: r14.id)
+
+f65 = FoodItem.find_or_create_by(
+name: "Benedict",
+price: 13.55,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452852107/Blackwood/53583-201505270028.jpg",
+restaurant_id: r14.id)
+
+f66 = FoodItem.find_or_create_by(
+name: "Crispy French Toast",
+price: 11.05,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452852108/Blackwood/53585-201505270028.jpg",
+restaurant_id: r14.id)
+
+f67 = FoodItem.find_or_create_by(
+name: "Papaya Salad",
+price: 12.05,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452852107/Blackwood/57499-201506180402.jpg",
+restaurant_id: r14.id)
 
 
 #----Bocadillos---------------------
 
+f68 = FoodItem.find_or_create_by(
+name: "Bocadillos",
+price: 13.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452852643/Bocadillos/4459.jpg",
+restaurant_id: r15.id)
+
+f69 = FoodItem.find_or_create_by(
+name: "Kale Salad",
+price: 11.00,
+image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452852643/Bocadillos/6888.jpg",
+restaurant_id: r15.id)
 
 
 #----Brenda's French Soul Food---------------------
@@ -1059,7 +1250,6 @@ end
 
 
 
-
 foodcategories = [
   {food_item_id: f1.id, category_id: beef.id},
   {food_item_id: f3.id, category_id: macaroni_and_cheese.id},
@@ -1117,7 +1307,63 @@ foodcategories = [
   {food_item_id: f35.id, category_id: pork.id},
   {food_item_id: f35.id, category_id: sandwich.id},
   {food_item_id: f36.id, category_id: beef.id},
-  {food_item_id: f36.id, category_id: hamburger.id}
+  {food_item_id: f36.id, category_id: hamburger.id},
+  {food_item_id: f37.id, category_id: vegetarian.id},
+  {food_item_id: f38.id, category_id: seafood.id},
+  {food_item_id: f39.id, category_id: beef.id},
+  {food_item_id: f40.id, category_id: vegetarian.id},
+  {food_item_id: f41.id, category_id: vegetarian.id},
+  {food_item_id: f42.id, category_id: chicken.id},
+  {food_item_id: f42.id, category_id: curry.id},
+  {food_item_id: f43.id, category_id: seafood.id},
+  {food_item_id: f44.id, category_id: seafood.id},
+  {food_item_id: f44.id, category_id: chicken.id},
+  {food_item_id: f45.id, category_id: cheese.id},
+  {food_item_id: f45.id, category_id: vegetarian.id},
+  {food_item_id: f46.id, category_id: vegetarian.id},
+  {food_item_id: f46.id, category_id: salad.id},
+  {food_item_id: f47.id, category_id: sandwich.id},
+  {food_item_id: f47.id, category_id: seafood.id},
+  {food_item_id: f48.id, category_id: pasta.id},
+  {food_item_id: f49.id, category_id: vegetarian.id},
+  {food_item_id: f50.id, category_id: chicken.id},
+  {food_item_id: f52.id, category_id: french_fries.id},
+  {food_item_id: f53.id, category_id: salmon.id},
+  {food_item_id: f53.id, category_id: seafood.id},
+  {food_item_id: f54.id, category_id: seafood.id},
+  {food_item_id: f54.id, category_id: sushi.id},
+  {food_item_id: f55.id, category_id: salmon.id},
+  {food_item_id: f56.id, category_id: fish.id},
+  {food_item_id: f56.id, category_id: hamburger.id},
+  {food_item_id: f57.id, category_id: sandwich.id},
+  {food_item_id: f57.id, category_id: beef.id},
+  {food_item_id: f58.id, category_id: sandwich.id},
+  {food_item_id: f58.id, category_id: beef.id},
+  {food_item_id: f59.id, category_id: breakfast.id},
+  {food_item_id: f60.id, category_id: vegetarian.id},
+  {food_item_id: f60.id, category_id: sandwich.id},
+  {food_item_id: f61.id, category_id: cheese.id},
+  {food_item_id: f61.id, category_id: french_fries.id},
+  {food_item_id: f62.id, category_id: hamburger.id},
+  {food_item_id: f62.id, category_id: pork.id},
+  {food_item_id: f62.id, category_id: chicken.id},
+  {food_item_id: f63.id, category_id: hamburger.id},
+  {food_item_id: f63.id, category_id: pork.id},
+  {food_item_id: f63.id, category_id: chicken.id},
+  {food_item_id: f64.id, category_id: breakfast.id},
+  {food_item_id: f65.id, category_id: breakfast.id},
+  {food_item_id: f66.id, category_id: breakfast.id},
+  {food_item_id: f67.id, category_id: salad.id},
+  {food_item_id: f67.id, category_id: vegetarian.id},
+  {food_item_id: f68.id, category_id: chicken.id},
+  {food_item_id: f68.id, category_id: hamburger.id},
+  {food_item_id: f68.id, category_id: salmon.id},
+  {food_item_id: f68.id, category_id: fish.id},
+  {food_item_id: f68.id, category_id: seafood.id},
+  {food_item_id: f68.id, category_id: pork.id},
+  {food_item_id: f68.id, category_id: beef.id},
+  {food_item_id: f69.id, category_id: vegetarian.id},
+  {food_item_id: f69.id, category_id: salad.id}
 ]
 
 foodcategories.each do |fc|

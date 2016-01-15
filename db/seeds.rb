@@ -27,14 +27,14 @@ crab                  = Category.find_or_create_by(name: 'Crab')
 # fish                  = Category.find_or_create_by(name: 'Fish')
 french_fries          = Category.find_or_create_by(name: 'French Fries')
 # fruit                 = Category.find_or_create_by(name: 'Fruit')
-# hamburger             = Category.find_or_create_by(name: 'Hamburger')
+hamburger             = Category.find_or_create_by(name: 'Hamburger')
 # hot_dog               = Category.find_or_create_by(name: 'Hot Dog')
 macaroni_and_cheese   = Category.find_or_create_by(name: 'Macaroni and Cheese')
 noodles               = Category.find_or_create_by(name: 'Noodles')
 # pasta                 = Category.find_or_create_by(name: 'Pasta')
 # pastries              = Category.find_or_create_by(name: 'Pastries')
 # pie                   = Category.find_or_create_by(name: 'Pie')
-# pork                  = Category.find_or_create_by(name: 'Pork')
+pork                  = Category.find_or_create_by(name: 'Pork')
 salad                 = Category.find_or_create_by(name: 'Salad')
 salmon                = Category.find_or_create_by(name: 'Salmon')
 sandwich              = Category.find_or_create_by(name: 'Sandwich')
@@ -56,597 +56,651 @@ c6 = Cuisine.find_or_create_by(cuisine: "Delis")
 c7 = Cuisine.find_or_create_by(cuisine: "Cafes")
 c8 = Cuisine.find_or_create_by(cuisine: "Sushi Bars")
 
-r1 = Restaurant.find_or_create_by(name: "Blue Plate",
-                  description: "New American Comfort",
-                  address: "3218 Mission St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.745215",
-                  lng: "-122.420483",
-                  phone_number: "(415) 282-6777",
-                  url: "http://www.blueplatesf.com")
+r1 = Restaurant.where(phone_number: "(415) 282-6777").first_or_create do |r|
+       r.name = "Blue Plate"
+       r.description = "New American Comfort"
+       r.address = "3218 Mission St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94110"
+       r.lat = 37.745215
+       r.lng = -122.420483
+       r.url = "http://www.blueplatesf.com"
+     end
 
-r2 = Restaurant.find_or_create_by(name: "Ramen Underground",
-                  description: "Authentic Ramen with no MSG",
-                  address: "356 Kearny St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94108",
-                  lat: "37.791355",
-                  lng: "-122.404174",
-                  phone_number: "(415) 999-2509",
-                  url: "http://www.ramenunderground.com")
+r2 = Restaurant.where(phone_number: "(415) 999-2509").first_or_create do |r|
+       r.name = "Ramen Underground"
+       r.description = "Authentic Ramen with no MSG"
+       r.address = "356 Kearny St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94108"
+       r.lat = 37.791355
+       r.lng = -122.404174
+       r.url = "http://www.ramenunderground.com"
+     end
 
-r3 = Restaurant.find_or_create_by(name: "Skool",
-                  description: "Fresh, Sustainable Seafood with International Flair",
-                  address: "1725 Alameda St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94103",
-                  lat: "37.768521",
-                  lng: "-122.402286",
-                  phone_number: "(415) 255-8800",
-                  url: "http://skoolsf.com")
+r3 = Restaurant.where(phone_number: "(415) 255-8800").first_or_create do |r|
+       r.name = "Skool"
+       r.description = "Fresh, Sustainable Seafood with International Flair"
+       r.address = "1725 Alameda St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94103"
+       r.lat = 37.768521
+       r.lng = -122.402286
+       r.url = "http://skoolsf.com"
+     end
 
-r4 = Restaurant.find_or_create_by(name: "AG Ferrari Foods - SOMA",
-                  description: "Italy Inspired Market Café",
-                  address: "688 Mission St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94105",
-                  lat: "37.786617",
-                  lng: "-122.401855",
-                  phone_number: "(415) 344-0644",
-                  url: "http://www.agferrari.com/")
+r4 = Restaurant.where(phone_number: "(415) 344-0644").first_or_create do |r|
+       r.name = "AG Ferrari Foods - SOMA"
+       r.description = "Italy Inspired Market Café"
+       r.address = "688 Mission St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94105"
+       r.lat = 37.786617
+       r.lng = -122.401855
+       r.url = "http://www.agferrari.com/"
+     end
 
-r5 = Restaurant.find_or_create_by(name: "Live Sushi Bistro",
-                  description: "The Sushi is Alive",
-                  address: "1 Gilbert St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94103",
-                  lat: "37.774651",
-                  lng: "-122.403977",
-                  phone_number: "(415) 558-8778",
-                  url: "http://www.livesushibistro.com/")
+r5 = Restaurant.where(phone_number: "(415) 558-8778").first_or_create do |r|
+       r.name = "Live Sushi Bistro"
+       r.description = "The Sushi is Alive"
+       r.address = "1 Gilbert St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94103"
+       r.lat = 37.774651
+       r.lng = -122.403977
+       r.url = "http://www.livesushibistro.com/"
+     end
 
-r6 = Restaurant.find_or_create_by(name: "Boxed Foods Company",
-                  description: "Fast, Fresh, and Tasty Sandwiches & Salads",
-                  address: "245 Kearny St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94108",
-                  lat: "37.790441",
-                  lng: "-122.404192",
-                  phone_number: "(415) 981-9376",
-                  url: "http://www.boxedfoodscompany.com")
+r6 = Restaurant.where(phone_number: "(415) 981-9376").first_or_create do |r|
+       r.name = "Boxed Foods Company"
+       r.description = "Fast, Fresh, and Tasty Sandwiches & Salads"
+       r.address = "245 Kearny St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94108"
+       r.lat = 37.790441
+       r.lng = -122.404192
+       r.url = "http://www.boxedfoodscompany.com"
+     end
 ########
-r7 = Restaurant.find_or_create_by(name: "The American Grilled Cheese Kitchen",
-                  description: "Gourmet Comfort",
-                  address: "1 South Park St, Apt 103A",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94107",
-                  lat: "37.782056",
-                  lng: "-122.392854",
-                  phone_number: "(415) 243-0107",
-                  url: "http://theamericansf.com")
+r7 = Restaurant.where(phone_number: "(415) 243-0107").first_or_create do |r|
+       r.name = "The American Grilled Cheese Kitchen"
+       r.description = "Gourmet Comfort"
+       r.address = "1 South Park St, Apt 103A"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94107"
+       r.lat = 37.782056
+       r.lng = -122.392854
+       r.url = "http://theamericansf.com"
+     end
 
-r8 = Restaurant.find_or_create_by(name: "Baan Restaurant & Wine Bar",
-                  description: "Thai Kitchen with a Californian Twist",
-                  address: "534 Irving St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94122",
-                  lat: "37.764342",
-                  lng: "-122.463716",
-                  phone_number: "(415) 379-4505",
-                  url: "http://baanthaisf.com")
+r8 = Restaurant.where(phone_number: "(415) 379-4505").first_or_create do |r|
+       r.name = "Baan Restaurant & Wine Bar"
+       r.description = "Thai Kitchen with a Californian Twist"
+       r.address = "534 Irving St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94122"
+       r.lat = 37.764342
+       r.lng = -122.463716
+       r.url = "http://baanthaisf.com"
+     end
 
-r9 = Restaurant.find_or_create_by(name: "Balompie Cafe",
-                  description: "Authentic Salvadoran Food",
-                  address: "3349 18th St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.761812",
-                  lng: "-122.418168",
-                  phone_number: "(415) 648-9199")
+r9 = Restaurant.where(phone_number: "(415) 648-9199").first_or_create do |r|
+       r.name = "Balompie Cafe"
+       r.description = "Authentic Salvadoran Food"
+       r.address = "3349 18th St"
+       r.city = "San Francisco"
+       r.state = "CA"
+       r.zip_code = "94110"
+       r.lat = 37.761812
+       r.lng = -122.41816
+     end
 
-r10 = Restaurant.find_or_create_by(name: "Barbacco",
-                  description: "Modern Trattoria",
-                  address: "220 California St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94111",
-                  lat: "37.793682",
-                  lng: "-122.399179",
-                  phone_number: "(415) 955-1919",
-                  url: "http://barbaccosf.com")
+r10 = Restaurant.where(phone_number: "(415) 955-1919").first_or_create do |r|
+        r.name = "Barbacco"
+        r.description = "Modern Trattoria"
+        r.address = "220 California St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94111"
+        r.lat = 37.793682
+        r.lng = -122.399179
+        r.url = "http://barbaccosf.com"
+      end
 
-r11 = Restaurant.find_or_create_by(name: "Basa Seafood Express",
-                  description: "Best Salmon Burger in Town",
-                  address: "3064 24th St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.752692",
-                  lng: "-122.413395",
-                  phone_number: "(415) 550-2388",
-                  url: "http://basaseafood.com")
+r11 = Restaurant.where(phone_number: "(415) 550-2388").first_or_create do |r|
+        r.name = "Basa Seafood Express"
+        r.description = "Best Salmon Burger in Town"
+        r.address = "3064 24th St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.752692
+        r.lng = -122.413395
+        r.url = "http://basaseafood.com"
+      end
 
-r12 = Restaurant.find_or_create_by(name: "Beanstalk Cafe",
-                  description: "Minimalist Cafe Serving Focused Meals",
-                  address: "724 Bush St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94108",
-                  lat: "37.790279",
-                  lng: "-122.409319",
-                  phone_number: "(415) 576-1966")
+r12 = Restaurant.where(phone_number: "(415) 576-1966").first_or_create do |r|
+        r.name = "Beanstalk Cafe"
+        r.description = "Minimalist Cafe Serving Focused Meals"
+        r.address = "724 Bush St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94108"
+        r.lat = 37.790279
+        r.lng = -122.409319
+      end
 
-r13 = Restaurant.find_or_create_by(name: "Big Chef Tom's Belly Burgers",
-                  description: "Fast, Fresh, and Tasty Sandwiches & Salads",
-                  address: "1550 Howard St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94103",
-                  lat: "37.772511",
-                  lng: "-122.416605",
-                  phone_number: "(415) 513-1331",
-                  url: "http://www.bctbellyburgers.com")
+r13 = Restaurant.where(phone_number: "(415) 513-1331").first_or_create do |r|
+        r.name = "Big Chef Tom's Belly Burgers"
+        r.description = "Fast, Fresh, and Tasty Sandwiches & Salads"
+        r.address = "1550 Howard St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94103"
+        r.lat = 37.772511
+        r.lng = -122.416605
+        r.url = "http://www.bctbellyburgers.com"
+      end
 
-r14 = Restaurant.find_or_create_by(name: "Blackwood",
-                  description: "American Thai Fusion",
-                  address: "2150 Chestnut St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94123",
-                  lat: "37.800768",
-                  lng: "-122.438953",
-                  phone_number: "(415) 931-9663",
-                  url: "http://blackwoodsf.com")
+r14 = Restaurant.where(phone_number: "(415) 931-9663").first_or_create do |r|
+        r.name = "Blackwood"
+        r.description = "American Thai Fusion"
+        r.address = "2150 Chestnut St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94123"
+        r.lat = 37.800768
+        r.lng = -122.438953
+        r.url = "http://blackwoodsf.com"
+      end
 
-r15 = Restaurant.find_or_create_by(name: "Bocadillos",
-                  description: "San Francisco meets San Sebastian - Tapas",
-                  address: "710 Montgomery St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94111",
-                  lat: "37.795955",
-                  lng: "-122.403246",
-                  phone_number: "(415) 982-2622",
-                  url: "http://bocasf.com")
+r15 = Restaurant.where(phone_number: "(415) 982-2622").first_or_create do |r|
+        r.name = "Bocadillos"
+        r.description = "San Francisco meets San Sebastian - Tapas"
+        r.address = "710 Montgomery St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94111"
+        r.lat = 37.795955
+        r.lng = -122.403246
+        r.url = "http://bocasf.com"
+      end
 
-r16 = Restaurant.find_or_create_by(name: "Brenda's French Soul Food",
-                  description: "Kickin' It Creole",
-                  address: "652 Polk St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94102",
-                  lat: "37.782912",
-                  lng: "-122.419015",
-                  phone_number: "(415) 345-8100",
-                  url: "http://frenchsoulfood.com")
+r16 = Restaurant.where(phone_number: "(415) 345-8100").first_or_create do |r|
+        r.name = "Brenda's French Soul Food"
+        r.description = "Kickin' It Creole"
+        r.address = "652 Polk St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94102"
+        r.lat = 37.782912
+        r.lng = -122.419015
+        r.url = "http://frenchsoulfood.com"
+      end
 
-r17 = Restaurant.find_or_create_by(name: "Brenda's Meat and Three",
-                  description: "Country Cooking Brenda's Style",
-                  address: "919 Divisadero St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94115",
-                  lat: "37.778173",
-                  lng: "-122.438702",
-                  phone_number: "(415) 926-8657",
-                  url: "http://brendasmeatandthree.com")
+r17 = Restaurant.where(phone_number: "(415) 926-8657").first_or_create do |r|
+        r.name = "Brenda's Meat and Three"
+        r.description = "Country Cooking Brenda's Style"
+        r.address = "919 Divisadero St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94115"
+        r.lat = 37.778173
+        r.lng = -122.438702
+        r.url = "http://brendasmeatandthree.com"
+      end
 
-r18 = Restaurant.find_or_create_by(name: "Caffe Fiore",
-                  description: "Exquisite Italian",
-                  address: "3599 24th St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.751871",
-                  lng: "-122.422663",
-                  phone_number: "(415) 642-4822",
-                  url: "http://caffefioresf.com")
+r18 = Restaurant.where(phone_number: "(415) 642-4822").first_or_create do |r|
+        r.name = "Caffe Fiore"
+        r.description = "Exquisite Italian"
+        r.address = "3599 24th St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.751871
+        r.lng = -122.422663
+        r.url = "http://caffefioresf.com"
+      end
 
-r19 = Restaurant.find_or_create_by(name: "Calibur",
-                  description: "Like Burgers...... Love Calibur!",
-                  address: "68 W Portal Ave",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94127",
-                  lat: "37.740173",
-                  lng: "-122.466823",
-                  phone_number: "(415) 742-4931",
-                  url: "http://calibursf.com")
+r19 = Restaurant.where(phone_number: "(415) 742-4931").first_or_create do |r|
+        r.name = "Calibur"
+        r.description = "Like Burgers...... Love Calibur!"
+        r.address = "68 W Portal Ave"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94127"
+        r.lat = 37.740173
+        r.lng = -122.466823
+        r.url = "http://calibursf.com"
+      end
 
-r20 = Restaurant.find_or_create_by(name: "Capo's",
-                  description: "Chicago Pizza & Fine Italian Dinners",
-                  address: "641 Vallejo St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94123",
-                  lat: "37.798516",
-                  lng: "-122.408415",
-                  phone_number: "(415) 986-8998",
-                  url: "http://sfcapos.com")
+r20 = Restaurant.where(phone_number: "(415) 986-8998").first_or_create do |r|
+        r.name = "Capo's"
+        r.description = "Chicago Pizza & Fine Italian Dinners"
+        r.address = "641 Vallejo St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94123"
+        r.lat = 37.798516
+        r.lng = -122.408415
+        r.url = "http://sfcapos.com"
+      end
 
-r21 = Restaurant.find_or_create_by(name: "Causwells",
-                  description: "An American Bistro",
-                  address: "2346 Chestnut St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94123",
-                  lat: "37.800250",
-                  lng: "-122.441998",
-                  phone_number: "(415) 447-6081",
-                  url: "http://causwells.com")
+r21 = Restaurant.where(phone_number: "(415) 447-6081").first_or_create do |r|
+        r.name = "Causwells"
+        r.description = "An American Bistro"
+        r.address = "2346 Chestnut St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94123"
+        r.lat = 37.800250
+        r.lng = -122.441998
+        r.url = "http://causwells.com"
+      end
 
-r22 = Restaurant.find_or_create_by(name: "Chile Pies Baking Co.",
-                  description: "Sweet & Savory Pies, Stews, and Salads",
-                  address: "601 Baker St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94117",
-                  lat: "37.776582",
-                  lng: "-122.441766",
-                  phone_number: "(415) 614-9411",
-                  url: "http://greenchilekitchen.com")
+r22 = Restaurant.where(phone_number: "(415) 614-9411").first_or_create do |r|
+        r.name = "Chile Pies Baking Co."
+        r.description = "Sweet & Savory Pies, Stews, and Salads"
+        r.address = "601 Baker St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94117"
+        r.lat = 37.776582
+        r.lng = -122.441766
+        r.url = "http://greenchilekitchen.com"
+      end
 
-r23 = Restaurant.find_or_create_by(name: "Chow",
-                  description: "Here to Feed You",
-                  address: "215 Church St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94114",
-                  lat: "37.767197",
-                  lng: "-122.428593",
-                  phone_number: "(415) 552-2469",
-                  url: "http://chowfoodbar.com")
+r23 = Restaurant.where(phone_number: "(415) 552-2469").first_or_create do |r|
+        r.name = "Chow"
+        r.description = "Here to Feed You"
+        r.address = "215 Church St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94114"
+        r.lat = 37.767197
+        r.lng = -122.428593
+        r.url = "http://chowfoodbar.com"
+      end
 
-r24 = Restaurant.find_or_create_by(name: "Chubby Noodle - Marina",
-                  description: "Happy Inside",
-                  address: "2205 Lombard St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94123",
-                  lat: "37.799420",
-                  lng: "-122.437986",
-                  phone_number: "(415) 655-3335",
-                  url: "http://chubbynoodle.com")
+r24 = Restaurant.where(phone_number: "(415) 655-3335").first_or_create do |r|
+        r.name = "Chubby Noodle - Marina"
+        r.description = "Happy Inside"
+        r.address = "2205 Lombard St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94123"
+        r.lat = 37.799420
+        r.lng = -122.437986
+        r.url = "http://chubbynoodle.com"
+      end
 
-r25 = Restaurant.find_or_create_by(name: "Cinderella Bakery and Cafe",
-                  description: "Authentic Russian",
-                  address: "436 Balboa St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94118",
-                  lat: "37.777400",
-                  lng: "-122.463638",
-                  phone_number: "(415) 751-9690",
-                  url: "http://cinderellabakery.com")
+r25 = Restaurant.where(phone_number: "(415) 751-9690").first_or_create do |r|
+        r.name = "Cinderella Bakery and Cafe"
+        r.description = "Authentic Russian"
+        r.address = "436 Balboa St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94118"
+        r.lat = 37.777400
+        r.lng = -122.463638
+        r.url = "http://cinderellabakery.com"
+      end
 
-r26 = Restaurant.find_or_create_by(name: "CookieLove",
-                  description: "Flour - Sugar - Soul",
-                  address: "1488 Pine St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94109",
-                  lat: "37.789807",
-                  lng: "-122.420162",
-                  phone_number: "(415) 829-7449",
-                  url: "http://cookielovesf.com")
+r26 = Restaurant.where(phone_number: "(415) 829-7449").first_or_create do |r|
+        r.name = "CookieLove"
+        r.description = "Flour - Sugar - Soul"
+        r.address = "1488 Pine St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94109"
+        r.lat = 37.789807
+        r.lng = -122.420162
+        r.url = "http://cookielovesf.com"
+      end
 
-r27 = Restaurant.find_or_create_by(name: "Craftsman & Wolves",
-                  description: "A Contemporary Patisserie",
-                  address: "746 Valencia St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.760932",
-                  lng: "-122.421772",
-                  phone_number: "(415) 913-7713",
-                  url: "http://craftsman-wolves.com")
+r27 = Restaurant.where(phone_number: "(415) 913-7713").first_or_create do |r|
+        r.name = "Craftsman & Wolves"
+        r.description = "A Contemporary Patisserie"
+        r.address = "746 Valencia St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.760932
+        r.lng = -122.421772
+        r.url = "http://craftsman-wolves.com"
+      end
 
-r28 = Restaurant.find_or_create_by(name: "Crepe Cone",
-                  description: "Sophie's Crepes Little Sister",
-                  address: "684 King St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94107",
-                  lat: "37.770208",
-                  lng: "-122.402230",
-                  phone_number: "(415) 795-1331",
-                  url: "http://crepe-cone.com")
+r28 = Restaurant.where(phone_number: "(415) 795-1331").first_or_create do |r|
+        r.name = "Crepe Cone"
+        r.description = "Sophie's Crepes Little Sister"
+        r.address = "684 King St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94107"
+        r.lat = 37.770208
+        r.lng = -122.402230
+        r.url = "http://crepe-cone.com"
+      end
 
-r29 = Restaurant.find_or_create_by(name: "Crepe La Vie",
-                  description: "Traditional French Crepes Made Gluten Free",
-                  address: "1727 Haight St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94117",
-                  lat: "37.769288",
-                  lng: "-122.451211",
-                  phone_number: "(415) 508-6756",
-                  url: "http://crepelavie.com")
+r29 = Restaurant.where(phone_number: "(415) 508-6756").first_or_create do |r|
+        r.name = "Crepe La Vie"
+        r.description = "Traditional French Crepes Made Gluten Free"
+        r.address = "1727 Haight St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94117"
+        r.lat = 37.769288
+        r.lng = -122.451211
+        r.url = "http://crepelavie.com"
+      end
 
-r30 = Restaurant.find_or_create_by(name: "Curry Up Now SF",
-                  description: "Indian Street Food",
-                  address: "225 Bush St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94104",
-                  lat: "37.790841",
-                  lng: "-122.401280",
-                  phone_number: "(415) 735-3667",
-                  url: "http://curryupnow.com")
+r30 = Restaurant.where(phone_number: "(415) 735-3667").first_or_create do |r|
+        r.name = "Curry Up Now SF"
+        r.description = "Indian Street Food"
+        r.address = "225 Bush St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94104"
+        r.lat = 37.790841
+        r.lng = -122.401280
+        r.url = "http://curryupnow.com"
+      end
 
-r31 = Restaurant.find_or_create_by(name: "Cybelle's Pizza & Ice Cream",
-                  description: "New York Style, Homemade Gourmet Pizza",
-                  address: "1000 Bush St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94109",
-                  lat: "37.789682",
-                  lng: "-122.414021",
-                  phone_number: "(415) 885-6830",
-                  url: "http://yourcybellespizza.com")
+r31 = Restaurant.where(phone_number: "(415) 885-6830").first_or_create do |r|
+        r.name = "Cybelle's Pizza & Ice Cream"
+        r.description = "New York Style, Homemade Gourmet Pizza"
+        r.address = "1000 Bush St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94109"
+        r.lat = 37.789682
+        r.lng = -122.414021
+        r.url = "http://yourcybellespizza.com"
+      end
 
-r32 = Restaurant.find_or_create_by(name: "Delfina",
-                  description: "Bustling Neighborhood Trattoria",
-                  address: "3621 18th St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.761357",
-                  lng: "-122.424377",
-                  phone_number: "(415) 552-4055",
-                  url: "http://delfinasf.com/restaurant")
+r32 = Restaurant.where(phone_number: "(415) 552-4055").first_or_create do |r|
+        r.name = "Delfina"
+        r.description = "Bustling Neighborhood Trattoria"
+        r.address = "3621 18th St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.761357
+        r.lng = -122.424377
+        r.url = "http://delfinasf.com/restaurant"
+      end
 
-r33 = Restaurant.find_or_create_by(name: "Delica",
-                  description: "Bento Up Your Life",
-                  address: "1 Ferry Bldg, Shop 45",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94111",
-                  lat: "37.795792",
-                  lng: "-122.393393",
-                  phone_number: "(415) 834-0344",
-                  url: "http://delicasf.com")
+r33 = Restaurant.where(phone_number: "(415) 834-0344").first_or_create do |r|
+        r.name = "Delica"
+        r.description = "Bento Up Your Life"
+        r.address = "1 Ferry Bldg, Shop 45"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94111"
+        r.lat = 37.795792
+        r.lng = -122.393393
+        r.url = "http://delicasf.com"
+      end
 
-r34 = Restaurant.find_or_create_by(name: "Destino",
-                  description: "Latin American Small Plates",
-                  address: "1815 Market St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94103",
-                  lat: "37.771255",
-                  lng: "-122.423776",
-                  phone_number: "(415) 552-4451",
-                  url: "http://destinosf.com")
+r34 = Restaurant.where(phone_number: "(415) 552-4451").first_or_create do |r|
+        r.name = "Destino"
+        r.description = "Latin American Small Plates"
+        r.address = "1815 Market St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94103"
+        r.lat = 37.771255
+        r.lng = -122.423776
+        r.url = "http://destinosf.com"
+      end
 
-r35 = Restaurant.find_or_create_by(name: "Doc Ricketts",
-                  description: "Creative, Refined and Approachable Northern California Cuisine",
-                  address: "124 Columbus Ave",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94133",
-                  lat: "37.796786",
-                  lng: "-122.404800",
-                  phone_number: "(415) 649-6191",
-                  url: "http://docrickettssf.com")
+r35 = Restaurant.where(phone_number: "(415) 649-6191").first_or_create do |r|
+        r.name = "Doc Ricketts"
+        r.description = "Creative, Refined and Approachable Northern California Cuisine"
+        r.address = "124 Columbus Ave"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94133"
+        r.lat = 37.796786
+        r.lng = -122.404800
+        r.url = "http://docrickettssf.com"
+      end
 
-r36 = Restaurant.find_or_create_by(name: "Don Pistos",
-                  description: "Amazing!",
-                  address: "510 Union St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94133",
-                  lat: "37.800732",
-                  lng: "-122.407929",
-                  phone_number: "(415) 395-0939",
-                  url: "http://donpistos.com")
+r36 = Restaurant.where(phone_number: "(415) 395-0939").first_or_create do |r|
+        r.name = "Don Pistos"
+        r.description = "Amazing!"
+        r.address = "510 Union St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94133"
+        r.lat = 37.800732
+        r.lng = -122.407929
+        r.url = "http://donpistos.com"
+      end
 
-r37 = Restaurant.find_or_create_by(name: "DOSA on Fillmore",
-                  description: "South Indian Cuisine",
-                  address: "1700 Fillmore St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94115",
-                  lat: "37.785370",
-                  lng: "-122.432850",
-                  phone_number: "(415) 441-3672",
-                  url: "http://dosasf.com")
+r37 = Restaurant.where(phone_number: "(415) 441-3672").first_or_create do |r|
+        r.name = "DOSA on Fillmore"
+        r.description = "South Indian Cuisine"
+        r.address = "1700 Fillmore St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94115"
+        r.lat = 37.785370
+        r.lng = -122.432850
+        r.url = "http://dosasf.com"
+      end
 
-r38 = Restaurant.find_or_create_by(name: "Emmy's Spaghetti Shack",
-                  description: "Keep it Simple, Spaghetti",
-                  address: "3230 Mission St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.744997",
-                  lng: "-122.420401",
-                  phone_number: "(415) 206-2086",
-                  url: "http://emmysspaghettishack.com")
+r38 = Restaurant.where(phone_number: "(415) 206-2086").first_or_create do |r|
+        r.name = "Emmy's Spaghetti Shack"
+        r.description = "Keep it Simple, Spaghetti"
+        r.address = "3230 Mission St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.744997
+        r.lng = -122.420401
+        r.url = "http://emmysspaghettishack.com"
+      end
 
-r39 = Restaurant.find_or_create_by(name: "Farmhouse Kitchen Thai Cuisine",
-                  description: "Classic Curries & Noodles, Plus Rare Thai Street Foods",
-                  address: "710 Florida St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.760218",
-                  lng: "-122.411286",
-                  phone_number: "(415) 814-2920",
-                  url: "http://farmhousesf.com")
+r39 = Restaurant.where(phone_number: "(415) 814-2920").first_or_create do |r|
+        r.name = "Farmhouse Kitchen Thai Cuisine"
+        r.description = "Classic Curries & Noodles, Plus Rare Thai Street Foods"
+        r.address = "710 Florida St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.760218
+        r.lng = -122.411286
+        r.url = "http://farmhousesf.com"
+      end
 
-r40 = Restaurant.find_or_create_by(name: "Fine & Rare",
-                  description: "Fresh American Classics",
-                  address: "555 Golden Gate Ave",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94102",
-                  lat: "37.780979",
-                  lng: "-122.419607",
-                  phone_number: "(415) 297-3980",
-                  url: "http://fandrsf.com")
+r40 = Restaurant.where(phone_number: "(415) 297-3980").first_or_create do |r|
+        r.name = "Fine & Rare"
+        r.description = "Fresh American Classics"
+        r.address = "555 Golden Gate Ave"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94102"
+        r.lat = 37.780979
+        r.lng = -122.419607
+        r.url = "http://fandrsf.com"
+      end
 
-r41 = Restaurant.find_or_create_by(name: "Fresca - West Portal",
-                  description: "Peruvian Kitchen",
-                  address: "24 W Portal Ave",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94127",
-                  lat: "37.740704",
-                  lng: "-122.466422",
-                  phone_number: "(415) 759-8087",
-                  url: "http://frescasf.com")
+r41 = Restaurant.where(phone_number: "(415) 759-8087").first_or_create do |r|
+        r.name = "Fresca - West Portal"
+        r.description = "Peruvian Kitchen"
+        r.address = "24 W Portal Ave"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94127"
+        r.lat = 37.740704
+        r.lng = -122.466422
+        r.url = "http://frescasf.com"
+      end
 
-r42 = Restaurant.find_or_create_by(name: "Freshroll SOMA",
-                  description: "Vietnamese Rolls & Bowls",
-                  address: "157 4th St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94103",
-                  lat: "37.784060",
-                  lng: "-122.403158",
-                  phone_number: "(415) 348-1858",
-                  url: "http://eatatfreshroll.com")
+r42 = Restaurant.where(phone_number: "(415) 348-1858").first_or_create do |r|
+        r.name = "Freshroll SOMA"
+        r.description = "Vietnamese Rolls & Bowls"
+        r.address = "157 4th St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94103"
+        r.lat = 37.784060
+        r.lng = -122.403158
+        r.url = "http://eatatfreshroll.com"
+      end
 
-r43 = Restaurant.find_or_create_by(name: "Gilberth's Rotisserie & Grill",
-                  description: "Latin Cuisine meets Urban Chic",
-                  address: "2427 3rd St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94107",
-                  lat: "37.758798",
-                  lng: "-122.388122",
-                  phone_number: "(415) 913-7163",
-                  url: "http://gilberths.com")
+r43 = Restaurant.where(phone_number: "(415) 913-7163").first_or_create do |r|
+        r.name = "Gilberth's Rotisserie & Grill"
+        r.description = "Latin Cuisine meets Urban Chic"
+        r.address = "2427 3rd St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94107"
+        r.lat = 37.758798
+        r.lng = -122.388122
+        r.url = "http://gilberths.com"
+      end
 
-r44 = Restaurant.find_or_create_by(name: "Glaze Teriyaki Grill - Fillmore",
-                  description: "Seattle Style Teriyaki",
-                  address: "1946 Fillmore St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94115",
-                  lat: "37.787866",
-                  lng: "-122.433473",
-                  phone_number: "(415) 590-2199",
-                  url: "http://glazeteriyaki.com/order")
+r44 = Restaurant.where(phone_number: "(415) 590-2199").first_or_create do |r|
+        r.name = "Glaze Teriyaki Grill - Fillmore"
+        r.description = "Seattle Style Teriyaki"
+        r.address = "1946 Fillmore St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94115"
+        r.lat = 37.787866
+        r.lng = -122.433473
+        r.url = "http://glazeteriyaki.com/order"
+      end
 
-r45 = Restaurant.find_or_create_by(name: "Gracias Madre",
-                  description: "Our Mission is Love",
-                  address: "2211 Mission St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.761572",
-                  lng: "-122.419080",
-                  phone_number: "(415) 683-1346",
-                  url: "http://gracias-madre.com")
+r45 = Restaurant.where(phone_number: "(415) 683-1346").first_or_create do |r|
+        r.name = "Gracias Madre"
+        r.description = "Our Mission is Love"
+        r.address = "2211 Mission St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.761572
+        r.lng = -122.419080
+        r.url = "http://gracias-madre.com"
+      end
 
-r46 = Restaurant.find_or_create_by(name: "Greens",
-                  description: "A Vegetarian Institution",
-                  address: "Fort Mason, Bldg A",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94123",
-                  lat: "37.807608",
-                  lng: "-122.428232",
-                  phone_number: "(415) 771-6222",
-                  url: "http://greensrestaurant.com")
+r46 = Restaurant.where(phone_number: "(415) 771-6222").first_or_create do |r|
+        r.name = "Greens"
+        r.description = "A Vegetarian Institution"
+        r.address = "Fort Mason, Bldg A"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94123"
+        r.lat = 37.807608
+        r.lng = -122.428232
+        r.url = "http://greensrestaurant.com"
+      end
 
-r47 = Restaurant.find_or_create_by(name: "Grindz",
-                  description: "Get Your Hawaiian Fix!",
-                  address: "832 Clement St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94118",
-                  lat: "37.782926",
-                  lng: "-122.468269",
-                  phone_number: "(415) 221-4746",
-                  url: "http://grindzrestaurant.com")
+r47 = Restaurant.where(phone_number: "(415) 221-4746").first_or_create do |r|
+        r.name = "Grindz"
+        r.description = "Get Your Hawaiian Fix!"
+        r.address = "832 Clement St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94118"
+        r.lat = 37.782926
+        r.lng = -122.468269
+        r.url = "http://grindzrestaurant.com"
+      end
 
-r48 = Restaurant.find_or_create_by(name: "Hard Knox Cafe",
-                  description: "SoCo for the Soul",
-                  address: "2526 3rd St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94107",
-                  lat: "37.757529",
-                  lng: "-122.388523",
-                  phone_number: "(415) 648-3770",
-                  url: "http://hardknoxcafe.com")
+r48 = Restaurant.where(phone_number: "(415) 648-3770").first_or_create do |r|
+        r.name = "Hard Knox Cafe"
+        r.description = "SoCo for the Soul"
+        r.address = "2526 3rd St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94107"
+        r.lat = 37.757529
+        r.lng = -122.388523
+        r.url = "http://hardknoxcafe.com"
+      end
 
-r49 = Restaurant.find_or_create_by(name: "Hoffmann's Grill and Rotisserie",
-                  description: "Wholesome, Honest Cuisine",
-                  address: "1000 Guerrero St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.755007",
-                  lng: "-122.423404",
-                  phone_number: "(415) 374-7479",
-                  url: "http://hoffmannsgrill.com")
+r49 = Restaurant.where(phone_number: "(415) 374-7479").first_or_create do |r|
+        r.name = "Hoffmann's Grill and Rotisserie"
+        r.description = "Wholesome, Honest Cuisine"
+        r.address = "1000 Guerrero St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.755007
+        r.lng = -122.423404
+        r.url = "http://hoffmannsgrill.com"
+      end
 
-r50 = Restaurant.find_or_create_by(name: "Humphry Slocombe - Mission",
-                  description: "Ice Cream with Attitude",
-                  address: "2790A Harrison St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94110",
-                  lat: "37.752805",
-                  lng: "-122.411931",
-                  phone_number: "(415) 550-6971",
-                  url: "http://humphryslocombe.com")
+r50 = Restaurant.where(phone_number: "(415) 550-6971").first_or_create do |r|
+        r.name = "Humphry Slocombe - Mission"
+        r.description = "Ice Cream with Attitude"
+        r.address = "2790A Harrison St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94110"
+        r.lat = 37.752805
+        r.lng = -122.411931
+        r.url = "http://humphryslocombe.com"
+      end
 
-r51 = Restaurant.find_or_create_by(name: "Ike's Place - Castro",
-                  description: "Everything is Better with Dirty Sauce",
-                  address: "3489 16th St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94114",
-                  lat: "37.764270",
-                  lng: "-122.430571",
-                  phone_number: "(415) 553-6888",
-                  url: "http://ilikeikesplace.com")
+r51 = Restaurant.where(phone_number: "(415) 553-6888").first_or_create do |r|
+        r.name = "Ike's Place - Castro"
+        r.description = "Everything is Better with Dirty Sauce"
+        r.address = "3489 16th St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94114"
+        r.lat = 37.764270
+        r.lng = -122.430571
+        r.url = "http://ilikeikesplace.com"
+      end
 
-r52 = Restaurant.find_or_create_by(name: "il Cane Rosso",
-                  description: "Locavore Focused Artistry",
-                  address: "1 Ferry Bldg Ste 41",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94111",
-                  lat: "37.795580",
-                  lng: "-122.393411",
-                  phone_number: "(415) 391-7599",
-                  url: "http://canerossosf.com")
+r52 = Restaurant.where(phone_number: "(415) 391-7599").first_or_create do |r|
+        r.name = "il Cane Rosso"
+        r.description = "Locavore Focused Artistry"
+        r.address = "1 Ferry Bldg Ste 41"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94111"
+        r.lat = 37.795580
+        r.lng = -122.393411
+        r.url = "http://canerossosf.com"
+      end
 
-r53 = Restaurant.find_or_create_by(name: "il Casaro Pizzeria and Mozzarella Bar",
-                  description: "Wood Fired Pizza Perfection",
-                  address: "348 Columbus Ave",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94133",
-                  lat: "37.798495",
-                  lng: "-122.407321",
-                  phone_number: "(415) 677-9455",
-                  url: "http://ilcasarosf.com")
+r53 = Restaurant.where(phone_number: "(415) 677-9455").first_or_create do |r|
+        r.name = "il Casaro Pizzeria and Mozzarella Bar"
+        r.description = "Wood Fired Pizza Perfection"
+        r.address = "348 Columbus Ave"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94133"
+        r.lat = 37.798495
+        r.lng = -122.407321
+        r.url = "http://ilcasarosf.com"
+      end
 
-r54 = Restaurant.find_or_create_by(name: "Isa",
-                  description: "California French",
-                  address: "3324 Steiner St",
-                  city: "San Francisco",
-                  state: "CA",
-                  zip_code: "94123",
-                  lat: "37.800097",
-                  lng: "-122.437570",
-                  phone_number: "(415) 567-9588",
-                  url: "http://isarestaurant.com")
+r54 = Restaurant.where(phone_number: "(415) 567-9588").first_or_create do |r|
+        r.name = "Isa"
+        r.description = "California French"
+        r.address = "3324 Steiner St"
+        r.city = "San Francisco"
+        r.state = "CA"
+        r.zip_code = "94123"
+        r.lat = 37.800097
+        r.lng = -122.437570
+        r.url = "http://isarestaurant.com"
+      end
 
 
 #----Blue Plate---------------------
@@ -819,7 +873,71 @@ f25 = FoodItem.find_or_create_by(
 
 #----The American Grilled Cheese Kitchen---------------------
 
+f26 = FoodItem.find_or_create_by(
+        name: "Kale Slaw (Vegetarian)",
+        price: 5.41,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809158/American%20Grilled%20Cheese/9312.jpg",
+        restaurant_id: r7.id)
 
+f27 = FoodItem.find_or_create_by(
+        name: "Bamboo's Sesame Kale Salad (Vegan)",
+        price: 9.35,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809158/American%20Grilled%20Cheese/40252.jpg",
+        restaurant_id: r7.id)
+
+f28 = FoodItem.find_or_create_by(
+        name: "Classic Shoestring Fries",
+        price: 4.43,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/1146.jpg",
+        restaurant_id: r7.id)
+
+f29 = FoodItem.find_or_create_by(
+        name: "Daily Mac n Cheese",
+        price: 8.36,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/1145.jpg",
+        restaurant_id: r7.id)
+
+f30 = FoodItem.find_or_create_by(
+        name: "Mac n Cheese Grilled Cheese",
+        price: 9.84,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/1132.jpg",
+        restaurant_id: r7.id)
+
+f31 = FoodItem.find_or_create_by(
+        name: "Mushroom Gruyere Grilled Cheese",
+        price: 10.33,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/1134.jpg",
+        restaurant_id: r7.id)
+
+f32 = FoodItem.find_or_create_by(
+        name: "Jalapeno Popper Grilled Cheese",
+        price: 8.86,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/1135.jpg",
+        restaurant_id: r7.id)
+
+f33 = FoodItem.find_or_create_by(
+        name: "Club Turkey Grilled Cheese",
+        price: 9.84,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/1136.jpg",
+        restaurant_id: r7.id)
+
+f34 = FoodItem.find_or_create_by(
+        name: "Chicken n Biscuits",
+        price: 13.28,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/6013.jpg",
+        restaurant_id: r7.id)
+
+f35 = FoodItem.find_or_create_by(
+        name: "Pulled Pork Sandwich",
+        price: 14.27,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809157/American%20Grilled%20Cheese/6014.jpg",
+        restaurant_id: r7.id)
+
+f36 = FoodItem.find_or_create_by(
+        name: "All American Burger",
+        price: 13.77,
+        image_url: "http://res.cloudinary.com/yumblr/image/upload/v1452809158/American%20Grilled%20Cheese/6015.jpg",
+        restaurant_id: r7.id)
 
 
 #----Baan Restaurant & Wine Bar---------------------
@@ -935,7 +1053,7 @@ restaurantcuisines = [
   {restaurant_id: r6.id, cuisine_id: c7.id}
 ]
 
-foodcategories.each do |rc|
+restaurantcuisines.each do |rc|
   RestaurantCuisine.find_or_create_by(rc)
 end
 
@@ -980,7 +1098,26 @@ foodcategories = [
   {food_item_id: f24.id, category_id: salad.id},
   {food_item_id: f24.id, category_id: vegetarian.id},
   {food_item_id: f25.id, category_id: salad.id},
-  {food_item_id: f25.id, category_id: vegetarian.id}
+  {food_item_id: f25.id, category_id: vegetarian.id},
+  {food_item_id: f26.id, category_id: vegetarian.id},
+  {food_item_id: f26.id, category_id: salad.id},
+  {food_item_id: f27.id, category_id: vegetarian.id},
+  {food_item_id: f27.id, category_id: salad.id},
+  {food_item_id: f28.id, category_id: french_fries.id},
+  {food_item_id: f29.id, category_id: macaroni_and_cheese.id},
+  {food_item_id: f29.id, category_id: vegetarian.id},
+  {food_item_id: f30.id, category_id: macaroni_and_cheese.id},
+  {food_item_id: f30.id, category_id: vegetarian.id},
+  {food_item_id: f30.id, category_id: sandwich.id},
+  {food_item_id: f31.id, category_id: vegetarian.id},
+  {food_item_id: f31.id, category_id: sandwich.id},
+  {food_item_id: f32.id, category_id: sandwich.id},
+  {food_item_id: f33.id, category_id: sandwich.id},
+  {food_item_id: f34.id, category_id: chicken.id},
+  {food_item_id: f35.id, category_id: pork.id},
+  {food_item_id: f35.id, category_id: sandwich.id},
+  {food_item_id: f36.id, category_id: beef.id},
+  {food_item_id: f36.id, category_id: hamburger.id}
 ]
 
 foodcategories.each do |fc|

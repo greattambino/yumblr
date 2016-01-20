@@ -6,12 +6,16 @@
 
     getInitialState: function() {
       return ({
-        foodItem: this.getFoodItem(this.props.params.foodItemId)
+        foodItem: this.getFoodItem(this.props.params.foodItemId),
+        fillPercentage: this.getFillPercentage(this.props.params.foodItemId)
       });
     },
 
+    getFillPercentage: function(id){
+      return FilteredFoodItemStore.fillPercentage(parseInt(id));
+    },
+
     getFoodItem: function(id){
-      // return FilteredFoodItemStore.find(parseInt(this.props.params.foodItemId));
       return FilteredFoodItemStore.find(parseInt(id));
     },
 
@@ -20,7 +24,10 @@
     },
 
     _onChange: function () {
-      this.setState({foodItem: this.getFoodItem(this.props.params.foodItemId)});
+      this.setState({
+        foodItem: this.getFoodItem(this.props.params.foodItemId),
+        fillPercentage: this.getFillPercentage(this.props.params.foodItemId)
+      });
     },
 
     _onRefresh: function () {
@@ -34,7 +41,10 @@
     },
 
     componentWillReceiveProps: function (newProps) {
-      this.setState({foodItem: this.getFoodItem(newProps.params.foodItemId)});
+      this.setState({
+        foodItem: this.getFoodItem(newProps.params.foodItemId),
+        fillPercentage: this.getFillPercentage(newProps.params.foodItemId)
+      });
     },
 
     componentWillUnmount: function () {
@@ -46,6 +56,7 @@
       var foodItem;
       var foodItemDetail;
       var likeBtn;
+
       if (typeof this.state.foodItem === "undefined") {
         foodItem = <div>Not Found</div>;
       } else {
@@ -63,6 +74,7 @@
           <div className="food-item-like-btn">
             {likeBtn}
           </div>
+          <ResultsProgressBar fillPercentage={this.state.fillPercentage} />
         </div>
       );
     }

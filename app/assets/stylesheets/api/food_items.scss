@@ -71,3 +71,33 @@
   padding-right: 5px;
   padding-left: 10px;
 }
+
+.tile-progress {
+  background-color: #06776F;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  top: 66px;
+  right: 0;
+}
+
+.tile-progress .tile-progressbar {
+  height: 3px;
+  background: rgba(0,0,0,0.18);
+  margin: 0;
+}
+
+.tile-progress .tile-progressbar span {
+  background: #fff;
+}
+
+.tile-progress .tile-progressbar span {
+  display: block;
+  background: #00cdbe;
+  width: 0;
+  height: 100%;
+  -webkit-transition: all 1.5s cubic-bezier(0.230,1.000,0.320,1.000);
+  -moz-transition: all 1.5s cubic-bezier(0.230,1.000,0.320,1.000);
+  -o-transition: all 1.5s cubic-bezier(0.230,1.000,0.320,1.000);
+  transition: all 1.5s cubic-bezier(0.230,1.000,0.320,1.000);
+}

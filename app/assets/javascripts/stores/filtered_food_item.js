@@ -26,13 +26,12 @@
       return _filteredFoodItem;
     },
 
-    next: function () {
-      if (i + 1 > _filteredFoodItems.length) { i = 0; }
-      // var result = _currentFoodItem;
-      var result = _filteredFoodItems[i];
-      i++;
-
-      return result;
+    fillPercentage: function (id) {
+      for (var i = 0; i < _filteredFoodItems.length; i++) {
+        if (_filteredFoodItems[i].id === id) {
+          return ((i + 1) / _filteredFoodItems.length)*100;
+        }
+      }
     },
 
     find: function (id) {
@@ -42,6 +41,19 @@
       });
 
       return foodItem;
+    },
+
+    next: function () {
+      if (i + 1 > _filteredFoodItems.length) { i = 0; }
+      // var result = _currentFoodItem;
+      var result = _filteredFoodItems[i];
+      i++;
+
+      return result;
+    },
+
+    numResults: function () {
+      return _filteredFoodItems.size;
     },
 
     addChangeListener: function(callback) {

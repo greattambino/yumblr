@@ -13,7 +13,6 @@
                searching: false,
                selectedCuisine: -1,
                cuisines: CuisineStore.all(),
-              //  foodSearchResults: ParamsStore.foodSearchResults()
                foodSearchResults: [],
                categorySearchResults: []
              });
@@ -53,8 +52,10 @@
     },
 
     _onQueryChange: function() {
-      this.setState({ foodSearchResults: ParamsStore.foodSearchResults(),
-                      categorySearchResults: ParamsStore.categorySearchResults() });
+      this.setState({
+        foodSearchResults: ParamsStore.foodSearchResults(),
+        categorySearchResults: ParamsStore.categorySearchResults()
+      });
     },
 
     _onCuisinesChange: function() {
@@ -69,6 +70,10 @@
       } else {
         this.setState({ searchString: e.target.value, searching: false });
       }
+    },
+
+    handleClick: function(e) {
+      this.setState({ searchString: '', searching: false });
     },
 
     updateCuisine: function(e){
@@ -118,6 +123,7 @@
           foodResults={this.state.foodSearchResults}
           categoryResults={this.state.categorySearchResults}
           searching={this.state.searching}
+          onClick={this.handleClick}
         />;
       }
 

@@ -22,7 +22,10 @@
 
     handleCategoryClick: function(id, e){
       e.preventDefault();
-      this.history.pushState(null, "/food_items/" + id.toString());
+      ApiUtil.fetchSingleCategory(id);
+      this.props.onClick();
+      var foodItem = FilteredFoodItemStore.next();
+      this.history.pushState(null, "/food_items/" + foodItem.id);
     },
 
     handleFoodClick: function(id, e){
@@ -40,13 +43,6 @@
     },
 
     render: function () {
-      // var idName = "";
-      // if (this.props.foodResults.length !== 0 &&
-      //     this.props.categoryResults.length !== 0 &&
-      //     this.props.searching) {
-      //   idName = "search-results-panel";
-      // }
-
       return(
         <div id="search-results-panel">
           <ul>

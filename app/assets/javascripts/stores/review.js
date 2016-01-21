@@ -50,7 +50,11 @@
 
     averageScore: function (foodItemId) {
       if (typeof foodItemId !== "undefined") {
-        return (_reviews[foodItemId].totalRating / _reviews[foodItemId].length) || 0.00;
+        if (typeof _reviews[foodItemId] !== "undefined") {
+          return (_reviews[foodItemId].totalRating / _reviews[foodItemId].length);
+        } else {
+          return 0.00;
+        }
       }
     },
 
@@ -69,7 +73,11 @@
 
     reviewCount: function (foodItemId) {
       if (typeof foodItemId !== "undefined") {
-        return _reviews[foodItemId].length || 0;
+        if (typeof _reviews[foodItemId] !== "undefined") {
+          return _reviews[foodItemId].length;
+        } else {
+          return 0;
+        }
       }
     },
 

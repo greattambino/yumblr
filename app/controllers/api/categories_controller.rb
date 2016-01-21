@@ -8,4 +8,9 @@ class Api::CategoriesController < ApplicationController
 
     render :index
   end
+
+  def show
+    @category = Category.find(params[:id])
+    render :show
+  end
 end

@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   has_many :food_categories, dependent: :destroy
   has_many :food_items, through: :food_categories, source: :food_item
+  has_many :restaurants, through: :food_items, source: :restaurant
   before_save :capitalize_category
 
   def self.find_by_substring(str)

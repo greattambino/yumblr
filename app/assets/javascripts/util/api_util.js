@@ -104,6 +104,19 @@ var ApiUtil = {
     navigator.geolocation.getCurrentPosition(this.setLocation);
   },
 
+  fetchSingleCategory: function(id) {
+    $.ajax({
+      url: "api/categories/" + id,
+      success: function(categorySearchResults) {
+        // FilterActions.receiveCategorySearchResults([categorySearchResults]);
+        FilterActions.receiveFilteredFoodItems(categorySearchResults.food_items);
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
+      }
+    });
+  },
+
   fetchSingleRestaurant: function(id) {
     $.ajax({
       url: "api/restaurants/" + id,

@@ -4,6 +4,14 @@
   var SearchResultsPanel = root.SearchResultsPanel = React.createClass({
     mixins: [ReactRouter.History],
 
+    componentDidMount: function () {
+      window.addEventListener('click', this.handleOutsideClick, false);
+    },
+
+    componentWillUnmount: function () {
+      window.removeEventListener('click', this.handleOutsideClick, false);
+    },
+
     categorySearchHeader: function() {
       if (this.props.categoryResults.length > 0) {
         return (
@@ -31,6 +39,13 @@
     handleFoodClick: function(id, e){
       e.preventDefault();
       this.history.pushState(null, "/food_items/" + id.toString());
+    },
+
+    handleOutsideClick: function (e) {
+      e.preventDefault();
+      if (this.props.searching) {
+        this.props.disable();
+      }
     },
 
     noResults: function() {

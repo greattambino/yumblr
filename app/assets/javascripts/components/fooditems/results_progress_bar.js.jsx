@@ -7,11 +7,15 @@
     },
 
     render: function() {
-      var fill = this.props.fillPercentage.toString() + "%";
+      var fill = "100%";
+      if (typeof this.props.fillPercentage !== "undefined") {
+        fill = this.props.fillPercentage.toString() + "%";
+      }
+
       return (
-        <div className="tile-progress">
-    			<div className="tile-progressbar">
-    				<span data-fill="65.5%" style={{ width: fill }}></span>
+        <div className="results-progress">
+    			<div className="results-progressbar">
+    				<span style={{ width: fill }}></span>
     			</div>
     		</div>
       );

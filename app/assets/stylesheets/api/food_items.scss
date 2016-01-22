@@ -72,7 +72,7 @@
   padding-left: 10px;
 }
 
-.tile-progress {
+.results-progress {
   background-color: #06776F;
   color: #fff;
   width: 100%;
@@ -81,17 +81,17 @@
   right: 0;
 }
 
-.tile-progress .tile-progressbar {
+.results-progress .results-progressbar {
   height: 3px;
   background: rgba(0,0,0,0.18);
   margin: 0;
 }
 
-.tile-progress .tile-progressbar span {
+.results-progress .results-progressbar span {
   background: #fff;
 }
 
-.tile-progress .tile-progressbar span {
+.results-progress .results-progressbar span {
   display: block;
   background: #00cdbe;
   width: 0;

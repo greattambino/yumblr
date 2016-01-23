@@ -73,6 +73,7 @@
       } else {
         this.setState({ searchString: query, searching: false });
       }
+      this.setState({ selectedResult: 0 });
     },
 
     handleClick: function(e) {

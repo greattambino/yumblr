@@ -126,23 +126,33 @@
       var selected = this.state.selectedResult,
           index;
 
-      switch (e.which) {
-        case 38:
-          if (selected !== 0) {
-            index = selected - 1;
-            this.setState({ selectedResult: index });
-          }
-          break;
-        case 40:
-          var foodLength = this.state.foodSearchResults.length,
-          categoryLength = this.state.categorySearchResults.length,
-          searchResultsLength = foodLength + categoryLength;
+      if (this.state.searching) {
+        switch (e.which) {
+          case 38:
+            if (selected !== 0) {
+              document.getElementById("search-results-panel").
+                scrollTop = parseInt(
+                  document.getElementsByClassName('selected-result')[0].dataset.index
+                ) * 36;
+              index = selected - 1;
+              this.setState({ selectedResult: index });
+            }
+            break;
+          case 40:
+            var foodLength = this.state.foodSearchResults.length,
+            categoryLength = this.state.categorySearchResults.length,
+            searchResultsLength = foodLength + categoryLength;
 
-          if (selected + 1 < searchResultsLength) {
-            index = selected + 1;
-            this.setState({ selectedResult: index });
-          }
-          break;
+            if (selected + 1 < searchResultsLength) {
+              document.getElementById("search-results-panel").
+                scrollTop = parseInt(
+                  document.getElementsByClassName('selected-result')[0].dataset.index
+                ) * 36;
+              index = selected + 1;
+              this.setState({ selectedResult: index });
+            }
+            break;
+        }
       }
     },
 

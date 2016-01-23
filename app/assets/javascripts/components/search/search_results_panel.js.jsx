@@ -41,6 +41,10 @@
       this.history.pushState(null, "/food_items/" + id.toString());
     },
 
+    handleMouseEnter: function (e) {
+      this.props.handleMouseEnter(e.target.value);
+    },
+
     handleOutsideClick: function (e) {
       e.preventDefault();
       if (this.props.searching) {
@@ -58,25 +62,43 @@
     },
 
     render: function () {
+      var i = -1;
+
       return(
         <div id="search-results-panel">
           <ul>
             {this.categorySearchHeader()}
             {this.props.categoryResults.map(function(result) {
+              i++;
+              var selected = "";
+              if (this.props.selectedResult === i) {
+                selected = "selected-result";
+              }
               return(
                 <li key={result.id}
+                    onMouseEnter={this.props.handleMouseEnter}
                     onClick={this.handleCategoryClick.bind(null, result.id)}
-                    id="search-result">
+                    id="search-result"
+                    data-index={i}
+                    className={selected}>
                   {result.name}
                 </li>
               );
             }.bind(this))}
             {this.foodSearchHeader()}
             {this.props.foodResults.map(function(result) {
+              i++;
+              var selected = "";
+              if (this.props.selectedResult === i) {
+                selected = "selected-result";
+              }
               return(
                 <li key={result.id}
+                    onMouseEnter={this.props.handleMouseEnter}
                     onClick={this.handleFoodClick.bind(null, result.id)}
-                    id="search-result">
+                    id="search-result"
+                    data-index={i}
+                    className={selected}>
                   {result.name}
                 </li>
               );

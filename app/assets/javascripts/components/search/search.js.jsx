@@ -14,7 +14,8 @@
                selectedCuisine: -1,
                cuisines: CuisineStore.all(),
                foodSearchResults: [],
-               categorySearchResults: []
+               categorySearchResults: [],
+               selectedResult: 0
              });
     },
 
@@ -63,12 +64,14 @@
     },
 
     handleChange: function(e) {
-      ApiUtil.fetchFoodSearchResults(e.target.value, this.state.selectedCuisine);
-      ApiUtil.fetchCategorySearchResults(e.target.value);
-      if (e.target.value !== "") {
-        this.setState({ searchString: e.target.value, searching: true });
+      var query = e.target.value;
+
+      ApiUtil.fetchFoodSearchResults(query, this.state.selectedCuisine);
+      ApiUtil.fetchCategorySearchResults(query);
+      if (query !== "") {
+        this.setState({ searchString: query, searching: true });
       } else {
-        this.setState({ searchString: e.target.value, searching: false });
+        this.setState({ searchString: query, searching: false });
       }
     },
 
@@ -76,19 +79,41 @@
       this.setState({ searchString: '', searching: false });
     },
 
+    handleOutsideClick: function(e) {
+      this.setState({ searching: false });
+    },
+
     updateCuisine: function(e){
       this.setState({ selectedCuisine: e.target.value });
-      ApiUtil.fetchFilteredFoodItems(this.state.searchString, e.currentTarget.value);
+      ApiUtil.fetchFilteredFoodItems(
+        this.state.searchString,
+        e.currentTarget.value
+      );
     },
 
     handleSubmit: function(e) {
       e.preventDefault();
-      // this.setState({ foodItemId: foodItem.id });
-      ApiUtil.fetchFilteredFoodItems(this.state.searchString,
-                                     this.state.selectedCuisine,
-                                     ParamsStore.params().location,
-                                     ParamsStore.params().radius);
-      this.setState({ searchString: '', searching: false });
+
+      var searchString = this.state.searchString,
+          cuisine      = this.state.selectedCuisine,
+          location     = ParamsStore.params().location,
+          radius       = ParamsStore.params().radius,
+          results      = this.state.categorySearchResults.
+                           concat(this.state.foodSearchResults),
+          selected     = results[this.state.selectedResult].name;
+
+      ApiUtil.fetchFilteredFoodItems(
+        selected,
+        cuisine,
+        location,
+        radius
+      );
+
+      this.setState({
+        searchString: '',
+        searching: false,
+        selectedResult: 0
+      });
     },
 
     handleGenerate: function(e) {
@@ -97,10 +122,46 @@
       this.setState({ searchString: '', searching: false });
     },
 
+    handleKeyDown: function (e) {
+      var selected = this.state.selectedResult,
+          index;
+
+      switch (e.which) {
+        case 38:
+          if (selected !== 0) {
+            index = selected - 1;
+            this.setState({ selectedResult: index });
+          }
+          break;
+        case 40:
+          var foodLength = this.state.foodSearchResults.length,
+          categoryLength = this.state.categorySearchResults.length,
+          searchResultsLength = foodLength + categoryLength;
+
+          if (selected + 1 < searchResultsLength) {
+            index = selected + 1;
+            this.setState({ selectedResult: index });
+          }
+          break;
+      }
+    },
+
     tooltipEntered: function() {
       setTimeout(function(){
         $('.tooltip').tooltip('hide');
       }, 2000);
+    },
+
+    updateSelectedResult: function (e) {
+      var results = this.state.categorySearchResults.
+            concat(this.state.foodSearchResults),
+          selected = results[this.state.selectedResult].name;
+
+      for (var i = 0; i < results.length; i++) {
+        if (e.target.innerHTML === results[i].name) {
+          this.setState({ selectedResult: i });
+        }
+      }
     },
 
     render: function() {
@@ -124,7 +185,9 @@
           categoryResults={this.state.categorySearchResults}
           searching={this.state.searching}
           onClick={this.handleClick}
-        />;
+          disable={this.handleOutsideClick}
+          selectedResult={this.state.selectedResult}
+          handleMouseEnter={this.updateSelectedResult} />;
       }
 
       return(
@@ -172,7 +235,8 @@
                          className="search-input form-control"
                          placeholder="Everything"
                          name="searchQuery"
-                         value={this.state.searchString} />
+                         value={this.state.searchString}
+                         onKeyDown={this.handleKeyDown} />
                  </span>
                </OverlayTrigger>
             </div>

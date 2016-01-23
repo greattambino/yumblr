@@ -67,7 +67,8 @@
             </p>
           </ul>
         );
-        center = { left: '1.5em' };
+        center = { left: '3%' };
+        // center = { left: '1.5em' };
       }
 
       return(

@@ -130,11 +130,9 @@
         switch (e.which) {
           case 38:
             if (selected !== 0) {
-              document.getElementById("search-results-panel").
-                scrollTop = parseInt(
-                  document.getElementsByClassName('selected-result')[0].dataset.index
-                ) * 36;
               index = selected - 1;
+              document.getElementById("search-results-panel").
+                scrollTop = index * 36;
               this.setState({ selectedResult: index });
             }
             break;
@@ -144,11 +142,9 @@
             searchResultsLength = foodLength + categoryLength;
 
             if (selected + 1 < searchResultsLength) {
-              document.getElementById("search-results-panel").
-                scrollTop = parseInt(
-                  document.getElementsByClassName('selected-result')[0].dataset.index
-                ) * 36;
               index = selected + 1;
+              document.getElementById("search-results-panel").
+                scrollTop = index * 36;
               this.setState({ selectedResult: index });
             }
             break;

@@ -6,7 +6,9 @@ class Category < ActiveRecord::Base
   before_save :capitalize_category
 
   def self.find_by_substring(str)
-    Category.includes(:food_items).where("LOWER(name) LIKE '%#{str.downcase}%'")
+    Category
+      .includes(:food_items, :restaurants)
+      .where("LOWER(categories.name) LIKE '%#{str.downcase}%'")
   end
 
   def self.any_results?(str)

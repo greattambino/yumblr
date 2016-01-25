@@ -104,6 +104,29 @@ var ApiUtil = {
     navigator.geolocation.getCurrentPosition(this.setLocation);
   },
 
+  fetchSingleAndRecommendedFoodItems: function(id) {
+    $.ajax({
+      url: "api/food_items/" + id,
+      success: function(foodItem) {
+        FilterActions.receiveFilteredFoodItem(foodItem);
+        foodItem.categories.map(function(category) {
+          $.ajax({
+            url: "api/categories/" + category.id,
+            success: function(categoryResult) {
+              FilterActions.receiveRecommendedFoodItems(categoryResult.food_items);
+            },
+            error: function(errors) {
+              ApiActions.receiveErrors(errors.responseJSON);
+            }
+          });
+        });
+      },
+      error: function(errors) {
+        ApiActions.receiveErrors(errors.responseJSON);
+      }
+    });
+  },
+
   fetchSingleCategory: function(id) {
     $.ajax({
       url: "api/categories/" + id,

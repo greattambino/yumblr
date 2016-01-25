@@ -38,6 +38,7 @@
 
     handleFoodClick: function(id, e){
       e.preventDefault();
+      ApiUtil.fetchSingleAndRecommendedFoodItems(id);
       this.history.pushState(null, "/food_items/" + id.toString());
     },
 

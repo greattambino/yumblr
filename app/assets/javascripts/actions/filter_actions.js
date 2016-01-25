@@ -30,7 +30,7 @@
         location: location
       });
     },
-    
+
     receiveQueryResults: function(foodSearchResults) {
       AppDispatcher.dispatch({
         actionType: FilterConstants.FOOD_SEARCH_RESULTS_RECEIVED,
@@ -42,6 +42,13 @@
       AppDispatcher.dispatch({
         actionType: FilterConstants.RADIUS_RECEIVED,
         radius: radius
+      });
+    },
+
+    receiveRecommendedFoodItems: function (recommendedFoodItems) {
+      AppDispatcher.dispatch({
+        actionType: FilterConstants.RECOMMENDED_FOOD_ITEMS_RECEIVED,
+        recommendedFoodItems: recommendedFoodItems
       });
     }
   };

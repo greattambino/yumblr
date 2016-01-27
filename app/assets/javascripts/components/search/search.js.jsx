@@ -38,13 +38,19 @@
       ParamsStore.addQueryListener(this._onQueryChange);
       CuisineStore.addChangeListener(this._onCuisinesChange);
       ApiUtil.fetchCuisines();
-      ApiUtil.fetchAllFoodItems();
+      this.getFoodItems();
     },
 
     componentWillUnmount: function() {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
       ParamsStore.removeQueryListener(this._onQueryChange);
       CuisineStore.removeChangeListener(this._onCuisinesChange);
+    },
+
+    getFoodItems: function () {
+      if (FilteredFoodItemStore.all().length === 0) {
+        ApiUtil.fetchAllFoodItems();
+      }
     },
 
     _onChange: function() {

@@ -32,8 +32,6 @@
       e.preventDefault();
       ApiUtil.fetchSingleCategory(id);
       this.props.onClick();
-      var foodItem = FilteredFoodItemStore.next();
-      this.history.pushState(null, "/food_items/" + foodItem.id);
     },
 
     handleFoodClick: function(id, e){

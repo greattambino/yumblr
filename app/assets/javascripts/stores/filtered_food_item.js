@@ -18,15 +18,27 @@
     }
   };
 
-  var resetFilteredFoodItems = function(foodItems) {
-    _filteredFoodItems = foodItems;
-    i = 0;
+  var addSingleFoodItem = function(foodItem) {
+    _filteredFoodItem = foodItem;
+    _filteredFoodItems = [foodItem];
+    _foodIds = [foodItem.id];
   };
 
   var resetFilteredFoodItem = function(foodItem) {
     _filteredFoodItem = foodItem;
-    _filteredFoodItems = [foodItem];
-    _foodIds = [foodItem.id];
+    if (_filteredFoodItems.length === 0) {
+      _filteredFoodItems = [foodItem];
+      _foodIds = [foodItem.id];
+    }
+  };
+
+  var resetFilteredFoodItems = function(foodItems) {
+    _filteredFoodItems = foodItems;
+    _foodIds = [];
+    for (var i = 0; i < foodItems.length; i++) {
+      _foodIds.push(foodItems[i].id);
+    }
+    i = 0;
   };
 
   var FilteredFoodItemStore = root.FilteredFoodItemStore = $.extend({}, EventEmitter.prototype, {
@@ -49,23 +61,24 @@
     find: function (id) {
       var foodItem;
       _filteredFoodItems.forEach(function(f) {
-        if(f.id === id) { foodItem = f; }
+        if (f.id === id) { foodItem = f; }
       });
 
       return foodItem;
     },
 
     next: function () {
-      var currentFoodId = parseInt(window.location.hash.match(/\d+/)[0]);
-      if (_filteredFoodItems.length > 1 && currentFoodId === _foodIds[0]) {
-        i = 1;
+      var currentFoodId,
+          resultsLength = _filteredFoodItems.length;
+
+      if (window.location.hash.match(/food_items/)) {
+        currentFoodId = parseInt(window.location.hash.match(/\d+/)[0]);
+        if (resultsLength > 1 && currentFoodId === _foodIds[0]) { i = 1; }
       }
-      if (i + 1 > _filteredFoodItems.length) {
-        i = 0;
-      }
+      if (i + 1 > resultsLength) { i = 0; }
       var result = _filteredFoodItems[i];
-      _filteredFoodItem = _filteredFoodItems[i];
-      i++;
+      _filteredFoodItem = result;
+      if (resultsLength > 1) { i++; }
 
       return result;
     },
@@ -102,10 +115,14 @@
           break;
         case FilterConstants.FILTERED_FOOD_ITEM_RECEIVED:
           resetFilteredFoodItem(payload.filteredFoodItem);
-          FilteredFoodItemStore.emit(REFRESH_EVENT);
+          FilteredFoodItemStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.RECOMMENDED_FOOD_ITEMS_RECEIVED:
           addRecommendedFoodItems(payload.recommendedFoodItems);
+          break;
+        case FilterConstants.SINGLE_FOOD_ITEM_RECEIVED:
+          addSingleFoodItem(payload.foodItem);
+          FilteredFoodItemStore.emit(CHANGE_EVENT);
           break;
       }
     })

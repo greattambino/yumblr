@@ -108,7 +108,7 @@ var ApiUtil = {
     $.ajax({
       url: "api/food_items/" + id,
       success: function(foodItem) {
-        FilterActions.receiveFilteredFoodItem(foodItem);
+        FilterActions.receiveSingleFoodItem(foodItem);
         foodItem.categories.map(function(category) {
           $.ajax({
             url: "api/categories/" + category.id,

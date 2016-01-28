@@ -11,33 +11,14 @@
       });
     },
 
-    getFillPercentage: function(id){
-      return FilteredFoodItemStore.fillPercentage(parseInt(id));
-    },
-
-    getFoodItem: function(id){
-      return FilteredFoodItemStore.find(parseInt(id));
-    },
-
-    _fetchFoodItem: function (id) {
-      ApiUtil.fetchFilteredFoodItem(id);
-    },
-
-    _onChange: function () {
-      this.setState({
-        foodItem: this.getFoodItem(this.props.params.foodItemId),
-        fillPercentage: this.getFillPercentage(this.props.params.foodItemId)
-      });
-    },
-
-    _onRefresh: function () {
-      this.setState({foodItem: FilteredFoodItemStore.current() });
-    },
-
     componentDidMount: function() {
       FilteredFoodItemStore.addChangeListener(this._onChange);
-      FilteredFoodItemStore.addRefreshListener(this._onChange);
-      this._fetchFoodItem(this.props.params.foodItemId);
+    },
+
+    componentWillMount: function () {
+      if (FilteredFoodItemStore.all().length === 0) {
+        this._fetchFoodItem(this.props.params.foodItemId);
+      }
     },
 
     componentWillReceiveProps: function (newProps) {
@@ -49,7 +30,25 @@
 
     componentWillUnmount: function () {
       FilteredFoodItemStore.removeChangeListener(this._onChange);
-      FilteredFoodItemStore.removeRefreshListener(this._onChange);
+    },
+
+    _fetchFoodItem: function (id) {
+      ApiUtil.fetchFilteredFoodItem(id);
+    },
+
+    getFillPercentage: function(id){
+      return FilteredFoodItemStore.fillPercentage(parseInt(id));
+    },
+
+    getFoodItem: function(id){
+      return FilteredFoodItemStore.find(parseInt(id));
+    },
+
+    _onChange: function () {
+      this.setState({
+        foodItem: this.getFoodItem(this.props.params.foodItemId),
+        fillPercentage: this.getFillPercentage(this.props.params.foodItemId)
+      });
     },
 
     render: function() {
@@ -80,5 +79,3 @@
     }
   });
 }(this));
-
-// numLikes={this.state.foodItem.num_likes}

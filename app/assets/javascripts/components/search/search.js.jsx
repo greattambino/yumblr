@@ -70,9 +70,11 @@
     },
 
     handleChange: function(e) {
-      var query = e.target.value;
+      var query = e.target.value,
+          selectedCuisine = this.state.selectedCuisine,
+          searching = true;
 
-      ApiUtil.fetchFoodSearchResults(query, this.state.selectedCuisine);
+      ApiUtil.fetchFoodSearchResults(query, selectedCuisine, searching);
       ApiUtil.fetchCategorySearchResults(query);
       if (query !== "") {
         this.setState({ searchString: query, searching: true });

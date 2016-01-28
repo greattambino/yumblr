@@ -15,7 +15,7 @@
                cuisines: CuisineStore.all(),
                foodSearchResults: [],
                categorySearchResults: [],
-               selectedResult: 0
+               selectedResult: -1
              });
     },
 
@@ -79,7 +79,7 @@
       } else {
         this.setState({ searchString: query, searching: false });
       }
-      this.setState({ selectedResult: 0 });
+      this.setState({ selectedResult: -1 });
     },
 
     handleClick: function(e) {
@@ -106,11 +106,14 @@
           location     = ParamsStore.params().location,
           radius       = ParamsStore.params().radius,
           results      = this.state.categorySearchResults.
-                           concat(this.state.foodSearchResults),
-          selected     = results[this.state.selectedResult].name;
+                           concat(this.state.foodSearchResults);
+
+      if (this.state.selectedResult !== -1) {
+        searchString = results[this.state.selectedResult].name;
+      }
 
       ApiUtil.fetchFilteredFoodItems(
-        selected,
+        searchString,
         cuisine,
         location,
         radius
@@ -167,8 +170,7 @@
 
     updateSelectedResult: function (e) {
       var results = this.state.categorySearchResults.
-            concat(this.state.foodSearchResults),
-          selected = results[this.state.selectedResult].name;
+            concat(this.state.foodSearchResults);
 
       for (var i = 0; i < results.length; i++) {
         if (e.target.innerHTML === results[i].name) {

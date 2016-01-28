@@ -87,10 +87,16 @@ var ApiUtil = {
     });
   },
 
-  fetchFoodSearchResults: function(query, cuisine_id, searching) {
+  fetchFoodSearchResults: function(query, cuisine_id, location, radius, searching) {
     $.ajax({
       url: "api/food_items",
-      data: {search: query, cuisine: cuisine_id, searching: searching},
+      data: {
+        search: query,
+        cuisine: cuisine_id,
+        location: location,
+        radius: radius,
+        searching: searching
+      },
       success: function(foodSearchResults) {
         FilterActions.receiveQueryResults(foodSearchResults);
       },

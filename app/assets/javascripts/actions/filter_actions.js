@@ -50,6 +50,13 @@
         actionType: FilterConstants.RECOMMENDED_FOOD_ITEMS_RECEIVED,
         recommendedFoodItems: recommendedFoodItems
       });
+    },
+
+    receiveSingleFoodItem: function(foodItem) {
+      AppDispatcher.dispatch({
+        actionType: FilterConstants.SINGLE_FOOD_ITEM_RECEIVED,
+        foodItem: foodItem
+      });
     }
   };
 }(this));

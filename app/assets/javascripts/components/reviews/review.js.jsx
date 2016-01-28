@@ -13,16 +13,20 @@
     componentDidMount: function() {
       ReviewStore.addCreateListener(this.disableForm);
       ReviewStore.addDestroyListener(this.enableForm);
+      UserStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function() {
       ReviewStore.removeCreateListener(this.disableForm);
       ReviewStore.removeDestroyListener(this.enableForm);
+      UserStore.removeChangeListener(this._onChange);
     },
 
     componentWillReceiveProps: function (newProps) {
       if (this.props.foodItem !== newProps.foodItem) {
-        this.setState({ showForm: true });
+        this.setState({
+          showForm: !UserStore.currentUserHasReviewed(newProps.foodItem.id)
+        });
       }
     },
 
@@ -34,9 +38,14 @@
       this.setState({ showForm: true });
     },
 
+    _onChange: function () {
+      this.setState({
+        showForm: !UserStore.currentUserHasReviewed(this.props.foodItem.id)
+      });
+    },
+
     renderReviewForm: function () {
       var foodItemId = this.props.foodItem.id;
-
       return(
         <ReviewEditForm
           foodItemId={foodItemId}
@@ -67,6 +76,7 @@
           currentUser = UserStore.currentUser(),
           currentUserId = currentUser.id,
           foodItemId = this.props.foodItem.id;
+
       if (this.state.showForm) {
         reviewHeader = this.renderReviewForm();
       } else {

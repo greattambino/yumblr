@@ -5,6 +5,8 @@ class Api::FoodItemsController < ApplicationController
 
     if (params[:restaurant_id])
       @food_items = Restaurant.find(params[:restaurant_id]).food_items
+    elsif (params[:searching])
+      @food_items = FoodItem.find_by_query(params[:search])
     elsif(params[:search] && (params[:cuisine] == "-1") && params[:location] && params[:radius])
       Category.any_results?(params[:search]) ? klass = Category : klass = FoodItem
       @food_items = klass.find_by_query_and_location(params[:search], params[:location], params[:radius])

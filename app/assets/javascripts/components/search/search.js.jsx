@@ -71,10 +71,14 @@
 
     handleChange: function(e) {
       var query = e.target.value,
-          selectedCuisine = this.state.selectedCuisine,
+          cuisine = this.state.selectedCuisine,
+          location     = ParamsStore.params().location,
+          radius       = ParamsStore.params().radius,
           searching = true;
 
-      ApiUtil.fetchFoodSearchResults(query, selectedCuisine, searching);
+      ApiUtil.fetchFoodSearchResults(
+        query, cuisine, location, radius, searching
+      );
       ApiUtil.fetchCategorySearchResults(query);
       if (query !== "") {
         this.setState({ searchString: query, searching: true });
@@ -89,7 +93,7 @@
     },
 
     handleOutsideClick: function(e) {
-      this.setState({ searching: false });
+      this.setState({ searching: false, selectedResult: -1 });
     },
 
     updateCuisine: function(e){
@@ -111,15 +115,22 @@
                            concat(this.state.foodSearchResults);
 
       if (this.state.selectedResult !== -1) {
-        searchString = results[this.state.selectedResult].name;
-      }
+        var selected = results[this.state.selectedResult].id;
 
-      ApiUtil.fetchFilteredFoodItems(
-        searchString,
-        cuisine,
-        location,
-        radius
-      );
+        ApiUtil.fetchSingleAndRecommendedFoodItems(
+          selected,
+          cuisine,
+          location,
+          radius
+        );
+      } else {
+        ApiUtil.fetchFilteredFoodItems(
+          searchString,
+          cuisine,
+          location,
+          radius
+        );
+      }
 
       this.setState({
         searchString: '',

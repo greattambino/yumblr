@@ -7,7 +7,7 @@
   var INITIALIZE_EVENT = "initialize";
   var CHANGE_EVENT = "change";
   var REFRESH_EVENT = "refresh";
-  var i = 0;
+  var index = 0;
 
   var addRecommendedFoodItems = function(foodItems) {
     for (var i = 0; i < foodItems.length; i++) {
@@ -38,7 +38,7 @@
     for (var i = 0; i < foodItems.length; i++) {
       _foodIds.push(foodItems[i].id);
     }
-    i = 0;
+    index = 0;
   };
 
   var FilteredFoodItemStore = root.FilteredFoodItemStore = $.extend({}, EventEmitter.prototype, {
@@ -51,9 +51,9 @@
     },
 
     fillPercentage: function (id) {
-      for (var i = 0; i < _filteredFoodItems.length; i++) {
-        if (_filteredFoodItems[i].id === id) {
-          return ((i + 1) / _filteredFoodItems.length)*100;
+      for (var j = 0; j < _filteredFoodItems.length; j++) {
+        if (_filteredFoodItems[j].id === id) {
+          return ((j + 1) / _filteredFoodItems.length)*100;
         }
       }
     },
@@ -73,12 +73,12 @@
 
       if (window.location.hash.match(/food_items/)) {
         currentFoodId = parseInt(window.location.hash.match(/\d+/)[0]);
-        if (resultsLength > 1 && currentFoodId === _foodIds[0]) { i = 1; }
+        if (resultsLength > 1 && currentFoodId === _foodIds[0]) { index = 1; }
       }
-      if (i + 1 > resultsLength) { i = 0; }
-      var result = _filteredFoodItems[i];
+      if (index + 1 > resultsLength) { index = 0; }
+      var result = _filteredFoodItems[index];
       _filteredFoodItem = result;
-      if (resultsLength > 1) { i++; }
+      if (resultsLength > 1) { index++; }
 
       return result;
     },

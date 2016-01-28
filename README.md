@@ -1,10 +1,10 @@
 # Yumblr
 
-[www.yumblr.io][yumblr] **NB:** Check out the live link to Yumblr!
+**Live Link:** [www.yumblr.io][yumblr]
 
 [yumblr]: http://www.yumblr.io
 
-![alt text](http://res.cloudinary.com/yumblr/image/upload/v1448955568/app/yumblr.jpg "www.yumblr.io")
+![alt text](http://res.cloudinary.com/yumblr/image/upload/v1454012334/app/yumblr.jpg "www.yumblr.io")
 
 ## Minimum Viable Product
 

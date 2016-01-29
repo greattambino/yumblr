@@ -111,18 +111,22 @@
           cuisine      = this.state.selectedCuisine,
           location     = ParamsStore.params().location,
           radius       = ParamsStore.params().radius,
-          results      = this.state.categorySearchResults.
-                           concat(this.state.foodSearchResults);
+          categoryResults = this.state.categorySearchResults,
+          foodResults     = this.state.foodSearchResults,
+          results         = categoryResults.concat(foodResults);
 
       if (this.state.selectedResult !== -1) {
-        var selected = results[this.state.selectedResult].id;
-
-        ApiUtil.fetchSingleAndRecommendedFoodItems(
-          selected,
-          cuisine,
-          location,
-          radius
-        );
+        var selected = results[this.state.selectedResult];
+        if (categoryResults.indexOf(selected) === -1) {
+          ApiUtil.fetchSingleAndRecommendedFoodItems(
+            selected.id,
+            cuisine,
+            location,
+            radius
+          );
+        } else {
+          ApiUtil.fetchSingleCategory(selected.id);
+        }
       } else {
         ApiUtil.fetchFilteredFoodItems(
           searchString,

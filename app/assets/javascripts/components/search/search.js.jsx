@@ -190,7 +190,8 @@
             concat(this.state.foodSearchResults);
 
       for (var i = 0; i < results.length; i++) {
-        if (e.target.innerHTML === results[i].name) {
+        if (e.target.textContent === results[i].name &&
+            parseInt(e.target.dataset.id) === results[i].id) {
           this.setState({ selectedResult: i });
         }
       }

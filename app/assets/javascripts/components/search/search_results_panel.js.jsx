@@ -40,10 +40,6 @@
       this.history.pushState(null, "/food_items/" + id.toString());
     },
 
-    handleMouseEnter: function (e) {
-      this.props.handleMouseEnter(e.target.value);
-    },
-
     handleOutsideClick: function (e) {
       e.preventDefault();
       if (this.props.searching) {
@@ -79,6 +75,7 @@
                     onClick={this.handleCategoryClick.bind(null, result.id)}
                     id="search-result"
                     data-index={i}
+                    data-id={result.id}
                     className={selected}>
                   {result.name}
                 </li>
@@ -97,6 +94,7 @@
                     onClick={this.handleFoodClick.bind(null, result.id)}
                     id="search-result"
                     data-index={i}
+                    data-id={result.id}
                     className={selected}>
                   {result.name}
                 </li>

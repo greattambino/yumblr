@@ -13,6 +13,8 @@
 # Category.destroy_all
 # FoodCategory.destroy_all
 
+FoodItem.find(11).delete!
+
 # barbeque              = Category.find_or_create_by(name: 'Barbeque')
 # bbq                   = Category.find_or_create_by(name: 'BBQ')
 beef                  = Category.find_or_create_by(name: 'Beef')

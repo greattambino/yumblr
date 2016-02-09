@@ -52,7 +52,9 @@
         likeList = (
           <div>
             {this.state.likes.map (function(like) {
-              return <UserLikeIndexItem key={like.id} like={like}/>;
+              return <UserLikeIndexItem
+                       key={like.id}
+                       like={like} />;
             })}
           </div>
         );

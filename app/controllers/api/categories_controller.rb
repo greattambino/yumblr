@@ -10,7 +10,6 @@ class Api::CategoriesController < ApplicationController
   end
 
   def show
-
     @category = Category.includes(:food_items, :restaurants).find(params[:id])
     render :show
   end

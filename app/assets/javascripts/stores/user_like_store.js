@@ -7,18 +7,17 @@
         likable_type: "FoodItem",
         likable_id: -1
       },
-      CHANGE_EVENT = "CHANGE_EVENT",
-      resetUserLikes = function (userId, likes) {
-        _userLikes[userId] = likes;
-      },
-      addUserLike = function (userId, like) {
+      CHANGE_EVENT = "CHANGE_EVENT";
+
+  var _addUserLike = function (userId, like) {
         if (typeof _userLikes[userId] === "undefined") {
           _userLikes[userId] = [like];
         } else {
           _userLikes[userId].push(like);
         }
       },
-      removeUserLike = function (like) {
+
+      _removeUserLike = function (like) {
         var userId = like.user_id,
             len, i;
 
@@ -26,10 +25,15 @@
           for (i = 0, len = _userLikes[userId].length; i < len; i++) {
             if (_userLikes[userId][i].id === like.id) {
               _userLikes[userId].splice(i, 1);
+              UserLikeStore.emit(CHANGE_EVENT);
+              return;
             }
           }
         }
-        UserLikeStore.emit(CHANGE_EVENT);
+      },
+
+      _resetUserLikes = function (userId, likes) {
+        _userLikes[userId] = likes;
       };
 
   var UserLikeStore = root.UserLikeStore = $.extend({}, EventEmitter.prototype,{
@@ -60,15 +64,15 @@
     dispatcherId: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
         case LikeConstants.USER_LIKES_RECEIVED:
-          resetUserLikes(payload.userId, payload.likes);
+          _resetUserLikes(payload.userId, payload.likes);
           UserLikeStore.emit(CHANGE_EVENT);
           break;
         case LikeConstants.LIKE_CREATED:
-          addUserLike(payload.userId, payload.like);
+          _addUserLike(payload.userId, payload.like);
           UserLikeStore.emit(CHANGE_EVENT);
           break;
         case LikeConstants.LIKE_DESTROYED:
-          removeUserLike(payload.like);
+          _removeUserLike(payload.like);
           break;
       }
     })

@@ -19,10 +19,11 @@
         }
       },
       removeUserLike = function (like) {
-        var userId = like.user_id;
+        var userId = like.user_id,
+            len, i;
 
         if (typeof _userLikes[userId] !== "undefined") {
-          for (var i = 0; i < _userLikes[userId].length; i++) {
+          for (i = 0, len = _userLikes[userId].length; i < len; i++) {
             if (_userLikes[userId][i].id === like.id) {
               _userLikes[userId].splice(i, 1);
             }

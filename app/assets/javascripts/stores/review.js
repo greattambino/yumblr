@@ -24,7 +24,9 @@
         }
       },
       _deleteReview = function (reviewId, foodItemId, oldRating) {
-        for (var i = 0; i < _reviews[foodItemId].length; i++) {
+        var len, i;
+
+        for (i = 0, len = _reviews[foodItemId].length; i < len; i++) {
           if (_reviews[foodItemId][i].id === reviewId) {
             _reviews[foodItemId].splice(i, 1);
             _reviews[foodItemId].totalRating -= oldRating;
@@ -33,7 +35,9 @@
         }
       },
       _updateReview = function (reviewId, foodItemId, body, rating, oldRating) {
-        for (var i = 0; i < _reviews[foodItemId].length; i++) {
+        var len, i;
+
+        for (i = 0, len = _reviews[foodItemId].length; i < len; i++) {
           if (_reviews[foodItemId][i].id === reviewId) {
             _reviews[foodItemId][i].body = body;
             _reviews[foodItemId][i].rating = rating;
@@ -59,9 +63,9 @@
     },
 
     currentUserHasReviewed: function (currentUser, foodItemId) {
-      var review;
+      var review, len, i;
       if (currentUser.id !== -1) {
-        for (var i = 0; i < currentUser.reviews.length; i++) {
+        for (i = 0, len = currentUser.reviews.length; i < len; i++) {
           review = currentUser.reviews[i];
           if (review.food_item_id === foodItemId) {
             return true;

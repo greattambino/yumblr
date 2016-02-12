@@ -43,8 +43,9 @@
     },
 
     doesCurrentUserLike: function (likableType, likableId) {
-      var like;
-      for (var i = 0; i < _currentUser.likes.length; i++) {
+      var like, len, i;
+
+      for (i = 0, len = _currentUser.likes.length; i < len; i++) {
         like = _currentUser.likes[i];
         if (like.likable_type === likableType &&
             like.likable_id === likableId) {
@@ -55,9 +56,10 @@
     },
 
     currentUserHasReviewed: function (foodItemId) {
-      var review;
+      var review, len, i;
+      
       if (_currentUser.id !== -1) {
-        for (var i = 0; i < _currentUser.reviews.length; i++) {
+        for (i = 0, len = _currentUser.reviews.length; i < len; i++) {
           review = _currentUser.reviews[i];
           if (review.food_item_id === foodItemId) {
             return true;

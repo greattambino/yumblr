@@ -1,9 +1,6 @@
 #review-modal-container > div > div > div.review-modal-dialog.modal.fade.in > div {
   width: 90%;
-  // overflow: hidden;
-  // overflow-y: auto;
   margin: 5em auto 1em;
-  // position: fixed;
   left: 0;
   top: 0;
   right: 0;
@@ -27,8 +24,6 @@
 
 .review-li-editable {
   padding-bottom: 20px;
-  // padding: 0px 15px 20px;
-  // border-bottom: 1px solid #A9A9A9;
 }
 
 .review-rating-container {
@@ -91,15 +86,6 @@
   overflow-y: auto;
 }
 
-// .map-container {
-//   height: 300px;
-// }
-
-// .close {
-//   color: #888888 !important;
-//   opacity: 0.7 !important;
-// }
-
 .review-modal-details {
   color: #FFFFFF;
   padding: 10px 0px 10px 0px;
@@ -132,19 +118,6 @@
   -o-transition: width  0.2s ease-in-out;
   transition: width  0.2s ease-in-out;
 }
-
-// #review-input-form button {
-//   border: 0;
-//   background: none;
-//   padding: 2px 5px;
-//   margin-top: 2px;
-//   position: relative;
-//   // left: -28px;
-//   margin-bottom: 0;
-//   -webkit-border-radius: 3px;
-//   -moz-border-radius: 3px;
-//   border-radius: 3px;
-// }
 
 .review-input-text:focus + button {
   z-index: 3;
